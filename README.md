@@ -12,14 +12,14 @@ _You may need to restart Sublime Text for the plugin to load properly._
 From the main application menu navigate to `Edit` -> `Declare That Color`, or use the pre-defined keyboard shortcut `Super` + `Ctrl` + `.`.
 
 ## Settings
-**variable_prefix**
-Type: _String_
-Default: `''` (empty string)
+**variable_prefix**\
+Type: _String_\
+Default: `''` (empty string)\
 Currently this option supports `$`, `@` and `''` values. If default value is set, variables will be declared using vanilla CSS notation.
 
-**declare_alphabetically**
-Type: _Bollean_
-Default: `false`
+**declare_alphabetically**\
+Type: _Bollean_\
+Default: `false`\
 Whether or not declare variables alphabetically.
 
 ## Author
