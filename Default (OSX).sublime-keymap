@@ -1,0 +1,5 @@
+[
+  {
+    "keys": ["super+ctrl+."], "command": "declare_that_color"
+  }
+]

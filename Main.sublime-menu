@@ -1,0 +1,47 @@
+[
+    {
+        "id": "edit",
+        "children":
+        [
+            { "id": "wrap" },
+            { "command": "declare_that_color" }
+        ]
+    },
+  {
+        "caption": "Preferences",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "DeclareThatColor",
+                        "children":
+                        [
+                            {
+                                "caption": "Settings – Default",
+                                "command": "open_file",
+                                "args":
+                                {
+                                    "file": "${packages}/DeclareThatColor/DeclareThatColor.sublime-settings"
+                                }
+                            },
+                            {
+                                "caption": "Settings – User",
+                                "command": "open_file",
+                                "args":
+                                {
+                                    "file": "${packages}/User/DeclareThatColor.sublime-settings"
+                                }
+                            },
+                            { "caption": "-" }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
