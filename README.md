@@ -27,4 +27,4 @@ Herbert Verdida - [@bertdida](https://twitter.com/bertdida)
 
 ## Acknowledgments
 1. Chirag Mehta - inspiration and the creator of [name-that-color](http://chir.ag/projects/name-that-color/#6195ED) tool.
-2. [Matt Fordham](https://github.com/mattfordham/Name-That-Color---Sublime-Plugin) - ported [ntc.js](http://chir.ag/projects/ntc/ntc.js) to python which I used and made the development of this plugin easier.
+2. [Matt Fordham](https://github.com/mattfordham/Name-That-Color---Sublime-Plugin) - ported [ntc.js](http://chir.ag/projects/ntc/ntc.js)
