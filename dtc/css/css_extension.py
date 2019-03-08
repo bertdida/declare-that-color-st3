@@ -46,6 +46,7 @@ class CSSExtension(CSS):
         return ['{}{}: {};'.format(self.variable_prefix, k, color_dict[k])
                 for k in sorted(color_dict, key=self.alphanum)]
 
-    def _format_declaration(self, declaration):
+    @staticmethod
+    def _format_declaration(declaration):
 
         return '{0}{1}{1}'.format(declaration, '\n')
