@@ -17,7 +17,7 @@ class CSSExtension(CSS):
 
         self.css = css
 
-        language = 'sass' if not self.is_supported(language) else language
+        language = language if self.is_supported(language) else 'sass'
         self.variable_prefix = PREFIX_DICT[language]
 
         if language == 'stylus':
