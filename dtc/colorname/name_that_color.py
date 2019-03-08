@@ -10,7 +10,7 @@ class NameThatColor:
 
     @classmethod
     def color_name(cls, hex_code):
-
+        hex_code = hex_code.upper()
         hex_len = len(hex_code.lstrip('#'))
 
         if hex_len % 3 != 0 or hex_len > 6 or hex_len == 0:
@@ -32,7 +32,7 @@ class NameThatColor:
 
         for i, current_color in enumerate(cls.color_names):
 
-            if hex_code.upper() == '#{}'.format(current_color[0].upper()):
+            if hex_code == '#{}'.format(current_color[0]):
                 return current_color[1]
 
             ndf1 = (
