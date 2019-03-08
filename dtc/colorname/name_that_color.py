@@ -61,7 +61,7 @@ class NameThatColor:
 
         try:
             return cls.color_names[cl][1]
-        except IndexError as e:
+        except IndexError:
             cls._raise_error(404, hex_code)
 
     @classmethod
