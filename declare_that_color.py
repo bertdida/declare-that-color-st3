@@ -18,8 +18,8 @@ class DeclareThatColor(sublime_plugin.TextCommand):
         region = sublime.Region(0, self.view.size())
         file_content = self.view.substr(region)
 
-        if False:
-            css = CSS(css=file_content, selector=self.css_selector)
+        if not CSSExtension.is_supported(self.css_extension):
+            css = CSS(css=file_content, block_selector=self.css_selector)
         else:
             css = CSSExtension(css=file_content, language=self.css_extension)
 
