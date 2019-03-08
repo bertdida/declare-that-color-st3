@@ -3,6 +3,7 @@ import sublime_plugin
 from .dtc import CSS
 from .dtc import CSSExtension
 
+
 class DeclareThatColor(sublime_plugin.TextCommand):
     def __init__(self, view):
         self.view = view
