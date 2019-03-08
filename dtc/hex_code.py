@@ -18,7 +18,7 @@ class HexCode:
     def get_all(cls, string):
 
         hex_codes = HEX_CODE_FINDER_RE.findall(string)
-        hex_codes = [cls.normalize(hc) for hc in hex_codes if cls.is_valid(hc)]
+        hex_codes = [cls.normalize(h) for h in hex_codes if cls.is_valid(hc)]
 
         # remove duplicates
         hex_codes = list(dict.fromkeys(hex_codes))
@@ -42,6 +42,6 @@ class HexCode:
         hex_digits = hex_code.lstrip('#')
 
         if len(hex_digits) == 3:
-            hex_digits = ''.join(2 * char for char in hex_digits)
+            hex_digits = ''.join(2 * c for c in hex_digits)
 
         return '#{}'.format(hex_digits)
