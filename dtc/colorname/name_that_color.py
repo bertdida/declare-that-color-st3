@@ -10,10 +10,9 @@ class NameThatColor:
 
     @classmethod
     def color_name(cls, hex_code):
-        hex_code = hex_code.upper()
         hex_len = len(hex_code.lstrip('#'))
 
-        if hex_len % 3 != 0 or hex_len > 6 or hex_len == 0:
+        if hex_len not in (3, 6) or hex_len == 0:
             raise ValueError(
                 'DeclareThatColor: invalid hex code: {}'.format(hex_code))
 
