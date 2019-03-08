@@ -94,16 +94,16 @@ class CSS:
 
         return declaration
 
+    def _get_value_pairs(self, color_dict):
+
+        return ['\t{}{}: {};'.format(self.variable_prefix, k, color_dict[k])
+                for k in sorted(color_dict, key=self.alphanum)]
+
     @staticmethod
     def alphanum(string):
 
         regex = re.compile(r'([0-9]+)')
         return [int(s) if s.isdigit() else s for s in regex.split(string)]
-
-    def _get_value_pairs(self, color_dict):
-
-        return ['\t{}{}: {};'.format(self.variable_prefix, k, color_dict[k])
-                for k in sorted(color_dict, key=self.alphanum)]
 
     def _format_declaration(self, declaration):
 
