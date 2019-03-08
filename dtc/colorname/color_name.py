@@ -11,7 +11,7 @@ class ColorName:
 
         try:
             name = ntc.color_name(hex_code)
-        except ValueError as e:
+        except ValueError:
             return None
 
         name = name.replace(' ', '-')
