@@ -22,6 +22,7 @@ class CSSExtension(CSS):
 
     @staticmethod
     def is_supported(language):
+
         return language in SUPPORTED_EXTENSIONS
 
     def save_previous_declarations(self):
