@@ -1,4 +1,4 @@
 {
-    "variable_prefix": "",
-    "declare_alphabetically": true,
+	"css_selector": ":root",
+    "css_extension": "sass",
 }
