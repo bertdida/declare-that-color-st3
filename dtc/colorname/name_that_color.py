@@ -72,10 +72,10 @@ class NameThatColor:
         g = g / 255
         b = b / 255
 
-        _min = min(r, min(g, b))
-        _max = max(r, max(g, b))
-        delta = _max - _min
-        l = (_min + _max) / 2
+        min_ = min(r, min(g, b))
+        max_ = max(r, max(g, b))
+        delta = max_ - min_
+        l = (min_ + max_) / 2
         s = 0
 
         if l > 0 and l < 1:
@@ -84,11 +84,11 @@ class NameThatColor:
         h = 0
 
         if delta > 0:
-            if _max == r and _max != g:
+            if max_ == r and max_ != g:
                 h += (g - b) / delta
-            if _max == g and _max != b:
+            if max_ == g and max_ != b:
                 h += 2 + (b - r) / delta
-            if _max == b and _max != r:
+            if max_ == b and max_ != r:
                 h += 4 + (r - g) / delta
             h /= 6
 
