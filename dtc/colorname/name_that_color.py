@@ -115,7 +115,6 @@ class NameThatColor:
         else:
             error_message = cls.error_404.format(hex_code)
 
-        print(error_message)
         raise ValueError(error_message)
 
     color_names = [
