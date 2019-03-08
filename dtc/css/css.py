@@ -46,6 +46,10 @@ class CSS:
     def declare_variables(self):
 
         color_dict = self._get_color_dict()
+
+        if not color_dict:
+            return
+
         declaration = self._create_color_declaration(color_dict)
 
         set_variable = self._set_variable(color_dict)
