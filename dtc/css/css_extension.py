@@ -1,29 +1,35 @@
 from .css import CSS
+from .css_hex_code_variable import CSSHexCodeVariables
 
 PREFIX_DICT = {
+    'stylus': '$',
     'sass': '$',
     'scss': '$',
     'less': '@'
 }
 
-SUPPORTED_EXTENSIONS = [s for s in PREFIX_DICT]
-
 
 class CSSExtension(CSS):
 
+    assignment_operator = ':'
+
     def __init__(self, css, language=None):
 
-        if language not in PREFIX_DICT:
-            language = 'sass'
+        self.css = css
 
+        language = 'sass' if not self.is_supported(language) else language
         self.variable_prefix = PREFIX_DICT[language]
 
-        super(CSSExtension, self).__init__(css)
+        if language == 'stylus':
+            self.assignment_operator = ' ='
+
+        self.hex_var = CSSHexCodeVariables(
+            self.variable_prefix, self.assignment_operator)
 
     @staticmethod
     def is_supported(language):
 
-        return language in SUPPORTED_EXTENSIONS
+        return language in PREFIX_DICT
 
     def save_previous_declarations(self):
 
@@ -44,8 +50,9 @@ class CSSExtension(CSS):
 
     def _get_value_pairs(self, color_dict):
 
-        return ['{}{}: {};'.format(self.variable_prefix, k, color_dict[k])
-                for k in sorted(color_dict, key=self.alphanum)]
+        return ['{}{}{} {};'.format(
+            self.variable_prefix, k, self.assignment_operator, color_dict[k])
+            for k in sorted(color_dict, key=self.alphanum)]
 
     @staticmethod
     def _format_declaration(declaration):
