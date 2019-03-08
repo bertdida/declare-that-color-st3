@@ -11,12 +11,12 @@ class CSSExtension(CSS):
 
     def __init__(self, css, language=None):
 
-        super(CSSExtension, self).__init__(css)
-
         if language not in PREFIX_DICT:
             language = 'sass'
 
         self.variable_prefix = PREFIX_DICT[language]
+
+        super(CSSExtension, self).__init__(css)
 
     def save_previous_declarations(self):
 
