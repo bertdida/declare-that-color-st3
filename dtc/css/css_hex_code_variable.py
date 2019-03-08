@@ -4,7 +4,7 @@ import re
 class CSSHexCodeVariables:
 
     regex = r'[ \t]*?(?P<name>\{}[a-z0-9-]*?):\s*?' \
-        '(?P<hex_code>#(?:[a-f0-9]{{6}}|[a-f0-9]{{3}}));$\n{{0,3}}'
+        r'(?P<hex_code>#(?:[a-f0-9]{{6}}|[a-f0-9]{{3}}));$\n{{0,3}}'
 
     def __init__(self, variable_prefix):
 
