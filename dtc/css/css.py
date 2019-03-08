@@ -9,14 +9,19 @@ class CSS:
 
     declarations = {}
 
-    def __init__(self, css, prefix=None, selector=None):
+    variable_prefix = '--'
+
+    block_selector = ':root'
+
+    def __init__(self, css, block_selector=None):
 
         self.css = css
-        self.prefix = '--' if prefix is None else prefix
-        self.selector = ':root' if selector is None else selector
 
-        self.hex_var = CSSHexCodeVariables(self.prefix)
-        self.rule_set = CSSRuleSet(self.selector)
+        if block_selector is not None:
+            self.block_selector = block_selector
+
+        self.hex_var = CSSHexCodeVariables(self.variable_prefix)
+        self.rule_set = CSSRuleSet(self.block_selector)
 
         self.declaration_rule_sets = self.rule_set.get_all(self.css)
 
@@ -75,7 +80,7 @@ class CSS:
 
     def _format_variable(self, name):
 
-        return 'var({}{})'.format(self.prefix, name)
+        return 'var({}{})'.format(self.variable_prefix, name)
 
     def _create_color_declaration(self, color_dict):
 
@@ -93,10 +98,10 @@ class CSS:
 
     def _get_value_pairs(self, color_dict):
 
-        return ['\t{}{}: {};'.format(self.prefix, k, color_dict[k])
+        return ['\t{}{}: {};'.format(self.variable_prefix, k, color_dict[k])
                 for k in sorted(color_dict, key=self.alphanum)]
 
     def _format_declaration(self, declaration):
 
         return '{0} {{{1}{2}{1} }}{1}{1}'.format(
-            self.selector, '\n', declaration)
+            self.block_selector, '\n', declaration)
