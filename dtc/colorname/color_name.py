@@ -32,7 +32,7 @@ class ColorName:
             return name
 
         is_match = cls.is_match(name)
-        matches = [cn for cn in color_dict if is_match(cn)]
+        matches = [n for n in color_dict if is_match(n)]
 
         return '{}-{}'.format(name, len(matches) + 1)
 
