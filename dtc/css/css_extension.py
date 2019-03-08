@@ -11,10 +11,12 @@ class CSSExtension(CSS):
 
     def __init__(self, css, language=None):
 
+        super(CSSExtension, self).__init__(css)
+
         if language not in PREFIX_DICT:
             language = 'sass'
 
-        super(CSSExtension, self).__init__(css, prefix=PREFIX_DICT[language])
+        self.variable_prefix = PREFIX_DICT[language]
 
     def save_previous_declarations(self):
 
@@ -31,11 +33,11 @@ class CSSExtension(CSS):
 
     def _format_variable(self, name):
 
-        return '{}{}'.format(self.prefix, name)
+        return '{}{}'.format(self.variable_prefix, name)
 
     def _get_value_pairs(self, color_dict):
 
-        return ['{}{}: {};'.format(self.prefix, k, color_dict[k])
+        return ['{}{}: {};'.format(self.variable_prefix, k, color_dict[k])
                 for k in sorted(color_dict, key=self.alphanum)]
 
     def _format_declaration(self, declaration):
