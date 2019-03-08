@@ -18,7 +18,7 @@ class HexCode:
     def get_all(cls, string):
 
         hex_codes = HEX_CODE_FINDER_RE.findall(string)
-        hex_codes = [cls.normalize(h) for h in hex_codes if cls.is_valid(hc)]
+        hex_codes = [cls.normalize(h) for h in hex_codes if cls.is_valid(h)]
 
         # remove duplicates
         hex_codes = list(dict.fromkeys(hex_codes))
