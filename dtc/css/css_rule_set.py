@@ -5,10 +5,10 @@ class CSSRuleSet:
 
     regex = r'^{}\s*?{{(?P<declarations>[\S\s]*?)}}\n{{0,3}}'
 
-    def __init__(self, selector):
+    def __init__(self, block_selector):
 
         self.regex = re.compile(
-            self.regex.format(selector), re.MULTILINE | re.IGNORECASE)
+            self.regex.format(block_selector), re.MULTILINE | re.IGNORECASE)
 
     def get_all(self, css):
 

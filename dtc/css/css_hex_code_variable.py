@@ -6,10 +6,10 @@ class CSSHexCodeVariables:
     regex = r'[ \t]*?(?P<name>\{}[a-z0-9-]*?):\s*?' \
         '(?P<hex_code>#(?:[a-f0-9]{{6}}|[a-f0-9]{{3}}));$\n{{0,3}}'
 
-    def __init__(self, prefix):
+    def __init__(self, variable_prefix):
 
         self.regex = re.compile(
-            self.regex.format(prefix), re.MULTILINE | re.IGNORECASE)
+            self.regex.format(variable_prefix), re.MULTILINE | re.IGNORECASE)
 
     def get_all(self, css):
 
