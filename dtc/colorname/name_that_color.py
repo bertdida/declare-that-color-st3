@@ -14,7 +14,8 @@ class NameThatColor:
         hex_len = len(hex_code.lstrip('#'))
 
         if hex_len % 3 != 0 or hex_len > 6 or hex_len == 0:
-            raise ValueError('Invalid hex code: {}'.format(hex_code))
+            raise ValueError(
+                'DeclareThatColor: invalid hex code: {}'.format(hex_code))
 
         if hex_len == 3:
             hex_code = hex_code.lstrip('#')
@@ -54,12 +55,14 @@ class NameThatColor:
                 cl = i
 
         if cl < 0:
-            raise ValueError('Invalid hex code: {}'.format(hex_code))
+            raise ValueError(
+                'DeclareThatColor: invalid hex code: {}'.format(hex_code))
 
         try:
             return cls.color_names[cl][1]
         except IndexError as e:
-            raise ValueError('Color name not found: {}'.format(hex_code))
+            raise ValueError(
+                'DeclareThatColor: color name not found: {}'.format(hex_code))
 
     @classmethod
     def hsl(cls, hex_code):
