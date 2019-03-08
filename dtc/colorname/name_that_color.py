@@ -1,3 +1,6 @@
+from ..hex_code import HexCode
+
+
 class NameThatColor:
 
     error_422 = 'DeclareThatColor: invalid hex code: {}'
@@ -14,15 +17,11 @@ class NameThatColor:
 
     @classmethod
     def color_name(cls, hex_code):
-        hex_len = len(hex_code.lstrip('#'))
 
-        if hex_len not in (3, 6) or hex_len == 0:
+        if not HexCode.is_valid(hex_code):
             cls._raise_error(422, hex_code)
 
-        if hex_len == 3:
-            hex_code = hex_code.lstrip('#')
-            hex_code = ''.join(2 * char for char in hex_code)
-            hex_code = '#{}'.format(hex_code)
+        hex_code = HexCode.normalize(hex_code)
 
         r, g, b = cls.rgb(hex_code)
         h, s, l = cls.hsl(hex_code)
