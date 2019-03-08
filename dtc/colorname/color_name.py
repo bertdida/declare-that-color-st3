@@ -11,7 +11,7 @@ class ColorName:
 
         try:
             return ntc.color_name(hex_code)
-        except ValueError e:
+        except ValueError as e:
             print(e)
             return None
 
