@@ -6,6 +6,8 @@ PREFIX_DICT = {
     'less': '@'
 }
 
+SUPPORTED_EXTENSIONS = [s for s in PREFIX_DICT]
+
 
 class CSSExtension(CSS):
 
@@ -17,6 +19,10 @@ class CSSExtension(CSS):
         self.variable_prefix = PREFIX_DICT[language]
 
         super(CSSExtension, self).__init__(css)
+
+    @staticmethod
+    def is_supported(language):
+        return language in SUPPORTED_EXTENSIONS
 
     def save_previous_declarations(self):
 
