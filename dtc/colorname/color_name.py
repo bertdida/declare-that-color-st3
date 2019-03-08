@@ -10,18 +10,9 @@ class ColorName:
     def get(hex_code):
 
         try:
-            name = ntc.color_name(hex_code)
+            return ntc.color_name(hex_code)
         except ValueError:
             return None
-
-        name = name.replace(' ', '-')
-        name = name.replace('/', '-')
-        name = name.replace('\'', '')
-
-        name = [s for s in name.split('-') if s]
-        name = '-'.join(name)
-
-        return name.lower()
 
     @classmethod
     def get_unique(cls, hex_code, color_dict):
