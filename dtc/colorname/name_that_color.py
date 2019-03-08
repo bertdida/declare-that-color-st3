@@ -1,5 +1,9 @@
 class NameThatColor:
 
+    error_422 = 'DeclareThatColor: invalid hex code: {}'
+
+    error_404 = 'DeclareThatColor: color name not found: {}'
+
     def __init__(self):
 
         for current_color in self.color_names:
@@ -13,8 +17,7 @@ class NameThatColor:
         hex_len = len(hex_code.lstrip('#'))
 
         if hex_len not in (3, 6) or hex_len == 0:
-            raise ValueError(
-                'DeclareThatColor: invalid hex code: {}'.format(hex_code))
+            cls._raise_error(422, hex_code)
 
         if hex_len == 3:
             hex_code = hex_code.lstrip('#')
@@ -54,14 +57,12 @@ class NameThatColor:
                 cl = i
 
         if cl < 0:
-            raise ValueError(
-                'DeclareThatColor: invalid hex code: {}'.format(hex_code))
+            cls._raise_error(422, hex_code)
 
         try:
             return cls.color_names[cl][1]
         except IndexError as e:
-            raise ValueError(
-                'DeclareThatColor: color name not found: {}'.format(hex_code))
+            cls._raise_error(404, hex_code)
 
     @classmethod
     def hsl(cls, hex_code):
@@ -106,6 +107,16 @@ class NameThatColor:
             int('0x' + hex_code[3:5], 0),
             int('0x' + hex_code[5:7], 0)
         ]
+
+    @classmethod
+    def _raise_error(cls, error_code, hex_code):
+        if error_code == 422:
+            error_message = cls.error_422.format(hex_code)
+        else:
+            error_message = cls.error_404.format(hex_code)
+
+        print(error_message)
+        raise ValueError(error_message)
 
     color_names = [
         ['000000', 'black'],
