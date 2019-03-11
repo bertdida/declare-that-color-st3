@@ -50,7 +50,6 @@ class CSS:
     def remove_declarations(self, css):
 
         for rule_set in self.rs.get_all(css):
-
             css = css.replace(rule_set, self.hd.remove(rule_set))
 
         return self.rs.remove_empty(css)
@@ -59,7 +58,6 @@ class CSS:
     def replace_variables_with_their_values(css, variables_dict):
 
         for var_name, hex_code in variables_dict.items():
-
             css = css.replace('var({})'.format(var_name), hex_code)
 
         return css

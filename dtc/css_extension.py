@@ -42,7 +42,6 @@ class CSSExtension(CSS):
     def replace_variables_with_their_values(css, variables_dict):
 
         for var_name, hex_code in variables_dict.items():
-
             css = css.replace(var_name, hex_code)
 
         return css
