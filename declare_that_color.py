@@ -14,18 +14,14 @@ class DeclareThatColor(sublime_plugin.TextCommand):
         self.css_selector = settings.get('css_selector')
         self.css_extension = settings.get('css_extension')
 
+        if CSSExtension.is_supported(self.css_extension):
+            self.css = CSSExtension(self.css_extension)
+        else:
+            self.css = CSS(self.css_selector)
+
+
     def run(self, edit):
         region = sublime.Region(0, self.view.size())
-        file_content = self.view.substr(region)
 
-        if not CSSExtension.is_supported(self.css_extension):
-            css = CSS(css=file_content, block_selector=self.css_selector)
-        else:
-            css = CSSExtension(css=file_content, language=self.css_extension)
-
-        css.save_previous_declarations()
-        css.remove_declarations()
-        css.replace_variables_with_their_values()
-        css.declare_variables()
-
-        self.view.replace(edit, region, css.css)
+        self.view.replace(
+            edit, region, self.css.get(self.view.substr(region)))

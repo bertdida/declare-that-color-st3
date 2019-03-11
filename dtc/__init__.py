@@ -1,2 +1,2 @@
 from .css import CSS
-from .css import CSSExtension
+from .css_extension import CSSExtension

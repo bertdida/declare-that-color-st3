@@ -1,7 +1,8 @@
-from ..hex_code import HexCode
+from .hex_code import HexCode
 
 
-class NameThatColor:
+
+class HexCodeName:
 
     error_422 = 'DeclareThatColor: invalid hex code: {}'
 
@@ -9,22 +10,23 @@ class NameThatColor:
 
     def __init__(self):
 
+        self.hc = HexCode()
+
         for current_color in self.color_names:
             hex_code = '#{}'.format(current_color[0])
             r, g, b = self.rgb(hex_code)
             h, s, l = self.hsl(hex_code)
             current_color.extend([r, g, b, h, s, l])
 
-    @classmethod
-    def color_name(cls, hex_code):
+    def color_name(self, hex_code):
 
-        if not HexCode.is_valid(hex_code):
-            cls._raise_error(422, hex_code)
+        if not self.hc.is_valid(hex_code):
+            self._raise_error(422, hex_code)
 
-        hex_code = HexCode.normalize(hex_code)
+        hex_code = self.hc.normalize(hex_code)
 
-        r, g, b = cls.rgb(hex_code)
-        h, s, l = cls.hsl(hex_code)
+        r, g, b = self.rgb(hex_code)
+        h, s, l = self.hsl(hex_code)
 
         ndf1 = 0
         ndf2 = 0
@@ -32,7 +34,7 @@ class NameThatColor:
         cl = -1
         df = -1
 
-        for i, current_color in enumerate(cls.color_names):
+        for i, current_color in enumerate(self.color_names):
 
             if hex_code == '#{}'.format(current_color[0]):
                 return current_color[1]
@@ -56,12 +58,12 @@ class NameThatColor:
                 cl = i
 
         if cl < 0:
-            cls._raise_error(422, hex_code)
+            self._raise_error(422, hex_code)
 
         try:
-            return cls.color_names[cl][1]
+            return self.color_names[cl][1]
         except IndexError:
-            cls._raise_error(404, hex_code)
+            self._raise_error(404, hex_code)
 
     @classmethod
     def hsl(cls, hex_code):
