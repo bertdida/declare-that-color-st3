@@ -1,7 +1,6 @@
 from .hex_code import HexCode
 
 
-
 class HexCodeName:
 
     error_422 = 'DeclareThatColor: invalid hex code: {}'

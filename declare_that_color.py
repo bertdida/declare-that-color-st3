@@ -7,7 +7,9 @@ SETTINGS_FILE = 'declare_that_color.sublime-settings'
 
 
 class DeclareThatColor(sublime_plugin.TextCommand):
+
     def __init__(self, view):
+
         self.view = view
 
         settings = sublime.load_settings(SETTINGS_FILE)
@@ -19,8 +21,8 @@ class DeclareThatColor(sublime_plugin.TextCommand):
         else:
             self.css = CSS(self.css_selector)
 
-
     def run(self, edit):
+
         region = sublime.Region(0, self.view.size())
 
         self.view.replace(

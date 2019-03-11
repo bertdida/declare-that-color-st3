@@ -3,36 +3,36 @@ import re
 
 class RuleSet:
 
-	regex = r'{}\s*?{{(?P<declarations>[\S\s]*?)}}\n{{0,3}}'
+    regex = r'{}\s*?{{(?P<declarations>[\S\s]*?)}}\n{{0,3}}'
 
-	selector = ':root'
+    selector = ':root'
 
-	def __init__(self, selector=None):
-		
-		if selector is not None:
-			self.selector = selector
+    def __init__(self, selector=None):
 
-		self.regex = re.compile(
-			self.regex.format(self.selector), re.MULTILINE | re.IGNORECASE)
+        if selector is not None:
+            self.selector = selector
 
-	def get_all(self, css):
-		return tuple(m.group() for m in self.regex.finditer(css))
+        self.regex = re.compile(
+            self.regex.format(self.selector), re.MULTILINE | re.IGNORECASE)
 
-	def remove_empty(self, css):
+    def get_all(self, css):
+        return tuple(m.group() for m in self.regex.finditer(css))
 
-		for m in self.regex.finditer(css):
-			dec = m.group('declarations')
-			dec = ''.join(dec.split())
+    def remove_empty(self, css):
 
-			if not dec:
-				css = css.replace(m.group(), '')
+        for m in self.regex.finditer(css):
+            dec = m.group('declarations')
+            dec = ''.join(dec.split())
 
-		return css
+            if not dec:
+                css = css.replace(m.group(), '')
 
-	def create(self, declarations):
+        return css
 
-		declarations = ['\t' + d for d in declarations]
-		declarations = '\n'.join(declarations)
+    def create(self, declarations):
 
-		return '{0} {{{1}{2}{1}}}{1}{1}'.format(
-			self.selector, '\n', declarations)
+        declarations = ['\t' + d for d in declarations]
+        declarations = '\n'.join(declarations)
+
+        return '{0} {{{1}{2}{1}}}{1}{1}'.format(
+            self.selector, '\n', declarations)
