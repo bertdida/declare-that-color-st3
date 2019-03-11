@@ -10,16 +10,14 @@ PREFIX_DICT = {
     'less': '@'
 }
 
+SUPPORTED_EXTENSIONS = [e for e in PREFIX_DICT]
+
 
 class CSSExtension(CSS):
 
-    error_422 = 'DeclareThatColor: css extension language not supported: {}'
-
     def __init__(self, language=None):
 
-        if language is not self.is_supported(language):
-            raise ValueError(error_422.format(language))
-
+        language = language if self.is_supported(language) else 'sass'
         separator = ' =' if language == 'stylus' else ':'
 
         self.prefix = PREFIX_DICT[language]
@@ -31,7 +29,7 @@ class CSSExtension(CSS):
     @staticmethod
     def is_supported(language):
 
-        return language in PREFIX_DICT
+        return language in SUPPORTED_EXTENSIONS
 
     def get_variables_dict(self, css):
 
