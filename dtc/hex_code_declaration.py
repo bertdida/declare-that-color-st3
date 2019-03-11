@@ -25,7 +25,6 @@ class HexCodeDeclaration:
     def get_all(self, css):
 
         return tuple([m.group('prop_name'), m.group('hex_code')]
-
                      for m in self.regex.finditer(css))
 
     def remove(self, css):
