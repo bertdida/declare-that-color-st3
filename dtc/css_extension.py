@@ -47,7 +47,7 @@ class CSSExtension(CSS):
 
         for var_name, hex_code in variables_dict.items():
 
-            css = css.replace('{}'.format(var_name), hex_code)
+            css = css.replace(var_name, hex_code)
 
         return css
 
@@ -59,7 +59,7 @@ class CSSExtension(CSS):
 
             for name, _hex_code in colors_dict.items():
                 if _hex_code == hex_code:
-                    return '{}{}'.format(self.prefix, name)
+                    return self.prefix + name
 
         return variable
 
