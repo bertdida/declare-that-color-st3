@@ -10,8 +10,6 @@ PREFIX_DICT = {
     'less': '@'
 }
 
-SUPPORTED_EXTENSIONS = [e for e in PREFIX_DICT]
-
 
 class CSSExtension(CSS):
 
@@ -29,7 +27,7 @@ class CSSExtension(CSS):
     @staticmethod
     def is_supported(language):
 
-        return language in SUPPORTED_EXTENSIONS
+        return language in PREFIX_DICT
 
     def get_variables_dict(self, css):
 
