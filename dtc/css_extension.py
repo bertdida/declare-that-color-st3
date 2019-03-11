@@ -13,9 +13,13 @@ PREFIX_DICT = {
 
 class CSSExtension(CSS):
 
+    error_422 = 'DeclareThatColor: css extension language not supported: {}'
+
     def __init__(self, language=None):
 
-        language = language if self.is_supported(language) else 'sass'
+        if language is not self.is_supported(language):
+            raise ValueError(error_422.format(language))
+
         separator = ' =' if language == 'stylus' else ':'
 
         self.prefix = PREFIX_DICT[language]
