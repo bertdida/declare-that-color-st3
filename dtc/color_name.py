@@ -35,8 +35,7 @@ class ColorName:
         def result(name):
 
             name = cls.remove_suffix(name)
-            match = re.match(
-                cls.regex.format(name), base_name)
+            match = re.match(cls.regex.format(name), base_name)
 
             return bool(match)
 

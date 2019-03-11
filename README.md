@@ -17,12 +17,12 @@ From the main application menu navigate to `Edit` -> `Declare That Color`, or us
 
 ## Settings
 
-**variable_prefix**\
+**css_selector**\
 Type: _String_\
 Default: `''` (empty string)\
 Currently this option supports `$`, `@` and `''` values. If default value is set, variables will be declared using vanilla CSS notation.
 
-**declare_alphabetically**\
+**css_extension**\
 Type: _Bollean_\
 Default: `false`\
 Whether or not declare variables alphabetically.
