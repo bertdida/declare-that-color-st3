@@ -1,3 +1,4 @@
+import re
 from .rule_set import RuleSet
 from .hex_code_declaration import HexCodeDeclaration
 from .hex_code import HexCode
@@ -27,10 +28,21 @@ class CSS:
 
         css = self.hc.regex.sub(set_variable, css)
 
-        declarations = [self.hd.create(n, h) for n, h in colors_dict.items()]
+        colors_dict_sorted_keys = sorted(
+            colors_dict, key=self.natural_sort_key)
+
+        declarations = [self.hd.create(k, colors_dict[k])
+                        for k in colors_dict_sorted_keys]
         declarations = self.finalize_declarations(declarations)
 
         return declarations + css
+
+    @staticmethod
+    def natural_sort_key(string):
+        regex = re.compile(r'([0-9]+)')
+
+        return [int(s) if s.isdigit() else s.lower()
+                for s in regex.split(string)]
 
     def get_variables_dict(self, css):
 
