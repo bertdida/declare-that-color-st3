@@ -25,9 +25,13 @@ class ColorName:
             return name
 
         is_match = self.is_match(name)
-        matches = [n for n in color_dict if is_match(n)]
+        total_match = 1
 
-        return '{}-{}'.format(name, len(matches) + 1)
+        for n in color_dict:
+            if is_match(n):
+                total_match += 1
+
+        return '{}-{}'.format(name, total_match)
 
     @classmethod
     def is_match(cls, base_name):
