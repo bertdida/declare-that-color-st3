@@ -83,6 +83,7 @@ def _is_match(base_name):
 
 
 def _remove_suffix(name):
+
     name = name.split('-')
 
     if name[-1].isdigit():

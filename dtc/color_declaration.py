@@ -37,7 +37,6 @@ class Vanilla:
         dict_ = {}
 
         for rule_set in self.get_rulesets(css):
-
             decs = self.declaration.get_all(rule_set)
             decs = tuple([n, hexutils.normalize(h)]
                          for n, h in decs if hexutils.is_valid(h))
@@ -53,7 +52,6 @@ class Vanilla:
     def remove_color_declarations(self, css):
 
         for rule_set in self.get_rulesets(css):
-
             css = css.replace(rule_set, self.declaration.remove(rule_set))
 
         return self.ruleset.remove_empty(css)
@@ -62,7 +60,6 @@ class Vanilla:
     def replace_varnames_with_hexcodes(css, name_hex_map):
 
         for name, hex_code in name_hex_map.items():
-
             css = css.replace('var({})'.format(name), hex_code)
 
         return css
@@ -76,7 +73,6 @@ class Vanilla:
         map_ = {}
 
         for hex_code in hex_codes:
-
             name = hexname.get(hex_code)
 
             if name is not None:
@@ -92,9 +88,7 @@ class Vanilla:
             hex_code = hexutils.normalize(match.group())
 
             for name, _hex_code in colorname_hex_map.items():
-
                 if _hex_code == hex_code:
-
                     return 'var({}{})'.format(self.prefix, name)
 
         return variable
@@ -148,7 +142,6 @@ class Preprocessor(Vanilla):
     def replace_varnames_with_hexcodes(css, name_hex_map):
 
         for name, hex_code in name_hex_map.items():
-
             css = css.replace(name, hex_code)
 
         return css
@@ -160,9 +153,7 @@ class Preprocessor(Vanilla):
             hex_code = hexutils.normalize(match.group())
 
             for name, _hex_code in colors_dict.items():
-
                 if _hex_code == hex_code:
-
                     return '{}{}'.format(self.prefix, name)
 
         return variable
