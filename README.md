@@ -13,19 +13,19 @@ _You may need to restart Sublime Text for the plugin to load properly._
 
 ## Usage
 
-From the main application menu navigate to `Edit` -> `Declare That Color`, or use the pre-defined keyboard shortcut `Super` + `Ctrl` + `.`.
+From the main application menu navigate to `Edit` -> `Declare That Color`.
 
 ## Settings
 
 **css_selector**\
-Type: _String_\
-Default: `''` (empty string)\
-Currently this option supports `$`, `@` and `''` values. If default value is set, variables will be declared using vanilla CSS notation.
+Type: _string_\
+Default: `':root'` (empty string)\
+This option is only applicable if CSS preprocessor is not used.
 
-**css_extension**\
-Type: _Bollean_\
-Default: `false`\
-Whether or not declare variables alphabetically.
+**css_preprocessor**\
+Type: _string_/_null_\
+Default: `null`\
+Beside from `null` this option supports `sass` or `scss`, `less` and `stylus`.
 
 ## Author
 
@@ -33,5 +33,4 @@ Herbert Verdida - [@bertdida](https://twitter.com/bertdida)
 
 ## Acknowledgments
 
-1. Chirag Mehta - inspiration and the creator of [name-that-color](http://chir.ag/projects/name-that-color/#6195ED) tool.
-2. [Matt Fordham](https://github.com/mattfordham/Name-That-Color---Sublime-Plugin) - ported [ntc.js](http://chir.ag/projects/ntc/ntc.js)
+- Chirag Mehta - the creator of [name-that-color](http://chir.ag/projects/name-that-color/#6195ED) tool.
