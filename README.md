@@ -9,7 +9,7 @@ DeclareThatColor is a Sublime Text 3 plugin for CSS that declares hex color code
 
 ## Usage
 
-From the main application click Edit > Declare That Color.
+From the Sublime Text's main menu click Edit > Declare That Color.
 
 ## Settings
 
