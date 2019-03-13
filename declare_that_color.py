@@ -1,4 +1,3 @@
-import re
 import sublime
 import sublime_plugin
 from .dtc import Vanilla
