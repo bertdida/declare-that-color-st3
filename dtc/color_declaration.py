@@ -145,7 +145,8 @@ class Preprocessor(Vanilla):
     def replace_varnames_with_hexcodes(css, name_hex_map):
 
         for name, hex_code in name_hex_map.items():
-            css = css.replace(name, hex_code)
+            name_re = r'{}{}'.format(re.escape(name), '(?![a-z0-9-:])')
+            css = re.sub(name_re, hex_code, css)
 
         return css
 
