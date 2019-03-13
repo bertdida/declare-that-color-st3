@@ -15,7 +15,7 @@ From the Sublime Text's main menu click Edit > Declare That Color.
 
 | Name             | Type   | Default | Description                                                                                                                                                            |
 | ---------------- | ------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| css_selector     | string | :root   | Specifies what selector to be used for vanilla CSS declaration. This setting only applies if `css_preprocessor` is set to `null`.                                      |
+| css_selector     | string | :root   | Specifies what selector to be used for vanilla CSS declaration. This setting only applies if `css_preprocessor` set to an unsupported value.                           |
 | css_preprocessor | string | none    | Specifies what CSS preprocessor to be used. If the value is not set on one of the following `sass`, `scss`, `less` or `stylus` then vanilla CSS notation will be used. |
 
 ## Author
