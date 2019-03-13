@@ -16,6 +16,9 @@ class Vanilla:
 
     def get(self, css):
 
+        if not hexutils.get_all(css):
+            return css
+
         varname_hex_map = self.get_varname_hex_map(css)
 
         css = self.remove_color_declarations(css)
