@@ -1,3 +1,4 @@
+import re
 import sublime
 import sublime_plugin
 from .dtc import Vanilla
@@ -27,3 +28,19 @@ class DeclareThatColor(sublime_plugin.TextCommand):
 
         self.view.replace(
             edit, region, self.css.get(self.view.substr(region)))
+
+
+class UndeclareThatColor(DeclareThatColor):
+
+    def run(self, edit):
+
+        region = sublime.Region(0, self.view.size())
+        buffer_ = self.view.substr(region)
+
+        varname_hex_map = self.css.get_varname_hex_map(buffer_)
+
+        buffer_ = self.css.remove_color_declarations(buffer_)
+        buffer_ = self.css.replace_varnames_with_hexcodes(
+            buffer_, varname_hex_map)
+
+        self.view.replace(edit, region, buffer_)
