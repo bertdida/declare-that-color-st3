@@ -26,7 +26,7 @@
                                 "command": "open_file",
                                 "args":
                                 {
-                                    "file": "${packages}/DeclareThatColor/DeclareThatColor.sublime-settings"
+                                    "file": "${packages}/DeclareThatColor/declare_that_color.sublime-settings"
                                 }
                             },
                             {
@@ -34,7 +34,7 @@
                                 "command": "open_file",
                                 "args":
                                 {
-                                    "file": "${packages}/User/DeclareThatColor.sublime-settings"
+                                    "file": "${packages}/User/declare_that_color.sublime-settings"
                                 }
                             },
                             { "caption": "-" }
