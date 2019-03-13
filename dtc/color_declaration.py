@@ -73,16 +73,16 @@ class Vanilla:
         hex_codes = hexutils.get_all(css)
         hex_codes = tuple(dict.fromkeys(hex_codes))
 
-        map_ = {}
+        dict_ = {}
 
         for hex_code in hex_codes:
             name = hexname.get(hex_code)
 
             if name is not None:
-                name = hexname.get_unique(hex_code, map_)
-                map_[name] = hex_code
+                name = hexname.get_unique(hex_code, dict_)
+                dict_[name] = hex_code
 
-        return map_
+        return dict_
 
     def set_variable(self, colorname_hex_map):
 
