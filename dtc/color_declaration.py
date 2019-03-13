@@ -67,12 +67,9 @@ class Vanilla:
 
         return css
 
-    @staticmethod
-    def get_colorname_hex_map(css):
+    def get_colorname_hex_map(self, css):
 
-        hex_codes = hexutils.get_all(css)
-        hex_codes = tuple(dict.fromkeys(hex_codes))
-
+        hex_codes = self.get_unique_hexcodes(css)
         dict_ = {}
 
         for hex_code in hex_codes:
@@ -83,6 +80,17 @@ class Vanilla:
                 dict_[name] = hex_code
 
         return dict_
+
+    @staticmethod
+    def get_unique_hexcodes(css):
+
+        hex_codes = []
+
+        for hex_code in hexutils.get_all(css):
+            if hex_code not in hex_codes:
+                hex_codes.append(hex_code)
+
+        return tuple(hex_codes)
 
     def set_variable(self, colorname_hex_map):
 
