@@ -1,2 +1,2 @@
-from .css import CSS
-from .css_extension import CSSExtension
+from .color_declaration import Vanilla
+from .color_declaration import Preprocessor

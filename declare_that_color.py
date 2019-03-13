@@ -1,7 +1,7 @@
 import sublime
 import sublime_plugin
-from .dtc import CSS
-from .dtc import CSSExtension
+from .dtc import Vanilla
+from .dtc import Preprocessor
 
 SETTINGS_FILE = 'declare_that_color.sublime-settings'
 
@@ -16,10 +16,10 @@ class DeclareThatColor(sublime_plugin.TextCommand):
         self.css_selector = settings.get('css_selector')
         self.css_extension = settings.get('css_extension')
 
-        if CSSExtension.is_supported(self.css_extension):
-            self.css = CSSExtension(self.css_extension)
+        if Preprocessor.is_supported(self.css_extension):
+            self.css = Preprocessor(self.css_extension)
         else:
-            self.css = CSS(self.css_selector)
+            self.css = Vanilla(self.css_selector)
 
     def run(self, edit):
 
