@@ -123,13 +123,13 @@ class Preprocessor(Vanilla):
             preprocessor) else 'sass'
         separator = ' =' if preprocessor == 'stylus' else ':'
 
-        self.prefix = PREPROCESSOR_PREFIX_MAP[preprocessor]
+        self.prefix = PREPROCESSOR_PREFIX_MAP[preprocessor.lower()]
         self.declaration = Declaration(self.prefix, separator)
 
     @staticmethod
     def is_supported(preprocessor):
 
-        return preprocessor in PREPROCESSOR_PREFIX_MAP
+        return preprocessor.lower() in PREPROCESSOR_PREFIX_MAP
 
     def get_varname_hex_map(self, css):
 
