@@ -13,10 +13,10 @@ From the main application click Edit > Declare That Color.
 
 ## Settings
 
-| Name             | Type   | Default | Description                                                                                                                       |
-| ---------------- | ------ | ------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| css_selector     | string | :root   | Specifies what selector to be used for vanilla CSS declaration. This setting only applies if `css_preprocessor` is set to `null`. |
-| css_preprocessor | string | none    | If the value is not set on one of the following `sass`, `scss`, `less` or `stylus` then vanilla CSS notation will be used.        |
+| Name             | Type   | Default | Description                                                                                                                                                            |
+| ---------------- | ------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| css_selector     | string | :root   | Specifies what selector to be used for vanilla CSS declaration. This setting only applies if `css_preprocessor` is set to `null`.                                      |
+| css_preprocessor | string | none    | Specifies what CSS preprocessor to be used. If the value is not set on one of the following `sass`, `scss`, `less` or `stylus` then vanilla CSS notation will be used. |
 
 ## Author
 
