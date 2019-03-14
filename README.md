@@ -17,7 +17,7 @@ Or click Edit > Undeclare That Color to undo declarations.
 
 ### Key bindings
 
-By default, this plugin has no key binding to avoid conflicts. You can use the template below to customize your own.
+By default, DeclareThatColor has no key binding to avoid conflicts. You can use the template below to customize your own.
 
 ```json
 [
@@ -41,4 +41,4 @@ Herbert Verdida - [@bertdida](https://twitter.com/bertdida)
 
 ## Thanks
 
-This plugin was inspired by Chirag Mehta's [Name That Color](http://chir.ag/projects/name-that-color/) tool. I found myself always using his tool while doing my [#100DaysOfCSSIllustrations](https://codepen.io/collection/XPmjEL/) challenge and decided to have it accessible on my text editor. Much thanks to him for open sourcing his JavaScript code.
+DeclareThatColor was inspired by Chirag Mehta's [Name That Color](http://chir.ag/projects/name-that-color/) tool. I found myself always using his tool while doing my [#100DaysOfCSSIllustrations](https://codepen.io/collection/XPmjEL/) challenge and decided to have it accessible on my text editor. Much thanks to him for open sourcing his JavaScript code.
