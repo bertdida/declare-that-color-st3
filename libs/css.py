@@ -188,4 +188,4 @@ class Preprocessor(Vanilla):
     @staticmethod
     def format_declarations(declarations):
 
-        return '{0}{1}{1}{1}'.format('\n'.join(declarations), '\n')
+        return '{0}{1}{1}'.format('\n'.join(declarations), '\n')
