@@ -116,8 +116,8 @@ class Vanilla:
 
     def get_declarations(self, name_hex_map):
 
-        sorted_names = sorted(name_hex_map, key=self.natural_sort)
         create_declaration = self.declaration.create
+        sorted_names = sorted(name_hex_map, key=self.natural_sort)
 
         declarations = [create_declaration(n, name_hex_map[n])
                         for n in sorted_names]
