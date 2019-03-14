@@ -26,8 +26,8 @@ class Declaration:
 
     def get_all(self, css):
 
-        return tuple([m.group('prop_name'), m.group('hex_code')]
-                     for m in self.re.finditer(css))
+        return [(m.group('prop_name'), m.group('hex_code'))
+                for m in self.re.finditer(css)]
 
     def remove(self, css):
 
