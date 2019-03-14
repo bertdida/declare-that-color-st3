@@ -149,10 +149,13 @@ class Preprocessor(Vanilla):
 
         preprocessor = preprocessor if self.is_supported(
             preprocessor) else 'sass'
-        separator = ' =' if preprocessor == 'stylus' else ':'
+
+        assignment_operator = ' =' if preprocessor == 'stylus' else ':'
+        statement_separator = None if preprocessor == 'sass' else ';'
 
         self.prefix = PREPROCESSOR_PREFIX_MAP[preprocessor.lower()]
-        self.declaration = Declaration(self.prefix, separator)
+        self.declaration = Declaration(
+            self.prefix, assignment_operator, statement_separator)
 
     @staticmethod
     def is_supported(preprocessor):
