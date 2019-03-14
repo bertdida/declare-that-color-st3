@@ -30,10 +30,10 @@ To avoid conflicts, DeclareThatColor doesn't come with key bindings. You can use
 
 To acces settings click Preferences > Package Settings > DeclareThatColor > Settings - User/Default.
 
-| Name             | Default | Description                                                                                                                                                                                               |
-| ---------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| css_selector     | `:root` | Specifies what selector to be used for vanilla CSS declaration. This setting only applies if `css_preprocessor` is set to an unsupported value.                                                           |
-| css_preprocessor | `null`  | Currently, this setting supports one of the following preprocessors (case insensitive) [`sass` or `scss`](https://sass-lang.com/), [`less`](http://lesscss.org/) and [`stylus`](http://stylus-lang.com/). |
+| Name             | Default | Description                                                                                                                                                                                                                                        |
+| ---------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| css_selector     | `:root` | Specifies what selector to be used for vanilla CSS declaration.                                                                                                                                                                                    |
+| css_preprocessor | `null`  | This setting currently supports one of the following values (case insensitive): [`sass` or `scss`](https://sass-lang.com/), [`less`](http://lesscss.org/) and [`stylus`](http://stylus-lang.com/). To use the vanilla CSS declaration set to null. |
 
 ## Author
 
