@@ -8,25 +8,14 @@ HEXCODE_DECLARATION_RE = (
 
 class Declaration:
 
-    prefix = '--'
-
-    assignment_operator = ':'
-
     def __init__(self,
-                 prefix=None,
-                 assignment_operator=None,
+                 prefix='--',
+                 assignment_operator=':',
                  statement_separator=';'):
 
-        if prefix is not None:
-            self.prefix = prefix
-
-        if assignment_operator is not None:
-            self.assignment_operator = assignment_operator
-
-        if statement_separator is None:
-            self.statement_separator = ''
-        else:
-            self.statement_separator = statement_separator
+        self.prefix = prefix
+        self.assignment_operator = assignment_operator
+        self.statement_separator = statement_separator
 
         self.re = re.compile(
             HEXCODE_DECLARATION_RE.format(
