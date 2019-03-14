@@ -60,7 +60,7 @@ def get_unique(hex_code, names):
     if curr_name not in names:
         return curr_name
 
-    is_match = _is_match(curr_name)
+    is_match = is_match(curr_name)
     total_match = 1
 
     for name in names:
@@ -70,11 +70,11 @@ def get_unique(hex_code, names):
     return '{}-{}'.format(curr_name, total_match)
 
 
-def _is_match(base_name):
+def is_match(base_name):
 
     def result(name):
 
-        name = _remove_suffix(name)
+        name = remove_suffix(name)
         match = re.match(MATCH_NAME_RE.format(name), base_name)
 
         return bool(match)
@@ -82,7 +82,7 @@ def _is_match(base_name):
     return result
 
 
-def _remove_suffix(name):
+def remove_suffix(name):
 
     name = name.split('-')
 
