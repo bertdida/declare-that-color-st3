@@ -17,7 +17,7 @@ Or click Edit > Undeclare That Color to undo declarations.
 
 ### Key bindings
 
-By default, DeclareThatColor has no key binding to avoid conflicts. You can use the template below to customize your own.
+To avoid conflicts, DeclareThatColor doesn't come with key bindings. You can use the template below to customize your own.
 
 ```json
 [
