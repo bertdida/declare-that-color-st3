@@ -41,9 +41,10 @@ class Vanilla:
     def get_varname_hex_map(self, css):
 
         dict_ = {}
+        get_declaration = self.declaration.get_all
 
         for rule_set in self.get_rulesets(css):
-            varname_hex = self.declaration.get_all(rule_set)
+            varname_hex = get_declaration(rule_set)
             varname_hex = [(n, hexutils.normalize(h))
                            for n, h in varname_hex if hexutils.is_valid(h)]
 
