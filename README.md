@@ -1,6 +1,6 @@
 # DeclareThatColor
 
-DeclareThatColor is a Sublime Text 3 plugin for CSS that declares hex color codes to their comparable friendly color names.
+DeclareThatColor is a Sublime Text 3 plugin for CSS that declares hex color codes to their human-friendly color names.
 
 ## Installation
 
@@ -9,14 +9,29 @@ DeclareThatColor is a Sublime Text 3 plugin for CSS that declares hex color code
 
 ## Usage
 
-From the Sublime Text's main menu click Edit > Declare That Color.
+To declare hex color codes click Edit > Declare That Color from the Sublime Text's main menu.
+
+Or click Edit > Undeclare That Color to undo declarations.
+
+### Key bindings
+
+By default, this plugin has no key binding to avoid conflicts. You can use the template below to customize your own.
+
+```json
+[
+  { "keys": ["Your shortcut"], "command": "declare_that_color" },
+  { "keys": ["Your shortcut"], "command": "undeclare_that_color" }
+]
+```
 
 ## Settings
 
-| Name             | Type   | Default | Description                                                                                                                                      |
-| ---------------- | ------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| css_selector     | string | :root   | Specifies what selector to be used for vanilla CSS declaration. This setting only applies if `css_preprocessor` set to an unsupported value.     |
-| css_preprocessor | string | none    | If the value is not set on one of the following (case insensitive) `sass`, `scss`, `less` or `stylus` then vanilla CSS declaration will be used. |
+To acces settings click Preferences > Package Settings > DeclareThatColor > Settings - User/Default.
+
+| Name             | Default | Description                                                                                                                                                                                               |
+| ---------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| css_selector     | :root   | Specifies what selector to be used for vanilla CSS declaration. This setting only applies if `css_preprocessor` is set to an unsupported value.                                                           |
+| css_preprocessor | null    | Currently, this setting supports one of the following preprocessors (case insensitive) [`sass` or `scss`](https://sass-lang.com/), [`less`](http://lesscss.org/) and [`stylus`](http://stylus-lang.com/). |
 
 ## Author
 
