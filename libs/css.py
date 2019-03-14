@@ -157,10 +157,10 @@ class Preprocessor(Vanilla):
     @staticmethod
     def is_supported(preprocessor):
 
-        if preprocessor is None:
+        try:
+            return preprocessor.lower() in PREPROCESSOR_PREFIX_MAP
+        except AttributeError:
             return False
-
-        return preprocessor.lower() in PREPROCESSOR_PREFIX_MAP
 
     def get_varname_hex_map(self, css):
 
