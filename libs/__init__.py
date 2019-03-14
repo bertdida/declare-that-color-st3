@@ -1,2 +1,2 @@
-from .color_declaration import Vanilla
-from .color_declaration import Preprocessor
+from .css import Vanilla
+from .css import Preprocessor
