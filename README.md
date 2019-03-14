@@ -30,8 +30,8 @@ To acces settings click Preferences > Package Settings > DeclareThatColor > Sett
 
 | Name             | Default | Description                                                                                                                                                                                               |
 | ---------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| css_selector     | :root   | Specifies what selector to be used for vanilla CSS declaration. This setting only applies if `css_preprocessor` is set to an unsupported value.                                                           |
-| css_preprocessor | null    | Currently, this setting supports one of the following preprocessors (case insensitive) [`sass` or `scss`](https://sass-lang.com/), [`less`](http://lesscss.org/) and [`stylus`](http://stylus-lang.com/). |
+| css_selector     | `:root` | Specifies what selector to be used for vanilla CSS declaration. This setting only applies if `css_preprocessor` is set to an unsupported value.                                                           |
+| css_preprocessor | `null`  | Currently, this setting supports one of the following preprocessors (case insensitive) [`sass` or `scss`](https://sass-lang.com/), [`less`](http://lesscss.org/) and [`stylus`](http://stylus-lang.com/). |
 
 ## Author
 
