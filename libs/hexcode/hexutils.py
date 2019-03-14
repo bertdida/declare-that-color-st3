@@ -36,6 +36,18 @@ def normalize(hex_code):
     return '#{}'.format(hex_digits.lower())
 
 
+def rgb(hex_code):
+
+    hex_code = normalize(hex_code)
+    hex_code = int(hex_code[1:], 16)
+
+    return IntegerRGB(
+        hex_code >> 16,
+        hex_code >> 8 & 0xff,
+        hex_code & 0xff
+    )
+
+
 def hsl(hex_code):
 
     r, g, b = rgb(hex_code)
@@ -72,16 +84,4 @@ def hsl(hex_code):
         round(h * 255),
         round(s * 255),
         round(l * 255)
-    )
-
-
-def rgb(hex_code):
-
-    hex_code = normalize(hex_code)
-    hex_code = int(hex_code[1:], 16)
-
-    return IntegerRGB(
-        hex_code >> 16,
-        hex_code >> 8 & 0xff,
-        hex_code & 0xff
     )
