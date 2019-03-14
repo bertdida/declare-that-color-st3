@@ -148,7 +148,7 @@ class Preprocessor(Vanilla):
     def __init__(self, preprocessor=None):
 
         preprocessor = preprocessor if self.is_supported(
-            preprocessor) else 'sass'
+            preprocessor) else 'scss'
 
         assignment_operator = ' =' if preprocessor == 'stylus' else ':'
         statement_separator = None if preprocessor == 'sass' else ';'
