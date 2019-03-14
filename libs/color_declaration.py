@@ -14,37 +14,40 @@ class Vanilla:
         self.ruleset = RuleSet(selector)
         self.declaration = Declaration()
 
-    def get(self, css):
+    def declare_hexcodes(self, css):
 
         if not hexutils.get_all(css):
             return css
 
-        varname_hex_map = self.get_varname_hex_map(css)
+        css = self.undeclare_hexcodes(css)
 
-        css = self.remove_color_declarations(css)
-        css = self.replace_varnames_with_hexcodes(css, varname_hex_map)
+        name_hex_map = self.get_colorname_hex_map(css)
+        set_variable = self.set_variable_names(name_hex_map)
 
-        colorname_hex_map = self.get_colorname_hex_map(css)
+        css = hexutils.HEX_CODE_RE.sub(set_variable, css)
+        declarations = self.get_declarations(name_hex_map)
 
-        set_variable_partial = self.set_variable(colorname_hex_map)
-        css = hexutils.HEX_CODE_RE.sub(set_variable_partial, css)
+        return '{}{}'.format(declarations, css)
 
-        sorted_colornames = sorted(colorname_hex_map, key=self.natural_sort)
-        declarations = [self.declaration.create(k, colorname_hex_map[k])
-                        for k in sorted_colornames]
+    def undeclare_hexcodes(self, css):
 
-        return '{}{}'.format(self.format_declarations(declarations), css)
+        name_hex_map = self.get_varname_hex_map(css)
+
+        css = self.remove_hexcode_declarations(css)
+        css = self.replace_varnames_with_hexcodes(css, name_hex_map)
+
+        return css
 
     def get_varname_hex_map(self, css):
 
         dict_ = {}
 
         for rule_set in self.get_rulesets(css):
-            decs = self.declaration.get_all(rule_set)
-            decs = tuple([n, hexutils.normalize(h)]
-                         for n, h in decs if hexutils.is_valid(h))
+            varname_hex = self.declaration.get_all(rule_set)
+            varname_hex = [(n, hexutils.normalize(h))
+                           for n, h in varname_hex if hexutils.is_valid(h)]
 
-            dict_.update({n: h for n, h in decs})
+            dict_.update({n: h for n, h in varname_hex})
 
         return dict_
 
@@ -52,10 +55,12 @@ class Vanilla:
 
         return self.ruleset.get_all(css)
 
-    def remove_color_declarations(self, css):
+    def remove_hexcode_declarations(self, css):
+
+        remove_declaration = self.declaration.remove
 
         for rule_set in self.get_rulesets(css):
-            css = css.replace(rule_set, self.declaration.remove(rule_set))
+            css = css.replace(rule_set, remove_declaration(rule_set))
 
         return self.ruleset.remove_empty(css)
 
@@ -92,21 +97,31 @@ class Vanilla:
 
         return tuple(hex_codes)
 
-    def set_variable(self, colorname_hex_map):
+    def set_variable_names(self, name_hex_map):
 
-        def variable(match):
+        def variable_name(match):
 
             hex_code = hexutils.normalize(match.group())
 
-            for name, _hex_code in colorname_hex_map.items():
+            for name, _hex_code in name_hex_map.items():
                 if _hex_code == hex_code:
                     return self.format_variable_name(name)
 
-        return variable
+        return variable_name
 
     def format_variable_name(self, name):
 
         return 'var({}{})'.format(self.prefix, name)
+
+    def get_declarations(self, name_hex_map):
+
+        sorted_names = sorted(name_hex_map, key=self.natural_sort)
+        create_declaration = self.declaration.create
+
+        declarations = [create_declaration(n, name_hex_map[n])
+                        for n in sorted_names]
+
+        return self.format_declarations(declarations)
 
     @staticmethod
     def natural_sort(string):
@@ -152,7 +167,7 @@ class Preprocessor(Vanilla):
                 for n, h in self.declaration.get_all(css)
                 if hexutils.is_valid(h)}
 
-    def remove_color_declarations(self, css):
+    def remove_hexcode_declarations(self, css):
 
         return self.declaration.remove(css)
 
