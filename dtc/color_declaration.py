@@ -100,9 +100,13 @@ class Vanilla:
 
             for name, _hex_code in colorname_hex_map.items():
                 if _hex_code == hex_code:
-                    return 'var({}{})'.format(self.prefix, name)
+                    return self.format_variable_name(name)
 
         return variable
+
+    def format_variable_name(self, name):
+
+        return 'var({}{})'.format(self.prefix, name)
 
     @staticmethod
     def natural_sort(string):
@@ -161,17 +165,9 @@ class Preprocessor(Vanilla):
 
         return css
 
-    def set_variable(self, colors_dict):
+    def format_variable_name(self, name):
 
-        def variable(match):
-
-            hex_code = hexutils.normalize(match.group())
-
-            for name, _hex_code in colors_dict.items():
-                if _hex_code == hex_code:
-                    return '{}{}'.format(self.prefix, name)
-
-        return variable
+        return '{}{}'.format(self.prefix, name)
 
     @staticmethod
     def format_declarations(declarations):
