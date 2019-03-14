@@ -60,11 +60,11 @@ def get_unique(hex_code, names):
     if curr_name not in names:
         return curr_name
 
-    is_match = is_match(curr_name)
+    _is_match = is_match(curr_name)
     total_match = 1
 
     for name in names:
-        if is_match(name):
+        if _is_match(name):
             total_match += 1
 
     return '{}-{}'.format(curr_name, total_match)
