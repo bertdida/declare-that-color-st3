@@ -4,7 +4,8 @@
         "children":
         [
             { "id": "wrap" },
-            { "command": "declare_that_color" }
+            { "command": "declare_that_color" },
+            { "command": "undeclare_that_color" },
         ]
     },
   {
