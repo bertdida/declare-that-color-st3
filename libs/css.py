@@ -9,7 +9,7 @@ class Vanilla:
 
     prefix = '--'
 
-    def __init__(self, selector=None):
+    def __init__(self, selector=':root'):
 
         self.ruleset = RuleSet(selector)
         self.declaration = Declaration()
@@ -21,30 +21,30 @@ class Vanilla:
 
         css = self.undeclare_hexcodes(css)
 
-        name_hex_map = self.get_colorname_hex_map(css)
-        set_variable = self.set_variable_names(name_hex_map)
+        name_hex_pairs = self.get_colorname_hex_pairs(css)
+        set_variable = self.set_variable_names(name_hex_pairs)
 
         css = hexutils.HEX_CODE_RE.sub(set_variable, css)
-        declarations = self.get_declarations(name_hex_map)
+        declarations = self.get_declarations(name_hex_pairs)
 
         return '{}{}'.format(declarations, css)
 
     def undeclare_hexcodes(self, css):
 
-        name_hex_map = self.get_varname_hex_map(css)
+        name_hex_pairs = self.get_varname_hex_pairs(css)
 
         css = self.remove_hexcode_declarations(css)
-        css = self.replace_varnames_with_hexcodes(css, name_hex_map)
+        css = self.replace_varnames_with_hexcodes(css, name_hex_pairs)
 
         return css
 
-    def get_varname_hex_map(self, css):
+    def get_varname_hex_pairs(self, css):
 
         dict_ = {}
-        get_declaration = self.declaration.get_all
+        _get_declarations = self.declaration.get_all
 
         for rule_set in self.get_rulesets(css):
-            varname_hex = get_declaration(rule_set)
+            varname_hex = _get_declarations(rule_set)
             varname_hex = [(n, hexutils.normalize(h))
                            for n, h in varname_hex if hexutils.is_valid(h)]
 
@@ -58,22 +58,22 @@ class Vanilla:
 
     def remove_hexcode_declarations(self, css):
 
-        remove_declaration = self.declaration.remove
+        remove_declarations = self.declaration.remove
 
         for rule_set in self.get_rulesets(css):
-            css = css.replace(rule_set, remove_declaration(rule_set))
+            css = css.replace(rule_set, remove_declarations(rule_set))
 
         return self.ruleset.remove_empty(css)
 
     @staticmethod
-    def replace_varnames_with_hexcodes(css, name_hex_map):
+    def replace_varnames_with_hexcodes(css, name_hex_pairs):
 
-        for name, hex_code in name_hex_map.items():
+        for name, hex_code in name_hex_pairs.items():
             css = css.replace('var({})'.format(name), hex_code)
 
         return css
 
-    def get_colorname_hex_map(self, css):
+    def get_colorname_hex_pairs(self, css):
 
         hex_codes = self.get_unique_hexcodes(css)
         dict_ = {}
@@ -98,15 +98,17 @@ class Vanilla:
 
         return tuple(hex_codes)
 
-    def set_variable_names(self, name_hex_map):
+    def set_variable_names(self, name_hex_pairs):
 
         def variable_name(match):
 
             hex_code = hexutils.normalize(match.group())
 
-            for name, _hex_code in name_hex_map.items():
+            for name, _hex_code in name_hex_pairs.items():
                 if _hex_code == hex_code:
                     return self.format_variable_name(name)
+
+            return hex_code
 
         return variable_name
 
@@ -114,12 +116,12 @@ class Vanilla:
 
         return 'var({}{})'.format(self.prefix, name)
 
-    def get_declarations(self, name_hex_map):
+    def get_declarations(self, name_hex_pairs):
 
         create_declaration = self.declaration.create
-        sorted_names = sorted(name_hex_map, key=self.natural_sort)
+        sorted_names = sorted(name_hex_pairs, key=self.natural_sort)
 
-        declarations = [create_declaration(n, name_hex_map[n])
+        declarations = [create_declaration(n, name_hex_pairs[n])
                         for n in sorted_names]
 
         return self.format_declarations(declarations)
@@ -135,7 +137,7 @@ class Vanilla:
         return self.ruleset.create(declarations)
 
 
-PREPROCESSOR_PREFIX_MAP = {
+PREPROCESSOR_PREFIX_PAIRS = {
     'stylus': '$',
     'sass': '$',
     'scss': '$',
@@ -147,13 +149,10 @@ class Preprocessor(Vanilla):
 
     def __init__(self, preprocessor):
 
-        preprocessor = preprocessor if self.is_supported(
-            preprocessor) else 'scss'
-
         assignment_operator = ' =' if preprocessor == 'stylus' else ':'
         statement_separator = '' if preprocessor == 'sass' else ';'
 
-        self.prefix = PREPROCESSOR_PREFIX_MAP[preprocessor.lower()]
+        self.prefix = PREPROCESSOR_PREFIX_PAIRS.get(preprocessor.lower(), '$')
         self.declaration = Declaration(
             self.prefix, assignment_operator, statement_separator)
 
@@ -161,11 +160,11 @@ class Preprocessor(Vanilla):
     def is_supported(preprocessor):
 
         try:
-            return preprocessor.lower() in PREPROCESSOR_PREFIX_MAP
+            return preprocessor.lower() in PREPROCESSOR_PREFIX_PAIRS
         except AttributeError:
             return False
 
-    def get_varname_hex_map(self, css):
+    def get_varname_hex_pairs(self, css):
 
         return {n: hexutils.normalize(h)
                 for n, h in self.declaration.get_all(css)
@@ -176,9 +175,9 @@ class Preprocessor(Vanilla):
         return self.declaration.remove(css)
 
     @staticmethod
-    def replace_varnames_with_hexcodes(css, name_hex_map):
+    def replace_varnames_with_hexcodes(css, name_hex_pairs):
 
-        for name, hex_code in name_hex_map.items():
+        for name, hex_code in name_hex_pairs.items():
             name_re = r'{}{}'.format(re.escape(name), '(?![a-z0-9-:])')
             css = re.sub(name_re, hex_code, css)
 
