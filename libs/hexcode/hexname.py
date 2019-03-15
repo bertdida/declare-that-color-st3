@@ -84,12 +84,12 @@ def is_match(base_name):
 
 def remove_suffix(name):
 
-    name = name.split('-')
+    *rest, suffix = name.split('-')
 
-    if name[-1].isdigit():
-        del name[-1]
+    if not suffix.isdigit():
+        return name
 
-    return '-'.join(name)
+    return '-'.join(rest)
 
 
 color_names = [
