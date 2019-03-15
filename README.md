@@ -28,6 +28,8 @@ To avoid conflicts, DeclareThatColor doesn't come with key bindings. You can use
 
 ## Settings
 
+_\*Restart Sublime Text to load changes properly._
+
 To acces settings click Preferences > Package Settings > DeclareThatColor > Settings - User/Default.
 
 | Name             | Default | Description                                                                                                                                                                                                                                        |
