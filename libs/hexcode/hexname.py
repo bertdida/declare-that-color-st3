@@ -3,9 +3,7 @@ from . import hexutils
 
 MATCH_NAME_RE = r'(?i)^(?:{0}-[0-9]+|{0})$'
 
-INDEX_ERROR_TEMPLATE = (
-    "DeclareThatColor: color name not found: {}"
-)
+INDEX_ERROR_TEMPLATE = "DeclareThatColor: color name not found: {}"
 
 
 def get(hex_code):
