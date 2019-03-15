@@ -35,7 +35,7 @@ class HexDeclaration:
 
     def create(self, prop_name, hex_code):
 
-        return '{}{}{} {}{}'.format(
+        return '{}{}{}{}{}'.format(
             self.varname_prefix,
             prop_name,
             self.assignment_operator,

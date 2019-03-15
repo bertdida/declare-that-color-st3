@@ -149,7 +149,7 @@ class Preprocessor(Vanilla):
 
     def __init__(self, preprocessor: str):
 
-        assignment_operator = ' =' if preprocessor == 'stylus' else ':'
+        assignment_operator = ' = ' if preprocessor == 'stylus' else ': '
         statement_separator = '' if preprocessor in ['sass', 'stylus'] else ';'
 
         self.varname_prefix = \
