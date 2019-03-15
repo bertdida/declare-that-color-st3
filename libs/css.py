@@ -12,7 +12,7 @@ class Vanilla:
     def __init__(self, selector: str = ':root'):
 
         self.ruleset = RuleSet(selector)
-        self.declaration = HexDeclaration()
+        self.hexdeclaration = HexDeclaration()
 
     def declare_hexcodes(self, css):
 
@@ -41,7 +41,7 @@ class Vanilla:
     def get_varname_hex_map(self, css):
 
         dict_ = {}
-        _get_declarations = self.declaration.find_all
+        _get_declarations = self.hexdeclaration.find_all
 
         for rule_set in self.get_rulesets(css):
             varname_hex = _get_declarations(rule_set)
@@ -58,7 +58,7 @@ class Vanilla:
 
     def remove_hexcode_declarations(self, css):
 
-        remove_declarations = self.declaration.remove
+        remove_declarations = self.hexdeclaration.remove
 
         for rule_set in self.get_rulesets(css):
             css = css.replace(rule_set, remove_declarations(rule_set))
@@ -118,7 +118,7 @@ class Vanilla:
 
     def get_declarations(self, name_hex_map: dict):
 
-        create_declaration = self.declaration.create
+        create_declaration = self.hexdeclaration.create
         sorted_names = sorted(name_hex_map, key=self.natural_sort)
 
         declarations = [create_declaration(n, name_hex_map[n])
@@ -155,7 +155,7 @@ class Preprocessor(Vanilla):
         self.varname_prefix = \
             PREPROCESSOR_PREFIX_MAP.get(preprocessor.lower(), '$')
 
-        self.declaration = \
+        self.hexdeclaration = \
             HexDeclaration(self.varname_prefix,
                            assignment_operator,
                            statement_separator)
@@ -171,12 +171,12 @@ class Preprocessor(Vanilla):
     def get_varname_hex_map(self, css):
 
         return {n: hexutils.normalize(h)
-                for n, h in self.declaration.find_all(css)
+                for n, h in self.hexdeclaration.find_all(css)
                 if hexutils.is_valid(h)}
 
     def remove_hexcode_declarations(self, css):
 
-        return self.declaration.remove(css)
+        return self.hexdeclaration.remove(css)
 
     @staticmethod
     def replace_varnames_with_hexcodes(css, name_hex_map: dict):
