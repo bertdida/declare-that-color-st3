@@ -8,8 +8,8 @@ VALUE_ERROR_TEMPLATE = (
 )
 
 IntegerRGB = collections.namedtuple('IntegerRGB', ['red', 'green', 'blue'])
-IntegerHSL = collections.namedtuple(
-    'IntegerHSL', ['hue', 'saturation', 'lightness'])
+IntegerHSL = \
+    collections.namedtuple('IntegerHSL', ['hue', 'saturation', 'lightness'])
 
 
 def is_valid(hex_code):
