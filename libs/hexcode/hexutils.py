@@ -3,9 +3,8 @@ import collections
 
 HEX_CODE_RE = re.compile(r'(?i)#(?:[a-f0-9]{6}|[a-f0-9]{3})(?![a-z0-9])')
 
-VALUE_ERROR_TEMPLATE = (
+VALUE_ERROR_TEMPLATE = \
     "DeclareThatColor: invalid hexadecimal color value: {}"
-)
 
 IntegerRGB = collections.namedtuple('IntegerRGB', ['red', 'green', 'blue'])
 IntegerHSL = \
