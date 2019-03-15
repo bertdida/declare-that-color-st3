@@ -63,7 +63,7 @@ class Vanilla:
         for rule_set in self.get_rulesets(css):
             css = css.replace(rule_set, remove_declarations(rule_set))
 
-        return self.ruleset.erase_empty(css)
+        return self.ruleset.remove_empty(css)
 
     @staticmethod
     def replace_varnames_with_hexcodes(css, name_hex_pairs: dict):

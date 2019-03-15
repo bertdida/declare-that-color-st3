@@ -15,7 +15,7 @@ class RuleSet:
 
         return tuple(m.group() for m in self.re.finditer(css))
 
-    def erase_empty(self, css):
+    def remove_empty(self, css):
 
         for m in self.re.finditer(css):
             decs = m.group('declarations')
