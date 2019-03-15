@@ -43,7 +43,7 @@ def get(hex_code):
             cl = i
 
     if cl < 0:
-        raise ValueError(VALUE_ERROR_TEMPLATE.format(hex_code))
+        raise ValueError(hexutils.VALUE_ERROR_TEMPLATE.format(hex_code))
 
     try:
         return color_names[cl][1]
