@@ -23,19 +23,23 @@ class DeclareThatColor(sublime_plugin.TextCommand):
 
     def run(self, edit):
 
-        region = sublime.Region(0, self.view.size())
-        buffer_ = self.view.substr(region)
+        region, buffer_ = self.get_region_and_buffer()
 
         self.view.replace(
             edit, region, self.css.declare_hexcodes(buffer_))
+
+    def get_region_and_buffer(self):
+
+        region = sublime.Region(0, self.view.size())
+
+        return (region, self.view.substr(region))
 
 
 class UndeclareThatColor(DeclareThatColor):
 
     def run(self, edit):
 
-        region = sublime.Region(0, self.view.size())
-        buffer_ = self.view.substr(region)
+        region, buffer_ = self.get_region_and_buffer()
 
         self.view.replace(
             edit, region, self.css.undeclare_hexcodes(buffer_))
