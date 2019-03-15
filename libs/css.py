@@ -2,7 +2,7 @@ import re
 from .hexcode import hexutils
 from .hexcode import hexname
 from .ruleset import RuleSet
-from .declaration import Declaration
+from .hexdeclaration import HexDeclaration
 
 
 class Vanilla:
@@ -12,7 +12,7 @@ class Vanilla:
     def __init__(self, selector: str = ':root'):
 
         self.ruleset = RuleSet(selector)
-        self.declaration = Declaration()
+        self.declaration = HexDeclaration()
 
     def declare_hexcodes(self, css):
 
@@ -156,9 +156,9 @@ class Preprocessor(Vanilla):
             PREPROCESSOR_PREFIX_MAP.get(preprocessor.lower(), '$')
 
         self.declaration = \
-            Declaration(self.varname_prefix,
-                        assignment_operator,
-                        statement_separator)
+            HexDeclaration(self.varname_prefix,
+                           assignment_operator,
+                           statement_separator)
 
     @staticmethod
     def is_supported(preprocessor):

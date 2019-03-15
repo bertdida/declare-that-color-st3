@@ -6,7 +6,7 @@ HEXCODE_DECLARATION_RE = (
 )
 
 
-class Declaration:
+class HexDeclaration:
 
     def __init__(self,
                  varname_prefix: str = '--',
