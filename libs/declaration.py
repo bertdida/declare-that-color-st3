@@ -9,22 +9,22 @@ HEXCODE_DECLARATION_RE = (
 class Declaration:
 
     def __init__(self,
-                 prefix='--',
-                 assignment_operator=':',
-                 statement_separator=';'):
+                 varname_prefix: str = '--',
+                 assignment_operator: str = ':',
+                 statement_separator: str = ';'):
 
-        self.prefix = prefix
+        self.varname_prefix = varname_prefix
         self.assignment_operator = assignment_operator
         self.statement_separator = statement_separator
 
         self.re = re.compile(
             HEXCODE_DECLARATION_RE.format(
-                self.prefix,
+                self.varname_prefix,
                 self.assignment_operator,
                 self.statement_separator),
             re.MULTILINE | re.IGNORECASE)
 
-    def get_all(self, css):
+    def find_all(self, css):
 
         return [(m.group('prop_name'), m.group('hex_code'))
                 for m in self.re.finditer(css)]
@@ -36,7 +36,7 @@ class Declaration:
     def create(self, prop_name, hex_code):
 
         return '{}{}{} {}{}'.format(
-            self.prefix,
+            self.varname_prefix,
             prop_name,
             self.assignment_operator,
             hex_code,

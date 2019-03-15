@@ -53,7 +53,7 @@ def get(hex_code):
         raise ValueError(INDEX_ERROR_TEMPLATE.format(hex_code))
 
 
-def get_unique(hex_code, names):
+def get_unique(hex_code, names: list):
 
     curr_name = get(hex_code)
 

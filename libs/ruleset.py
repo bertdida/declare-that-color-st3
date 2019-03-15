@@ -5,17 +5,17 @@ RULESET_RE = r'{}\s*?{{(?P<declarations>[\S\s]*?)}}\n{{0,3}}'
 
 class RuleSet:
 
-    def __init__(self, selector):
+    def __init__(self, selector: str):
 
         self.selector = selector
         self.re = re.compile(
             RULESET_RE.format(self.selector), re.MULTILINE | re.IGNORECASE)
 
-    def get_all(self, css):
+    def find_all(self, css):
 
         return tuple(m.group() for m in self.re.finditer(css))
 
-    def remove_empty(self, css):
+    def erase_empty(self, css):
 
         for m in self.re.finditer(css):
             decs = m.group('declarations')
@@ -26,10 +26,10 @@ class RuleSet:
 
         return css
 
-    def create(self, declarations):
+    def create(self, declarations: list):
 
         declarations = ['{}{}'.format('\t', d) for d in declarations]
-        declarations = '\n'.join(declarations)
+        declarations_str = '\n'.join(declarations)
 
         return '{0} {{{2}{1}{2}}}{2}{2}'.format(
-            self.selector, declarations, '\n')
+            self.selector, declarations_str, '\n')

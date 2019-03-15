@@ -17,7 +17,7 @@ def is_valid(hex_code):
     return bool(HEX_CODE_RE.match(hex_code))
 
 
-def get_all(string):
+def find_all(string):
 
     return tuple(normalize(h)
                  for h in HEX_CODE_RE.findall(string) if is_valid(h))

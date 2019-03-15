@@ -7,16 +7,16 @@ from .declaration import Declaration
 
 class Vanilla:
 
-    prefix = '--'
+    varname_prefix = '--'
 
-    def __init__(self, selector=':root'):
+    def __init__(self, selector: str = ':root'):
 
         self.ruleset = RuleSet(selector)
         self.declaration = Declaration()
 
     def declare_hexcodes(self, css):
 
-        if not hexutils.get_all(css):
+        if not hexutils.find_all(css):
             return css
 
         css = self.undeclare_hexcodes(css)
@@ -41,7 +41,7 @@ class Vanilla:
     def get_varname_hex_pairs(self, css):
 
         dict_ = {}
-        _get_declarations = self.declaration.get_all
+        _get_declarations = self.declaration.find_all
 
         for rule_set in self.get_rulesets(css):
             varname_hex = _get_declarations(rule_set)
@@ -54,7 +54,7 @@ class Vanilla:
 
     def get_rulesets(self, css):
 
-        return self.ruleset.get_all(css)
+        return self.ruleset.find_all(css)
 
     def remove_hexcode_declarations(self, css):
 
@@ -63,10 +63,10 @@ class Vanilla:
         for rule_set in self.get_rulesets(css):
             css = css.replace(rule_set, remove_declarations(rule_set))
 
-        return self.ruleset.remove_empty(css)
+        return self.ruleset.erase_empty(css)
 
     @staticmethod
-    def replace_varnames_with_hexcodes(css, name_hex_pairs):
+    def replace_varnames_with_hexcodes(css, name_hex_pairs: dict):
 
         for name, hex_code in name_hex_pairs.items():
             css = css.replace('var({})'.format(name), hex_code)
@@ -92,13 +92,13 @@ class Vanilla:
 
         hex_codes = []
 
-        for hex_code in hexutils.get_all(css):
+        for hex_code in hexutils.find_all(css):
             if hex_code not in hex_codes:
                 hex_codes.append(hex_code)
 
         return tuple(hex_codes)
 
-    def set_variable_names(self, name_hex_pairs):
+    def set_variable_names(self, name_hex_pairs: dict):
 
         def variable_name(match):
 
@@ -114,9 +114,9 @@ class Vanilla:
 
     def format_variable_name(self, name):
 
-        return 'var({}{})'.format(self.prefix, name)
+        return 'var({}{})'.format(self.varname_prefix, name)
 
-    def get_declarations(self, name_hex_pairs):
+    def get_declarations(self, name_hex_pairs: dict):
 
         create_declaration = self.declaration.create
         sorted_names = sorted(name_hex_pairs, key=self.natural_sort)
@@ -132,7 +132,7 @@ class Vanilla:
         return [int(s) if s.isdigit() else s.lower()
                 for s in re.split(r'([0-9]+)', string)]
 
-    def format_declarations(self, declarations):
+    def format_declarations(self, declarations: list):
 
         return self.ruleset.create(declarations)
 
@@ -147,14 +147,18 @@ PREPROCESSOR_PREFIX_PAIRS = {
 
 class Preprocessor(Vanilla):
 
-    def __init__(self, preprocessor):
+    def __init__(self, preprocessor: str):
 
         assignment_operator = ' =' if preprocessor == 'stylus' else ':'
         statement_separator = '' if preprocessor == 'sass' else ';'
 
-        self.prefix = PREPROCESSOR_PREFIX_PAIRS.get(preprocessor.lower(), '$')
-        self.declaration = Declaration(
-            self.prefix, assignment_operator, statement_separator)
+        self.varname_prefix = \
+            PREPROCESSOR_PREFIX_PAIRS.get(preprocessor.lower(), '$')
+
+        self.declaration = \
+            Declaration(self.varname_prefix,
+                        assignment_operator,
+                        statement_separator)
 
     @staticmethod
     def is_supported(preprocessor):
@@ -167,7 +171,7 @@ class Preprocessor(Vanilla):
     def get_varname_hex_pairs(self, css):
 
         return {n: hexutils.normalize(h)
-                for n, h in self.declaration.get_all(css)
+                for n, h in self.declaration.find_all(css)
                 if hexutils.is_valid(h)}
 
     def remove_hexcode_declarations(self, css):
@@ -175,7 +179,7 @@ class Preprocessor(Vanilla):
         return self.declaration.remove(css)
 
     @staticmethod
-    def replace_varnames_with_hexcodes(css, name_hex_pairs):
+    def replace_varnames_with_hexcodes(css, name_hex_pairs: dict):
 
         for name, hex_code in name_hex_pairs.items():
             name_re = r'{}{}'.format(re.escape(name), '(?![a-z0-9-:])')
@@ -185,9 +189,9 @@ class Preprocessor(Vanilla):
 
     def format_variable_name(self, name):
 
-        return '{}{}'.format(self.prefix, name)
+        return '{}{}'.format(self.varname_prefix, name)
 
     @staticmethod
-    def format_declarations(declarations):
+    def format_declarations(declarations: list):
 
         return '{0}{1}{1}'.format('\n'.join(declarations), '\n')
