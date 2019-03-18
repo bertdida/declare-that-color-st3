@@ -26,18 +26,18 @@ class HexDeclaration:
 
     def find_all(self, css):
 
-        return [(m.group('variable_name'), m.group('hex_code'))
+        return [(m.group('var_name'), m.group('hex_code'))
                 for m in self.re.finditer(css)]
 
     def remove(self, css):
 
         return self.re.sub('', css)
 
-    def create(self, variable_name, hex_code):
+    def create(self, var_name, hex_code):
 
         return '{}{}{}{}{}'.format(
             self.varname_prefix,
-            variable_name,
+            var_name,
             self.assignment_operator,
             hex_code,
             self.statement_separator)
