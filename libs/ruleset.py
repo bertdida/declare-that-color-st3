@@ -20,7 +20,7 @@ class RuleSet:
         for m in self.re.finditer(css):
             declarations = m.group('declarations')
 
-            if not ''.join(decs.split()):
+            if not ''.join(declarations.split()):
                 css = css.replace(m.group(), '')
 
         return css
