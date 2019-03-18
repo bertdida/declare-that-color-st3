@@ -1,7 +1,6 @@
 import sublime
 import sublime_plugin
-from .libs import Vanilla
-from .libs import Preprocessor
+from .libs import Vanilla, Preprocessor
 
 SETTINGS_FILE = 'declare_that_color.sublime-settings'
 
