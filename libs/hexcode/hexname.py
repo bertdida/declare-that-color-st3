@@ -3,8 +3,6 @@ from . import hexutils
 
 MATCH_NAME_RE = r'(?i)^(?:{0}-[0-9]+|{0})$'
 
-INDEX_ERROR_TEMPLATE = "DeclareThatColor: color name not found: {}"
-
 
 def get(hex_code):
 
@@ -19,21 +17,21 @@ def get(hex_code):
     cl = -1
     df = -1
 
-    for i, color_name in enumerate(color_names):
+    for i, hex_name in enumerate(hex_names):
 
-        if hex_code == color_name[0]:
-            return color_name[1]
+        if hex_code == hex_name[0]:
+            return hex_name[1]
 
         ndf1 = (
-            pow(r - color_name[2], 2) +
-            pow(g - color_name[3], 2) +
-            pow(b - color_name[4], 2)
+            pow(r - hex_name[2], 2) +
+            pow(g - hex_name[3], 2) +
+            pow(b - hex_name[4], 2)
         )
 
         ndf2 = (
-            pow(h - color_name[5], 2) +
-            pow(s - color_name[6], 2) +
-            pow(l - color_name[7], 2)
+            pow(h - hex_name[5], 2) +
+            pow(s - hex_name[6], 2) +
+            pow(l - hex_name[7], 2)
         )
 
         ndf = ndf1 + ndf2 * 2
@@ -45,27 +43,24 @@ def get(hex_code):
     if cl < 0:
         raise ValueError(hexutils.VALUE_ERROR_TEMPLATE.format(hex_code))
 
-    try:
-        return color_names[cl][1]
-    except IndexError:
-        raise ValueError(INDEX_ERROR_TEMPLATE.format(hex_code))
+    return hex_names[cl][1]
 
 
 def get_unique(hex_code, names: list):
 
-    curr_name = get(hex_code)
+    current_name = get(hex_code)
 
-    if curr_name not in names:
-        return curr_name
+    if current_name not in names:
+        return current_name
 
-    _is_match = is_match(curr_name)
+    _is_match = is_match(current_name)
     total_match = 1
 
     for name in names:
         if _is_match(name):
             total_match += 1
 
-    return '{}-{}'.format(curr_name, total_match)
+    return '{}-{}'.format(current_name, total_match)
 
 
 def is_match(base_name):
@@ -73,24 +68,26 @@ def is_match(base_name):
     def result(name):
 
         name = remove_suffix(name)
-        match = re.match(MATCH_NAME_RE.format(name), base_name)
 
-        return bool(match)
+        return (
+            re.match(MATCH_NAME_RE.format(name), base_name)
+            is not None
+        )
 
     return result
 
 
 def remove_suffix(name):
 
-    *rest, suffix = name.split('-')
+    *rest, last = name.split('-')
 
-    if not suffix.isdigit():
+    if not last.isdigit():
         return name
 
     return '-'.join(rest)
 
 
-color_names = [
+hex_names = [
     ['#000000', 'black'],
     ['#000080', 'navy-blue'],
     ['#0000c8', 'dark-blue'],
@@ -1659,10 +1656,10 @@ color_names = [
     ['#ffffff', 'white'],
     ]
 
-for color_name in color_names:
-    hex_code = color_name[0]
+for hex_name in hex_names:
+    hex_code = hex_name[0]
 
     rgb = hexutils.rgb(hex_code)
     hsl = hexutils.hsl(hex_code)
 
-    color_name.extend(list(rgb + hsl))
+    hex_name.extend(list(rgb + hsl))
