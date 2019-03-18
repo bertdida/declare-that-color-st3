@@ -1,6 +1,5 @@
 import re
-from .hexcode import hexutils
-from .hexcode import hexname
+from .hexcode import hexutils, hexname
 from .ruleset import RuleSet
 from .hexdeclaration import HexDeclaration
 
