@@ -68,7 +68,6 @@ def is_match(base_name):
     def result(name):
 
         name = remove_suffix(name)
-
         return (
             re.match(MATCH_NAME_RE.format(name), base_name)
             is not None
