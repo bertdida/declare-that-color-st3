@@ -1,2 +1,1 @@
-from .css import Vanilla
-from .css import Preprocessor
+from .css import Vanilla, Preprocessor
