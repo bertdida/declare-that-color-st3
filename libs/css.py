@@ -21,20 +21,20 @@ class Vanilla:
 
         css = self.undeclare_hexcodes(css)
 
-        name_hex_map = self.get_colorname_hex_map(css)
-        set_variable = self.set_variable_names(name_hex_map)
+        colorname_hex_map = self.get_colorname_hex_map(css)
+        set_variable_name = self.set_variable_names(colorname_hex_map)
 
-        css = hexutils.HEX_CODE_RE.sub(set_variable, css)
-        declarations = self.get_declarations(name_hex_map)
+        css = hexutils.HEX_CODE_RE.sub(set_variable_name, css)
+        declarations = self.get_declarations(colorname_hex_map)
 
         return '{}{}'.format(declarations, css)
 
     def undeclare_hexcodes(self, css):
 
-        name_hex_map = self.get_varname_hex_map(css)
+        varname_hex_map = self.get_varname_hex_map(css)
 
         css = self.remove_hexcode_declarations(css)
-        css = self.replace_varnames_with_hexcodes(css, name_hex_map)
+        css = self.replace_varnames_with_hexcodes(css, varname_hex_map)
 
         return css
 
@@ -66,17 +66,17 @@ class Vanilla:
         return self.ruleset.remove_empty(css)
 
     @staticmethod
-    def replace_varnames_with_hexcodes(css, name_hex_map: dict):
+    def replace_varnames_with_hexcodes(css, varname_hex_map: dict):
 
-        for name, hex_code in name_hex_map.items():
+        for name, hex_code in varname_hex_map.items():
             css = css.replace('var({})'.format(name), hex_code)
 
         return css
 
     def get_colorname_hex_map(self, css):
 
-        hex_codes = self.get_unique_hexcodes(css)
         dict_ = {}
+        hex_codes = self.get_unique_hexcodes(css)
 
         for hex_code in hex_codes:
             name = hexname.get(hex_code)
@@ -98,13 +98,13 @@ class Vanilla:
 
         return tuple(hex_codes)
 
-    def set_variable_names(self, name_hex_map: dict):
+    def set_variable_names(self, varname_hex_map: dict):
 
         def variable_name(match):
 
             hex_code = hexutils.normalize(match.group())
 
-            for name, _hex_code in name_hex_map.items():
+            for name, _hex_code in varname_hex_map.items():
                 if _hex_code == hex_code:
                     return self.format_variable_name(name)
 
@@ -112,16 +112,16 @@ class Vanilla:
 
         return variable_name
 
-    def format_variable_name(self, name):
+    def format_variable_name(self, color_name):
 
-        return 'var({}{})'.format(self.varname_prefix, name)
+        return 'var({}{})'.format(self.varname_prefix, color_name)
 
-    def get_declarations(self, name_hex_map: dict):
+    def get_declarations(self, colorname_hex_map: dict):
 
         create_declaration = self.hexdeclaration.create
-        sorted_names = sorted(name_hex_map, key=self.natural_sort)
+        sorted_names = sorted(colorname_hex_map, key=self.natural_sort)
 
-        declarations = [create_declaration(n, name_hex_map[n])
+        declarations = [create_declaration(n, colorname_hex_map[n])
                         for n in sorted_names]
 
         return self.format_declarations(declarations)
@@ -161,12 +161,9 @@ class Preprocessor(Vanilla):
                            statement_separator)
 
     @staticmethod
-    def is_supported(preprocessor):
+    def is_supported(preprocessor: str):
 
-        try:
-            return preprocessor.lower() in PREPROCESSOR_PREFIX_MAP
-        except AttributeError:
-            return False
+        return preprocessor.lower() in PREPROCESSOR_PREFIX_MAP
 
     def get_varname_hex_map(self, css):
 
@@ -179,17 +176,17 @@ class Preprocessor(Vanilla):
         return self.hexdeclaration.remove(css)
 
     @staticmethod
-    def replace_varnames_with_hexcodes(css, name_hex_map: dict):
+    def replace_varnames_with_hexcodes(css, varname_hex_map: dict):
 
-        for name, hex_code in name_hex_map.items():
-            name_re = r'{}{}'.format(re.escape(name), '(?![a-z0-9-:])')
+        for name, hex_code in varname_hex_map.items():
+            name_re = r'{}{}'.format(re.escape(name_re), '(?![a-z0-9-:])')
             css = re.sub(name_re, hex_code, css)
 
         return css
 
-    def format_variable_name(self, name):
+    def format_variable_name(self, color_name):
 
-        return '{}{}'.format(self.varname_prefix, name)
+        return '{}{}'.format(self.varname_prefix, color_name)
 
     @staticmethod
     def format_declarations(declarations: list):
