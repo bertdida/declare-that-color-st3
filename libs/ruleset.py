@@ -18,10 +18,9 @@ class RuleSet:
     def remove_empty(self, css):
 
         for m in self.re.finditer(css):
-            decs = m.group('declarations')
-            decs = ''.join(decs.split())
+            declarations = m.group('declarations')
 
-            if not decs:
+            if not ''.join(decs.split()):
                 css = css.replace(m.group(), '')
 
         return css
