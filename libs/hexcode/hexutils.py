@@ -3,8 +3,8 @@ import collections
 
 HEX_CODE_RE = re.compile(r'(?i)#(?:[a-f0-9]{6}|[a-f0-9]{3})(?![a-z0-9])')
 
-VALUE_ERROR_TEMPLATE = \
-    "DeclareThatColor: invalid hexadecimal color value: {}"
+INVALID_HEX_CODE_MESG = \
+    'DeclareThatColor: invalid hexadecimal color value: {}'
 
 IntegerRGB = collections.namedtuple('IntegerRGB', ['red', 'green', 'blue'])
 IntegerHSL = \
@@ -25,7 +25,7 @@ def find_all(string):
 def normalize(hex_code):
 
     if not is_valid(hex_code):
-        raise ValueError(VALUE_ERROR_TEMPLATE.format(hex_code))
+        raise ValueError(INVALID_HEX_CODE_MESG.format(hex_code))
 
     hex_digits = hex_code.lstrip('#')
 

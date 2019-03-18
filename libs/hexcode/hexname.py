@@ -3,6 +3,13 @@ from . import hexutils
 
 MATCH_NAME_RE = r'(?i)^(?:{0}-[0-9]+|{0})$'
 
+COLOR_NAME_NOT_FOUND_MESG = \
+    'DeclareThatColor: color name not found: {}'
+
+
+class ColorNameNotFoundError(Exception):
+    pass
+
 
 def get(hex_code):
 
@@ -41,7 +48,8 @@ def get(hex_code):
             cl = i
 
     if cl < 0:
-        raise ValueError(hexutils.VALUE_ERROR_TEMPLATE.format(hex_code))
+        raise \
+            ColorNameNotFoundError(COLOR_NAME_NOT_FOUND_MESG.format(hex_code))
 
     return hex_names[cl][1]
 
