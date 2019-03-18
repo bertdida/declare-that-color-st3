@@ -37,7 +37,6 @@ class DeclareThatColor(sublime_plugin.TextCommand):
     def get_region_and_buffer(self):
 
         region = sublime.Region(0, self.view.size())
-
         return (region, self.view.substr(region))
 
 
