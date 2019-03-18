@@ -78,11 +78,8 @@ class Vanilla:
         hex_codes = self.get_unique_hexcodes(css)
 
         for hex_code in hex_codes:
-            name = hexname.get(hex_code)
-
-            if name is not None:
-                name = hexname.get_unique(hex_code, dict_)
-                dict_[name] = hex_code
+            name = hexname.get_unique(hex_code, dict_)
+            dict_[name] = hex_code
 
         return dict_
 

@@ -48,8 +48,8 @@ def get(hex_code):
             cl = i
 
     if cl < 0:
-        raise \
-            ColorNameNotFoundError(COLOR_NAME_NOT_FOUND_MESG.format(hex_code))
+        raise ColorNameNotFoundError(
+            COLOR_NAME_NOT_FOUND_MESG.format(hex_code))
 
     return hex_names[cl][1]
 
