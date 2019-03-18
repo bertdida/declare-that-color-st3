@@ -37,7 +37,7 @@ class DeclareThatColor(sublime_plugin.TextCommand):
 
         region = sublime.Region(0, self.view.size())
 
-        return region, self.view.substr(region)
+        return (region, self.view.substr(region))
 
 
 class UndeclareThatColor(DeclareThatColor):
