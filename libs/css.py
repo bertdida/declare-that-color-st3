@@ -146,7 +146,7 @@ PREPROCESSOR_PREFIX_MAP = {
 
 class Preprocessor(Vanilla):
 
-    def __init__(self, language: str, configs: dict = {}):
+    def __init__(self, language: str):
 
         assignment_operator = ' = ' if language == 'stylus' else ': '
         statement_separator = '' if language in ['sass', 'stylus'] else ';'
