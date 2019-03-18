@@ -10,7 +10,7 @@ class HexDeclaration:
 
     def __init__(self,
                  varname_prefix: str = '--',
-                 assignment_operator: str = ':',
+                 assignment_operator: str = ': ',
                  statement_separator: str = ';'):
 
         self.varname_prefix = varname_prefix
