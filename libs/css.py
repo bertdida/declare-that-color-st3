@@ -146,13 +146,13 @@ PREPROCESSOR_PREFIX_MAP = {
 
 class Preprocessor(Vanilla):
 
-    def __init__(self, preprocessor: str):
+    def __init__(self, language: str, configs: dict = {}):
 
-        assignment_operator = ' = ' if preprocessor == 'stylus' else ': '
-        statement_separator = '' if preprocessor in ['sass', 'stylus'] else ';'
+        assignment_operator = ' = ' if language == 'stylus' else ': '
+        statement_separator = '' if language in ['sass', 'stylus'] else ';'
 
         self.varname_prefix = \
-            PREPROCESSOR_PREFIX_MAP.get(preprocessor.lower(), '$')
+            PREPROCESSOR_PREFIX_MAP.get(language.lower(), '$')
 
         self.hexdeclaration = \
             HexDeclaration(self.varname_prefix,
@@ -160,9 +160,9 @@ class Preprocessor(Vanilla):
                            statement_separator)
 
     @staticmethod
-    def is_supported(preprocessor: str):
+    def is_supported(language: str):
 
-        return preprocessor.lower() in PREPROCESSOR_PREFIX_MAP
+        return language.lower() in PREPROCESSOR_PREFIX_MAP
 
     def get_varname_hex_map(self, css):
 
