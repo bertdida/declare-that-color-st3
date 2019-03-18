@@ -19,8 +19,9 @@ class RuleSet:
 
         for m in self.re.finditer(css):
             declarations = m.group('declarations')
+            declarations_stripped = ''.join(declarations.split())
 
-            if not ''.join(declarations.split()):
+            if not declarations_stripped:
                 css = css.replace(m.group(), '')
 
         return css
@@ -28,7 +29,7 @@ class RuleSet:
     def create(self, declarations: list):
 
         declarations = ['{}{}'.format('\t', d) for d in declarations]
-        declarations_str = '\n'.join(declarations)
+        declarations_stringed = '\n'.join(declarations)
 
         return '{0} {{{2}{1}{2}}}{2}{2}'.format(
-            self.selector, declarations_str, '\n')
+            self.selector, declarations_stringed, '\n')

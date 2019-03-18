@@ -38,12 +38,12 @@ def normalize(hex_code):
 def rgb(hex_code):
 
     hex_code = normalize(hex_code)
-    hex_code = int(hex_code[1:], 16)
+    hex_decimal = int(hex_code[1:], 16)
 
     return IntegerRGB(
-        hex_code >> 16,
-        hex_code >> 8 & 0xff,
-        hex_code & 0xff
+        hex_decimal >> 16,
+        hex_decimal >> 8 & 0xff,
+        hex_decimal & 0xff
     )
 
 
