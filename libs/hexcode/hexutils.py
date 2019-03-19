@@ -2,6 +2,21 @@ import re
 
 HEX_CODE_RE = re.compile(r'(?i)#(?:[a-f0-9]{6}|[a-f0-9]{3})(?![a-z0-9])')
 
+HEX_CODE_INVALID_MESG = \
+    'DeclareThatColor: not a valid hexadecimal color value: {}'
+
+
+def check_if_valid(func):
+
+    def decorator(hex_code):
+
+        if not is_valid(hex_code):
+            raise ValueError(HEX_CODE_INVALID_MESG.format(hex_code))
+
+        return func(hex_code)
+
+    return decorator
+
 
 def is_valid(hex_code):
 
@@ -14,10 +29,8 @@ def find_all(string):
                  for h in HEX_CODE_RE.findall(string) if is_valid(h))
 
 
+@check_if_valid
 def normalize(hex_code):
-
-    if not is_valid(hex_code):
-        return hex_code
 
     hex_digits = hex_code.lstrip('#')
 
@@ -39,6 +52,7 @@ def rgb(hex_code):
     )
 
 
+@check_if_valid
 def hsl(hex_code):
 
     r, g, b = rgb(hex_code)
