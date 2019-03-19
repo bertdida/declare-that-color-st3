@@ -3,13 +3,6 @@ from . import hexutils
 
 MATCH_NAME_RE = r'(?i)^(?:{0}-[0-9]+|{0})$'
 
-COLOR_NAME_NOT_FOUND_MESG = \
-    'DeclareThatColor: color name not found: {}'
-
-
-class ColorNameNotFoundError(Exception):
-    pass
-
 
 def get(hex_code):
 
@@ -48,8 +41,7 @@ def get(hex_code):
             cl = i
 
     if cl < 0:
-        raise ColorNameNotFoundError(
-            COLOR_NAME_NOT_FOUND_MESG.format(hex_code))
+        return None
 
     return hex_names[cl][1]
 
@@ -75,7 +67,7 @@ def is_match(base_name):
 
     def result(name):
 
-        name = remove_suffix(name)
+        name = strip_num_suffix(name)
         return (
             re.match(MATCH_NAME_RE.format(name), base_name)
             is not None
@@ -84,7 +76,7 @@ def is_match(base_name):
     return result
 
 
-def remove_suffix(name):
+def strip_num_suffix(name):
 
     *rest, last = name.split('-')
 
