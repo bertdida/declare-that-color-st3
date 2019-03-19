@@ -7,7 +7,7 @@ SETTINGS_FILE = 'declare_that_color.sublime-settings'
 
 def is_preprocessor_supported(preprocessor):
 
-    return preprocessor is not None \
+    return isinstance(preprocessor, str) \
         and Preprocessor.is_supported(preprocessor)
 
 
