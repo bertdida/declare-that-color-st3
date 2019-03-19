@@ -100,19 +100,16 @@ class Vanilla:
 
         def variable_name(match):
 
-            hex_code = match.group()
+            match = match.group()
 
-            is_invalid = not hexutils.is_valid(hex_code)
-            is_unspecified = hex_code not in varname_hex_map.values()
+            if hexutils.is_valid(match):
+                hex_code = hexutils.normalize(match)
 
-            if is_invalid or is_unspecified:
-                return hex_code
+                for name, _hex_code in varname_hex_map.items():
+                    if _hex_code == hex_code:
+                        return self.format_variable_name(name)
 
-            hex_code = hexutils.normalize(hex_code)
-
-            for name, _hex_code in varname_hex_map.items():
-                if _hex_code == hex_code:
-                    return self.format_variable_name(name)
+            return match
 
         return variable_name
 
