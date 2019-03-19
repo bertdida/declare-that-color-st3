@@ -1,14 +1,6 @@
 import re
-import collections
 
 HEX_CODE_RE = re.compile(r'(?i)#(?:[a-f0-9]{6}|[a-f0-9]{3})(?![a-z0-9])')
-
-INVALID_HEX_CODE_MESG = \
-    'DeclareThatColor: invalid hexadecimal color value: {}'
-
-IntegerRGB = collections.namedtuple('IntegerRGB', ['red', 'green', 'blue'])
-IntegerHSL = \
-    collections.namedtuple('IntegerHSL', ['hue', 'saturation', 'lightness'])
 
 
 def is_valid(hex_code):
@@ -25,7 +17,7 @@ def find_all(string):
 def normalize(hex_code):
 
     if not is_valid(hex_code):
-        raise ValueError(INVALID_HEX_CODE_MESG.format(hex_code))
+        return hex_code
 
     hex_digits = hex_code.lstrip('#')
 
@@ -40,7 +32,7 @@ def rgb(hex_code):
     hex_code = normalize(hex_code)
     hex_decimal = int(hex_code[1:], 16)
 
-    return IntegerRGB(
+    return (
         hex_decimal >> 16,
         hex_decimal >> 8 & 0xff,
         hex_decimal & 0xff
@@ -79,8 +71,8 @@ def hsl(hex_code):
 
         h /= 6
 
-    return IntegerHSL(
-        round(h * 255),
-        round(s * 255),
-        round(l * 255)
+    return (
+        int(h * 255),
+        int(s * 255),
+        int(l * 255)
     )
