@@ -21,7 +21,7 @@ class Vanilla:
         css = self.undeclare_hexcodes(css)
 
         colorname_hex_map = self.get_colorname_hex_map(css)
-        set_variable_name = self.set_variable_names(colorname_hex_map)
+        set_variable_name = self.set_variable_name(colorname_hex_map)
 
         css = hexutils.HEX_CODE_RE.sub(set_variable_name, css)
         declarations = self.get_declarations(colorname_hex_map)
@@ -94,7 +94,7 @@ class Vanilla:
 
         return tuple(hex_codes)
 
-    def set_variable_names(self, varname_hex_map: dict):
+    def set_variable_name(self, varname_hex_map: dict):
 
         def variable_name(match):
 
