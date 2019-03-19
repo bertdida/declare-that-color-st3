@@ -50,7 +50,7 @@ def get_unique(hex_code, names: list):
 
     current_name = get(hex_code)
 
-    if current_name not in names:
+    if current_name not in names or current_name is None:
         return current_name
 
     _is_match = is_match(current_name)

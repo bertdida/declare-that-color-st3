@@ -79,7 +79,9 @@ class Vanilla:
 
         for hex_code in hex_codes:
             name = hexname.get_unique(hex_code, dict_)
-            dict_[name] = hex_code
+
+            if name is not None:
+                dict_[name] = hex_code
 
         return dict_
 
