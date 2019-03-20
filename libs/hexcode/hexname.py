@@ -37,9 +37,6 @@ def get(hex_code):
             diff = _diff
             index = i
 
-    if index < 0:
-        return None
-
     return hex_names[index][1]
 
 
@@ -47,7 +44,7 @@ def get_unique(hex_code, names: list):
 
     current_name = get(hex_code)
 
-    if current_name not in names or current_name is None:
+    if current_name not in names:
         return current_name
 
     _is_match = is_match(current_name)
