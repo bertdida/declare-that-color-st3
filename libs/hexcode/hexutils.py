@@ -63,28 +63,29 @@ def hsl(hex_code):
     max_ = max(r, max(g, b))
     min_ = min(r, min(g, b))
 
-    h = s = l = (max_ + min_) / 2
+    delta = max_ - min_
 
-    if max_ == min_:
-        h = s = 0
-    else:
+    l = (max_ + min_) / 2
 
-        d = max_ - min_
-        s = d / (2 - max_ - min_) if l > 0.5 else d / (max_ + min_)
+    s = 0
+    if l > 0 and l < 1:
+        s = delta / ((2 * l if l < 0.5 else 2 - 2 * l))
 
-        if max_ == r:
-            h = (g - b) / d + (6 if g < b else 0)
+    h = 0
+    if delta > 0:
+        if max_ == r and max_ != g:
+            h += (g - b) / delta
 
-        if max_ == g:
-            h = (b - r) / d + 2
+        if max_ == g and max_ != b:
+            h += 2 + (b - r) / delta
 
-        if max_ == b:
-            h = (r - g) / d + 4
+        if max_ == b and max_ != r:
+            h += 4 + (r - g) / delta
 
         h /= 6
 
     return (
-        int(round(h * 360)),
-        int(round(s * 100)),
-        int(round(l * 100)),
+        int(h * 255),
+        int(s * 255),
+        int(l * 255)
     )
