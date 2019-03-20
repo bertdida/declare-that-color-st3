@@ -11,39 +11,36 @@ def get(hex_code):
     r, g, b = hexutils.rgb(hex_code)
     h, s, l = hexutils.hsl(hex_code)
 
-    ndf1 = 0
-    ndf2 = 0
-    ndf = 0
-    cl = -1
-    df = -1
+    index = -1
+    diff = -1
 
     for i, hex_name in enumerate(hex_names):
 
         if hex_code == hex_name[0]:
             return hex_name[1]
 
-        ndf1 = (
+        rgb_diff = (
             pow(r - hex_name[2], 2) +
             pow(g - hex_name[3], 2) +
             pow(b - hex_name[4], 2)
         )
 
-        ndf2 = (
+        hsl_diff = (
             pow(h - hex_name[5], 2) +
             pow(s - hex_name[6], 2) +
             pow(l - hex_name[7], 2)
         )
 
-        ndf = ndf1 + ndf2 * 2
+        _diff = rgb_diff + hsl_diff * 2
 
-        if df < 0 or df > ndf:
-            df = ndf
-            cl = i
+        if diff < 0 or diff > _diff:
+            diff = _diff
+            index = i
 
-    if cl < 0:
+    if index < 0:
         return None
 
-    return hex_names[cl][1]
+    return hex_names[index][1]
 
 
 def get_unique(hex_code, names: list):
