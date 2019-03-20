@@ -69,7 +69,7 @@ def hsl(hex_code):
 
     s = 0
     if l > 0 and l < 1:
-        s = delta / ((2 * l if l < 0.5 else 2 - 2 * l))
+        s = delta / (2 * l if l < 0.5 else 2 - 2 * l)
 
     h = 0
     if delta > 0:
