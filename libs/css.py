@@ -44,8 +44,6 @@ class Vanilla:
 
         for rule_set in self.get_rulesets(css):
             varname_hex = _get_declarations(rule_set)
-
-            # Filter out invalid hex codes and normalize
             varname_hex = [(n, hexutils.normalize(h))
                            for n, h in varname_hex if hexutils.is_valid(h)]
 
