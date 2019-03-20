@@ -96,7 +96,7 @@ class Vanilla:
 
         return tuple(hex_codes)
 
-    def set_variable_name(self, varname_hex_map: dict):
+    def set_variable_name(self, colorname_hex_map: dict):
 
         def variable_name(match):
 
@@ -105,7 +105,7 @@ class Vanilla:
             if hexutils.is_valid(match):
                 hex_code = hexutils.normalize(match)
 
-                for name, _hex_code in varname_hex_map.items():
+                for name, _hex_code in colorname_hex_map.items():
                     if _hex_code == hex_code:
                         return self.format_variable_name(name)
 
