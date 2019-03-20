@@ -12,7 +12,7 @@ def get(hex_code):
     h, s, l = hexutils.hsl(hex_code)
 
     index = -1
-    nearest_diff = -1
+    min_diff = -1
 
     for i, hex_name in enumerate(hex_names):
 
@@ -31,10 +31,10 @@ def get(hex_code):
             pow(l - hex_name[7], 2)
         )
 
-        _diff = rgb_diff + hsl_diff * 2
+        diff = rgb_diff + hsl_diff * 2
 
-        if nearest_diff < 0 or nearest_diff > _diff:
-            nearest_diff = _diff
+        if min_diff < 0 or min_diff > diff:
+            min_diff = diff
             index = i
 
     return hex_names[index][1]
