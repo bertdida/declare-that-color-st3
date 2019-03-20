@@ -44,6 +44,8 @@ class Vanilla:
 
         for rule_set in self.get_rulesets(css):
             varname_hex = _get_declarations(rule_set)
+
+            # Filter out invalid hex codes and normalize
             varname_hex = [(n, hexutils.normalize(h))
                            for n, h in varname_hex if hexutils.is_valid(h)]
 
@@ -79,9 +81,7 @@ class Vanilla:
 
         for hex_code in hex_codes:
             name = hexname.get_unique(hex_code, dict_)
-
-            if name is not None:
-                dict_[name] = hex_code
+            dict_[name] = hex_code
 
         return dict_
 
@@ -91,6 +91,8 @@ class Vanilla:
         hex_codes = []
 
         for hex_code in hexutils.find_all(css):
+            hex_code = hexutils.normalize(hex_code)
+
             if hex_code not in hex_codes:
                 hex_codes.append(hex_code)
 
