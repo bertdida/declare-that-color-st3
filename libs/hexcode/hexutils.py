@@ -25,7 +25,7 @@ def is_valid(hex_code):
 
 def find_all(string):
 
-    return tuple(h in HEX_CODE_RE.findall(string) if is_valid(h))
+    return tuple(h for h in HEX_CODE_RE.findall(string) if is_valid(h))
 
 
 @check_if_valid
