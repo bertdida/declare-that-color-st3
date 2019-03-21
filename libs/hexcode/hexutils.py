@@ -19,14 +19,17 @@ def check_if_valid(func):
     return decorator
 
 
-def is_valid(hex_code: str):
+def is_valid(hex_code):
 
-    hex_digits = hex_code.lstrip('#')
-
-    if not all(c in string.hexdigits for c in hex_digits):
+    try:
+        hex_digits = hex_code.lstrip('#')
+    except AttributeError:
         return False
 
-    return len(hex_digits) in (3, 6)
+    are_all_hexdigits = all(c in string.hexdigits for c in hex_digits)
+    is_length_allowed = len(hex_digits) in (3, 6)
+
+    return are_all_hexdigits and is_length_allowed
 
 
 def find_all(string):
