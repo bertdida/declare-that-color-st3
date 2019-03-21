@@ -19,7 +19,7 @@ def check_if_valid(func):
     return decorator
 
 
-def is_valid(hex_code):
+def is_valid(hex_code: str):
 
     hex_digits = hex_code.lstrip('#')
 
