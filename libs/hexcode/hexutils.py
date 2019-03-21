@@ -51,7 +51,6 @@ def rgb(hex_code):
     )
 
 
-@check_if_valid
 def hsl(hex_code):
 
     r, g, b = rgb(hex_code)
