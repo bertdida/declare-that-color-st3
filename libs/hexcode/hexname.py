@@ -43,7 +43,7 @@ def get(hex_code):
 def get_unique(hex_code, names: list):
     '''
     Return the color name of the given hex code
-    by appending `-n` only if the name is on iterable names,
+    by appending `-n` only if the name is on iterable `names`,
     where `n` is the total number of matching names.
 
     Unlikely behavior:
