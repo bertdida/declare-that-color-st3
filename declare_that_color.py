@@ -18,7 +18,7 @@ class DeclareThatColor(sublime_plugin.TextCommand):
         self.view = view
 
         settings = sublime.load_settings(SETTINGS_FILE)
-        self.css_selector = settings.get('css_selector')
+        self.css_selector = settings.get('css_selector', ':root')
         self.css_preprocessor = settings.get('css_preprocessor')
 
         if is_preprocessor_supported(self.css_preprocessor):
