@@ -1,4 +1,5 @@
 import re
+import string
 
 HEX_CODE_RE = re.compile(r'(?i)#(?:[a-f0-9]{6}|[a-f0-9]{3})(?![a-z0-9])')
 
@@ -20,7 +21,12 @@ def check_if_valid(func):
 
 def is_valid(hex_code):
 
-    return bool(HEX_CODE_RE.match(hex_code))
+    hex_digits = hex_code.lstrip('#')
+
+    if not all(c in string.hexdigits for c in hex_digits):
+        return False
+
+    return len(hex_digits) in (3, 6)
 
 
 def find_all(string):
