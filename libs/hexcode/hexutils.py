@@ -26,10 +26,10 @@ def is_valid(hex_code):
     except AttributeError:
         return False
 
-    is_hexdigits = all(c in string.hexdigits for c in hex_digits)
+    has_only_hexdigits = all(c in string.hexdigits for c in hex_digits)
     is_length_allowed = len(hex_digits) in (3, 6)
 
-    return is_hexdigits and is_length_allowed
+    return has_only_hexdigits and is_length_allowed
 
 
 def find_all(string):
