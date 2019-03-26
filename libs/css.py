@@ -164,7 +164,10 @@ class Preprocessor(Vanilla):
     @staticmethod
     def is_supported(language: str):
 
-        return language.lower() in PREPROCESSOR_PREFIX_MAP
+        try:
+            return language.lower() in PREPROCESSOR_PREFIX_MAP
+        except AttributeError:
+            return False
 
     def get_varname_hex_map(self, css):
 

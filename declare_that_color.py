@@ -5,12 +5,6 @@ from .libs import Vanilla, Preprocessor
 SETTINGS_FILE = 'declare_that_color.sublime-settings'
 
 
-def is_preprocessor_supported(preprocessor):
-
-    return isinstance(preprocessor, str) \
-        and Preprocessor.is_supported(preprocessor)
-
-
 class DeclareThatColor(sublime_plugin.TextCommand):
 
     def __init__(self, view):
@@ -21,7 +15,7 @@ class DeclareThatColor(sublime_plugin.TextCommand):
         self.css_selector = settings.get('css_selector', ':root')
         self.css_preprocessor = settings.get('css_preprocessor')
 
-        if is_preprocessor_supported(self.css_preprocessor):
+        if Preprocessor.is_supported(self.css_preprocessor):
             self.css = Preprocessor(self.css_preprocessor)
             return
 
