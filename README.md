@@ -17,7 +17,7 @@ Or click Edit > Undeclare That Color to undo declarations.
 
 ### Key bindings
 
-To avoid conflicts, DeclareThatColor doesn't come with key bindings. You can use the template below to customize your own.
+To avoid conflicts, DeclareThatColor does not come with default key bindings. You can use the template below to customize your own.
 
 ```json
 [
@@ -32,14 +32,14 @@ _\*Restart Sublime Text to load the changes properly._
 
 To acces settings click Preferences > Package Settings > DeclareThatColor > Settings - User/Default.
 
-| Name             | Default | Description                                                                                                                                                                                                                                                                                                          |
-| ---------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| css_selector     | `:root` | Specifies the CSS selector for vanilla declaration.                                                                                                                                                                                                                                                                  |
-| css_preprocessor | `null`  | Defines what CSS preprocessor language to be used. Currently, the supported languages are (case insensitive): [`scss`](https://sass-lang.com/), [`sass`](https://sass-lang.com/), [`less`](http://lesscss.org/) and [`stylus`](http://stylus-lang.com/). To use the vanilla CSS declaration set its value to `null`. |
+| Name             | Default | Description                                                                                                                                                                                                                                                                                                                        |
+| ---------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| css_selector     | `:root` | Specifies the CSS selector for vanilla declaration.                                                                                                                                                                                                                                                                                |
+| css_preprocessor | `null`  | Defines what CSS preprocessor language to be used. Currently, the supported languages are the following (case insensitive): [`scss`](https://sass-lang.com/), [`sass`](https://sass-lang.com/), [`less`](http://lesscss.org/) and [`stylus`](http://stylus-lang.com/). To use the vanilla CSS declaration set its value to `null`. |
 
 ## Author
 
-Herbert Verdida - [@bertdida](https://twitter.com/bertdida)
+Herbert Verdida / [@bertdida](https://twitter.com/bertdida)
 
 ## Thanks
 
