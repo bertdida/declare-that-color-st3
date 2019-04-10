@@ -65,4 +65,4 @@ Herbert Verdida / [@bertdida](https://twitter.com/bertdida)
 
 ## Thanks
 
-This plugin was inspired by Chirag Mehta's [Name That Color](http://chir.ag/projects/name-that-color/) tool, much thanks to him for open sourcing his JavaScript code.
+This plugin was inspired by Chirag Mehta's [Name That Color](http://chir.ag/projects/name-that-color/) tool, much thanks to him for open sourcing his [JavaScript code](http://chir.ag/projects/ntc/ntc.js).
