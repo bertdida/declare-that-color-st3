@@ -6,7 +6,7 @@ DeclareThatColor is a Sublime Text 3 plugin that helps developers declare hex co
 
 ## Notes
 
-- This plugin recognizes 3 and 6-digits hex codes (case insensitive) and will convert them to their 6-digit lowercase representation.
+- This plugin recognizes 3 and 6-digits hex codes (case insensitive) and will convert them to their 6-digit lowercased representation.
 - There are cases that 2 or more hex codes own the same color name. For example #FFF, #FEFEFE and #FDFDFD are using the name white. If these hex codes are used on the document in order from top to bottom, the following variable names will be used on declarations respectively: `white`, `white-2` and `white-3`.
 
 ## Installation
