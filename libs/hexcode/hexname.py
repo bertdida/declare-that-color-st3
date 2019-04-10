@@ -67,10 +67,7 @@ def is_match(base_name):
     def result(name):
 
         name = strip_num_suffix(name)
-        return (
-            re.match(MATCH_NAME_RE.format(name), base_name)
-            is not None
-        )
+        return bool(re.match(MATCH_NAME_RE.format(name), base_name))
 
     return result
 
