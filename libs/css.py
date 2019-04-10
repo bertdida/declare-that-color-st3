@@ -151,7 +151,7 @@ class Preprocessor(Vanilla):
     def __init__(self, language: str):
 
         assignment_operator = ' = ' if language == 'stylus' else ': '
-        statement_separator = '' if language in ['sass', 'stylus'] else ';'
+        statement_separator = '' if language == 'sass' else ';'
 
         self.varname_prefix = \
             PREPROCESSOR_PREFIX_MAP.get(language.lower(), '$')
