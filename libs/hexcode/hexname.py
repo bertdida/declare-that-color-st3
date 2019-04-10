@@ -11,8 +11,8 @@ def get(hex_code):
     r, g, b = hexutils.rgb(hex_code)
     h, s, l = hexutils.hsl(hex_code)
 
-    index = -1
-    min_diff = -1
+    index = None
+    min_diff = None
 
     for i, hex_name in enumerate(hex_names):
 
@@ -33,7 +33,7 @@ def get(hex_code):
 
         diff = rgb_diff + hsl_diff * 2
 
-        if min_diff < 0 or min_diff > diff:
+        if min_diff is None or min_diff > diff:
             min_diff = diff
             index = i
 
