@@ -43,7 +43,7 @@ def normalize(hex_code):
     hex_digits = hex_code.lstrip('#')
 
     if len(hex_digits) == 3:
-        hex_digits = ''.join(2 * s for s in hex_digits)
+        hex_digits = ''.join(2 * c for c in hex_digits)
 
     return '#{}'.format(hex_digits.lower())
 
