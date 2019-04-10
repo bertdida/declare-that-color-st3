@@ -34,8 +34,8 @@ def get(hex_code):
         diff = rgb_diff + hsl_diff * 2
 
         if min_diff is None or min_diff > diff:
-            min_diff = diff
             index = i
+            min_diff = diff
 
     return hex_names[index][1]
 
