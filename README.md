@@ -1,23 +1,33 @@
 # DeclareThatColor
 
-DeclareThatColor is a Sublime Text 3 plugin for CSS that declares hex color codes to their human-friendly color names.
+DeclareThatColor is a Sublime Text 3 plugin that helps developers declare hex codes to their human-readable color names.
 
 ![preview](https://github.com/bertdida/DeclareThatColor/blob/master/img/preview.gif?raw=true)
 
+## Notes
+
+- This plugin only recognizes 3 and 6-digits hex codes (case insensitive) and will convert them to their 6-digit lowercase representation.
+- There are cases that 2 or more hex codes hold the same name. For example #FFF, #FEFEFE and #FDFDFD are named white. To avoid value overriding the plugin appends `-n` on the second and third hex codes' name where `n` is the numeric symbol of their chronological order when found on the CSS document (top to bottom).
+
 ## Installation
 
-1. Download and extract the DeclareThatColor [zip file](https://github.com/bertdida/DeclareThatColor/archive/master.zip) to your Sublime Text Packages directory (Sublime Text > Preferences > Browse Packages...).
+### Manual installation
+
+1. Download and extract the plugin’s [zip file](https://github.com/bertdida/DeclareThatColor/archive/master.zip) to your Sublime Text Packages directory (Sublime Text > Preferences > Browse Packages...).
 2. Rename the extracted folder from DeclareThatColor-master to DeclareThatColor.
+
+### Using Git
+
+1. Open the terminal and change directory to you your Sublime Text Packages directory.
+2. Clone the repository by running `git clone https://github.com/bertdida/DeclareThatColor.git`.
 
 ## Usage
 
-To declare hex color codes click Edit > Declare That Color from the Sublime Text's main menu.
-
-Or click Edit > Undeclare That Color to undo declarations.
+Click on Edit > Declare That Color from the Sublime Text's main menu or click Undeclare That Color to undo the declarations.
 
 ### Key bindings
 
-To avoid conflicts, DeclareThatColor doesn't come with default key bindings. You can use the template below to customize your own.
+DeclareThatColor doesn't provide default key bindings, but you can use the template below to set up your own.
 
 ```json
 [
@@ -28,14 +38,25 @@ To avoid conflicts, DeclareThatColor doesn't come with default key bindings. You
 
 ## Settings
 
-_\*Restart Sublime Text to load the changes properly._
+_Restart Sublime Text to load the changes properly._
 
 To acces settings click Preferences > Package Settings > DeclareThatColor > Settings - User/Default.
 
-| Name             | Default | Description                                                                                                                                                                                                                                                                                                                        |
-| ---------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| css_selector     | `:root` | Specifies the CSS selector for vanilla declaration.                                                                                                                                                                                                                                                                                |
-| css_preprocessor | `null`  | Defines what CSS preprocessor language to be used. Currently, the supported languages are the following (case insensitive): [`scss`](https://sass-lang.com/), [`sass`](https://sass-lang.com/), [`less`](http://lesscss.org/) and [`stylus`](http://stylus-lang.com/). To use the vanilla CSS declaration set its value to `null`. |
+| Name             | Default | Description                                                                                                                                                                                                                                                                                                                                         |
+| ---------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| css_selector     | `:root` | A string that specifies the CSS selector to use on vanilla CSS declaration.                                                                                                                                                                                                                                                                         |
+| css_preprocessor | `null`  | _Nullable._ A string that defines the CSS preprocessor language to use. Currently, the supported languages are the following (case insensitive): [`scss`](https://sass-lang.com/), [`sass`](https://sass-lang.com/), [`less`](http://lesscss.org/) and [`stylus`](http://stylus-lang.com/). To use vanilla CSS declaration set the value to `null`. |
+
+## Source
+
+[GitHub](https://github.com/bertdida/DeclareThatColor)
+
+Contribute
+If you have any problem, idea or suggestion, feel free to create issues and pull requests on [GitHub](https://github.com/bertdida/DeclareThatColor).
+
+## License
+
+Distributed under the MIT license. See LICENSE for more information.
 
 ## Author
 
