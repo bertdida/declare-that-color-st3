@@ -51,7 +51,8 @@ To acces settings click Preferences > Package Settings > DeclareThatColor > Sett
 
 [GitHub](https://github.com/bertdida/DeclareThatColor)
 
-Contribute
+## Contribute
+
 If you have any problem, idea or suggestion, feel free to create issues and pull requests on [GitHub](https://github.com/bertdida/DeclareThatColor).
 
 ## License
