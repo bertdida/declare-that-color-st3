@@ -23,7 +23,7 @@ DeclareThatColor is a Sublime Text 3 plugin that helps developers declare hex co
 
 ## Usage
 
-Click on Edit > Declare That Color from the Sublime Text's main menu or click Undeclare That Color to undo the declarations.
+From the Sublime Text's main menu click on Edit > Declare/Undeclare That Color.
 
 ### Key bindings
 
