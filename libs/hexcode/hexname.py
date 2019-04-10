@@ -41,15 +41,6 @@ def get(hex_code):
 
 
 def get_unique(hex_code, names: list):
-    '''
-    Return the color name of the given hex code
-    by appending `-n`, only if the name is on iterable `names`.
-    Where `n` is the total number of matching names plus one.
-
-    Unlikely behavior:
-        If `current_name` is white, and `names` is
-        [white, white-3] will return white-3.
-    '''
 
     current_name = get(hex_code)
 
