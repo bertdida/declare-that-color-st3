@@ -1,14 +1,14 @@
 # DeclareThatColor
 
-DeclareThatColor is a Sublime Text 3 plugin that helps developers declare CSS hex codes to their human-readable color names.
+DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare CSS hex codes to their human-readable color names.
 
 ![preview](https://github.com/bertdida/DeclareThatColor/blob/master/img/preview.gif?raw=true)
 
 ## Notes
 
-- This plugin will look for 3 and 6-digit hex codes (case insensitive) and will convert them to their 6-digit lowercased representations.
-- There are cases that 2 or more hex codes own the same color name. For example #FFF, #FEFEFE and #FDFDFD yields the name white. If these hex codes are used within a document sequentially from top to bottom, the following variable names will be used respectively: `white`, `white-2` and `white-3`.
-- When using the [stylus](http://stylus-lang.com/) preprocessor, variables will be prepended with the dollar sign and will have the trailing semicolon.
+- This plugin will look for 3 and 6-digit hex codes (case insensitive) and will convert them to their 6-digit lowercased notation.
+- Multiple hex codes may have the same color name. For example #FFF, #FEFEFE and #FDFDFD yields the name white. If these hex codes are used within a document sequentially from top to bottom, the following variable names will be used respectively: `white`, `white-2` and `white-3`.
+- When using the [stylus](http://stylus-lang.com/) preprocessor; declaration will be prepended with the dollar sign and will have the trailing semicolon.
 
 ## Installation
 
