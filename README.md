@@ -9,7 +9,6 @@ DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare
 - This plugin will look for 3 and 6-digit hex codes (case insensitive) and will convert them to their 6-digit lowercased notation.
 - Multiple hex codes may have the same color name. For example #FFF, #FEFEFE and #FDFDFD yields the name white. If these hex codes are used within a document sequentially from top to bottom, the following variable names will be used respectively: `white`, `white-2` and `white-3`.
 - When using the [stylus](http://stylus-lang.com/) preprocessor; declaration will be prepended with the dollar sign and will have the trailing semicolon.
-  GI
 
 ## Installation
 
@@ -29,9 +28,7 @@ From the Sublime Text's main menu click on Edit > Declare/Undeclare That Color.
 
 ### Key bindings
 
-To add key bindings click Preferences > Key Bindings.
-
-DeclareThatColor doesn't provide default key bindings, but you can use the template below to set up your own.
+DeclareThatColor doesn't provide default key bindings, but you can use the template below to set up your own. To add key bindings click Preferences > Key Bindings.
 
 ```json
 [
