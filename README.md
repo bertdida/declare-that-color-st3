@@ -28,7 +28,7 @@ From the Sublime Text's main menu click on Edit > Declare/Undeclare That Color.
 
 ### Key bindings
 
-DeclareThatColor doesn't provide default key bindings, but you can use the template below to set up your own. To add key bindings click Preferences > Key Bindings.
+DeclareThatColor doesn't provide default key bindings, but you can use the template below to set up your own. To add key bindings click on Preferences > Key Bindings.
 
 ```json
 [
@@ -41,7 +41,7 @@ DeclareThatColor doesn't provide default key bindings, but you can use the templ
 
 _Restart Sublime Text to load the changes properly._
 
-To acces settings click Preferences > Package Settings > DeclareThatColor > Settings - User/Default.
+To acces settings click on Preferences > Package Settings > DeclareThatColor > Settings - User/Default.
 
 | Name             | Type   | Default | Description                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ---------------- | ------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
