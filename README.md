@@ -49,7 +49,7 @@ A string that specifies the CSS selector to use on vanilla CSS declaration, this
 
 ### `css_preprocessor`
 
-Nullable. Can be a string that defines the [CSS preprocessor](https://developer.mozilla.org/en-US/docs/Glossary/CSS_preprocessor) language to use. By default, this is set to null which indicates to use the vanilla CSS declaration. Accepts any of the following values:
+Nullable. Can be a string that defines the [CSS preprocessor](https://developer.mozilla.org/en-US/docs/Glossary/CSS_preprocessor) language to use. By default, this is set to null which indicates to use the vanilla CSS declaration. Expected value is any of the following:
 
 - `null`
 - [`scss`](https://sass-lang.com/)
