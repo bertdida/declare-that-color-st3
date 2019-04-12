@@ -45,7 +45,7 @@ To acces settings click on Preferences > Package Settings > DeclareThatColor > S
 
 ### css_selector
 
-A string that specifies the CSS selector to use on vanilla CSS declaration, this setting defaults to `:root`.
+A string that specifies the CSS selector to use on vanilla CSS declaration, this setting defaults to `:root`. It is required to restart Sublime Text to load the changes properly.
 
 ### css_preprocessor
 
@@ -55,7 +55,7 @@ Nullable. Can be a string that defines the [CSS preprocessor](https://developer.
 - [`sass`](https://sass-lang.com/)
 - [`less`](http://lesscss.org/)
 - [`stylus`](http://stylus-lang.com/)
-- `null` - default value which indicates to use the vanilla CSS declaration.
+- `null` - default value which indicates to use the vanilla CSS declaration
 
 ## Source
 
