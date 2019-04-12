@@ -19,7 +19,7 @@ DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare
 
 ### Using Git
 
-1. Open the terminal and `cd` to you your Sublime Text Packages directory.
+1. Open a terminal and `cd` to you your Sublime Text Packages directory.
 2. Clone the repository by running `git clone https://github.com/bertdida/DeclareThatColor.git`.
 
 ## Usage
