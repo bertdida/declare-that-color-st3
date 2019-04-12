@@ -41,11 +41,11 @@ DeclareThatColor doesn't provide default key bindings, but you can use the templ
 
 To acces settings click on Preferences > Package Settings > DeclareThatColor > Settings - User. It is required to restart Sublime Text to load the changes properly.
 
-### css_selector
+### `css_selector`
 
 A string that specifies the CSS selector to use on vanilla CSS declaration, this setting defaults to `:root`.
 
-### css_preprocessor
+### `css_preprocessor`
 
 Nullable. Can be a string that defines the [CSS preprocessor](https://developer.mozilla.org/en-US/docs/Glossary/CSS_preprocessor) language to use. Expected values are the following:
 
