@@ -41,12 +41,21 @@ DeclareThatColor doesn't provide default key bindings, but you can use the templ
 
 _Restart Sublime Text to load the changes properly._
 
-To acces settings click on Preferences > Package Settings > DeclareThatColor > Settings - User/Default.
+To acces settings click on Preferences > Package Settings > DeclareThatColor > Settings - User.
 
-| Name             | Type   | Default | Description                                                                                                                                                                                                                                                                                                                                                                                                   |
-| ---------------- | ------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| css_selector     | string | `:root` | Specifies the CSS selector to use on vanilla CSS declaration.                                                                                                                                                                                                                                                                                                                                                 |
-| css_preprocessor | string | `null`  | _Nullable._ Defines the [CSS preprocessor](https://developer.mozilla.org/en-US/docs/Glossary/CSS_preprocessor) language to use. Expected values are the following:<ul><li>[`scss`](https://sass-lang.com/)</li><li>[`sass`](https://sass-lang.com/)</li><li>[`less`](http://lesscss.org/)</li><li>[`stylus`](http://stylus-lang.com/)</li><li>`null` - indicates to use the vanilla CSS declaration</li></ul> |
+### css_selector
+
+A string that specifies the CSS selector to use on vanilla CSS declaration, this setting defaults to `:root`.
+
+### css_preprocessor
+
+Nullable. Can be a string that defines the [CSS preprocessor](https://developer.mozilla.org/en-US/docs/Glossary/CSS_preprocessor) language to use. Expected values are the following:
+
+- [`scss`](https://sass-lang.com/)
+- [`sass`](https://sass-lang.com/)
+- [`less`](http://lesscss.org/)
+- [`stylus`](http://stylus-lang.com/)
+- `null` - indicates to use the vanilla CSS declaration
 
 ## Source
 
