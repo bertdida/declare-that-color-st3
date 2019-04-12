@@ -55,7 +55,7 @@ Nullable. Can be a string that defines the [CSS preprocessor](https://developer.
 - [`sass`](https://sass-lang.com/)
 - [`less`](http://lesscss.org/)
 - [`stylus`](http://stylus-lang.com/)
-- `null` - indicates to use the vanilla CSS declaration
+- `null` - (default) indicates to use the vanilla CSS declaration
 
 ## Source
 
