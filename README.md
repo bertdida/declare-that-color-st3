@@ -39,9 +39,9 @@ DeclareThatColor doesn't provide default key bindings, but you can use the templ
 
 ## Settings
 
-I advise using User settings so that it wouldn't change when DeclareThatColor is updated; to access this click on Preferences > Package Settings > DeclareThatColor > Settings - User.
+I advice using User settings thus to secure your changes even if DeclareThatColor is updated, to access this click on Preferences > Package Settings > DeclareThatColor > Settings - User.
 
-It is required to restart Sublime Text to load the changes properly.
+Don't forget to restart Sublime Text.
 
 ### `css_selector`
 
