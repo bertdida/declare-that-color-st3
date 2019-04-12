@@ -39,13 +39,11 @@ DeclareThatColor doesn't provide default key bindings, but you can use the templ
 
 ## Settings
 
-_Restart Sublime Text to load the changes properly._
-
-To acces settings click on Preferences > Package Settings > DeclareThatColor > Settings - User.
+To acces settings click on Preferences > Package Settings > DeclareThatColor > Settings - User. It is required to restart Sublime Text to load the changes properly.
 
 ### css_selector
 
-A string that specifies the CSS selector to use on vanilla CSS declaration, this setting defaults to `:root`. It is required to restart Sublime Text to load the changes properly.
+A string that specifies the CSS selector to use on vanilla CSS declaration, this setting defaults to `:root`.
 
 ### css_preprocessor
 
