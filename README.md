@@ -40,7 +40,7 @@ DeclareThatColor doesn't provide default key bindings, but you can use the templ
 
 ## Settings
 
-Use the settings below to customize DeclareThatColor's behavior, to access this click on on Preferences > Package Settings > DeclareThatColor > Settings - Default/User.
+Use the settings below to make DeclareThatColor works better for you, to access this click on on Preferences > Package Settings > DeclareThatColor > Settings - Default/User.
 
 Note, a restart on Sublime Text is required to load the changes effectively.
 
