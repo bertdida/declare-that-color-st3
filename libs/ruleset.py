@@ -9,7 +9,8 @@ class RuleSet:
 
         self.selector = selector
         self.re = re.compile(
-            RULESET_RE.format(self.selector), re.MULTILINE | re.IGNORECASE)
+            RULESET_RE.format(self.selector),
+            re.MULTILINE | re.IGNORECASE)
 
     def find_all(self, css):
 
