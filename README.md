@@ -2,7 +2,7 @@
 
 DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare CSS hex codes to their human-readable color names.
 
-![preview](https://github.com/bertdida/DeclareThatColor/blob/master/img/preview.gif?raw=true)
+![preview](/img/preview.gif?raw=true)
 
 ## Behaviors
 
