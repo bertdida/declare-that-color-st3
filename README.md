@@ -16,7 +16,7 @@ DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare
 ### Package Control
 
 1. Click on Preferences > Package Control > Package Control: Install Package.
-2. Search for DeclareThatColor and press Enter.
+2. Search for DeclareThatColor and press <kbd>Enter</kbd>.
 
 ### Manual installation
 
