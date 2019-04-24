@@ -18,7 +18,7 @@ class Vanilla:
     def color_name_prefix(self):
 
         if self.name_prefix is None or \
-                not re.match(r'^[a-z0-9-_]+?$', self.name_prefix):
+                not re.match(r'^[a-zA-Z0-9-_]+?$', self.name_prefix):
             return ''
 
         return self.name_prefix
