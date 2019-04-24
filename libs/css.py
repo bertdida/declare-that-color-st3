@@ -87,10 +87,7 @@ class Vanilla:
             name = hexname.get_unique(hex_code, dict_)
             dict_[name] = hex_code
 
-        dict_ = {'{}{}'.format(self.color_name_prefix, n): h
-                 for n, h in dict_.items()}
-
-        return dict_
+        return {self.prepend_color_name_prefix(n): h for n, h in dict_.items()}
 
     @staticmethod
     def get_unique_hexcodes(css):
@@ -104,6 +101,10 @@ class Vanilla:
                 hex_codes.append(hex_code)
 
         return tuple(hex_codes)
+
+    def prepend_color_name_prefix(self, color_name):
+
+        return '{}{}'.format(self.color_name_prefix, color_name)
 
     def set_variable_name(self, colorname_hex_map: dict):
 
