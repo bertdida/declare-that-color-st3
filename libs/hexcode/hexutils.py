@@ -1,7 +1,8 @@
 import re
 import string
 
-HEX_CODE_RE = re.compile(r'(?i)#(?:[a-f0-9]{6}|[a-f0-9]{3})(?![a-z0-9])')
+HEX_CODE_RE = re.compile(r'#(?:[a-f0-9]{6}|[a-f0-9]{3})(?![a-z0-9])',
+                         re.IGNORECASE)
 
 HEX_CODE_INVALID_MESG = \
     'DeclareThatColor: not a valid hexadecimal color value: {}'

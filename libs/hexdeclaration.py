@@ -1,7 +1,7 @@
 import re
 
 HEXCODE_DECLARATION_RE = (
-    r'[ \t]*?(?P<var_name>\{}[a-z0-9-]*?)\s*?{}\s*?'
+    r'[ \t]*?(?P<var_name>\{}[a-z0-9-_]*?)\s*?{}\s*?'
     r'(?P<hex_code>#(?:[a-f0-9]{{6}}|[a-f0-9]{{3}})){}$\n{{0,3}}'
 )
 

@@ -1,7 +1,7 @@
 import re
 from . import hexutils
 
-MATCH_NAME_RE = r'(?i)^(?:{0}-[0-9]+|{0})$'
+MATCH_NAME_RE = r'^(?:{0}-[0-9]+|{0})$'
 
 
 def get(hex_code):
@@ -58,7 +58,9 @@ def is_match(base_name):
     def result(name):
 
         name = strip_num_suffix(name)
-        return bool(re.match(MATCH_NAME_RE.format(name), base_name))
+        match = re.match(MATCH_NAME_RE.format(name), base_name, re.IGNORECASE)
+
+        return bool(match)
 
     return result
 

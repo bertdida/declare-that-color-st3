@@ -8,10 +8,20 @@ class Vanilla:
 
     varname_prefix = '--'
 
-    def __init__(self, selector: str = ':root'):
+    def __init__(self, selector: str = ':root', name_prefix: str = None):
 
         self.ruleset = RuleSet(selector)
         self.hexdeclaration = HexDeclaration()
+        self.name_prefix = name_prefix
+
+    @property
+    def color_name_prefix(self):
+
+        if self.name_prefix is None or \
+                not re.match(r'^[a-zA-Z0-9-_]+?$', self.name_prefix):
+            return ''
+
+        return self.name_prefix
 
     def declare_hexcodes(self, css):
 
@@ -40,10 +50,10 @@ class Vanilla:
     def get_varname_hex_map(self, css):
 
         dict_ = {}
-        _get_declarations = self.hexdeclaration.find_all
+        get_declarations = self.hexdeclaration.find_all
 
         for rule_set in self.get_rulesets(css):
-            varname_hex = _get_declarations(rule_set)
+            varname_hex = get_declarations(rule_set)
             varname_hex = [(n, hexutils.normalize(h))
                            for n, h in varname_hex if hexutils.is_valid(h)]
 
@@ -81,7 +91,7 @@ class Vanilla:
             name = hexname.get_unique(hex_code, dict_)
             dict_[name] = hex_code
 
-        return dict_
+        return {self.prepend_color_name_prefix(n): h for n, h in dict_.items()}
 
     @staticmethod
     def get_unique_hexcodes(css):
@@ -95,6 +105,10 @@ class Vanilla:
                 hex_codes.append(hex_code)
 
         return tuple(hex_codes)
+
+    def prepend_color_name_prefix(self, color_name):
+
+        return '{}{}'.format(self.color_name_prefix, color_name)
 
     def set_variable_name(self, colorname_hex_map: dict):
 
@@ -148,7 +162,7 @@ PREPROCESSOR_PREFIX_MAP = {
 
 class Preprocessor(Vanilla):
 
-    def __init__(self, language: str):
+    def __init__(self, language: str, name_prefix: str = None):
 
         assignment_operator = ' = ' if language == 'stylus' else ': '
         statement_separator = '' if language == 'sass' else ';'
@@ -160,6 +174,8 @@ class Preprocessor(Vanilla):
             HexDeclaration(self.varname_prefix,
                            assignment_operator,
                            statement_separator)
+
+        self.name_prefix = name_prefix
 
     @staticmethod
     def is_supported(language: str):
