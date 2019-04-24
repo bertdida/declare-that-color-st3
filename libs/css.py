@@ -12,7 +12,12 @@ class Vanilla:
 
         self.ruleset = RuleSet(selector)
         self.hexdeclaration = HexDeclaration()
-        self.name_prefix = '' if name_prefix is None else name_prefix
+        self.name_prefix = name_prefix
+
+    @property
+    def color_name_prefix(self):
+
+        return '' if self.name_prefix is None else self.name_prefix
 
     def declare_hexcodes(self, css):
 
@@ -82,8 +87,8 @@ class Vanilla:
             name = hexname.get_unique(hex_code, dict_)
             dict_[name] = hex_code
 
-        dict_ = \
-            {'{}{}'.format(self.name_prefix, n): h for n, h in dict_.items()}
+        dict_ = {'{}{}'.format(self.color_name_prefix, n): h
+                 for n, h in dict_.items()}
 
         return dict_
 
@@ -165,7 +170,7 @@ class Preprocessor(Vanilla):
                            assignment_operator,
                            statement_separator)
 
-        self.name_prefix = '' if name_prefix is None else name_prefix
+        self.name_prefix = name_prefix
 
     @staticmethod
     def is_supported(language: str):
