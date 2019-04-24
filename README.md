@@ -55,13 +55,17 @@ A string that specifies the CSS selector to use on vanilla CSS declaration, this
 
 ### `css_preprocessor`
 
-Nullable. Can be a string that defines the [CSS preprocessor](https://developer.mozilla.org/en-US/docs/Glossary/CSS_preprocessor) language to use. By default, this is set to null which indicates to use the vanilla CSS declaration. Expected value is either of the following:
+_Nullable_. A string that defines the [CSS preprocessor](https://developer.mozilla.org/en-US/docs/Glossary/CSS_preprocessor) language to use. By default, this is set to null which indicates to use the vanilla CSS declaration. Expected value is either of the following:
 
 - `null`
 - [`scss`](https://sass-lang.com/)
 - [`sass`](https://sass-lang.com/)
 - [`less`](http://lesscss.org/)
 - [`stylus`](http://stylus-lang.com/)
+
+### `color_name_prefix`
+
+_Nullable_. Can be a string that sets a prefix for each color names, this setting defaults to `null`.
 
 ## Source
 
