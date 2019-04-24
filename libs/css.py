@@ -17,7 +17,11 @@ class Vanilla:
     @property
     def color_name_prefix(self):
 
-        return '' if self.name_prefix is None else self.name_prefix
+        if self.name_prefix is None or \
+                not re.match(r'^[a-z0-9-_]+?$', self.name_prefix):
+            return ''
+
+        return self.name_prefix
 
     def declare_hexcodes(self, css):
 
