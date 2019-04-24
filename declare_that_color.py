@@ -14,12 +14,13 @@ class DeclareThatColor(sublime_plugin.TextCommand):
         settings = sublime.load_settings(SETTINGS_FILE)
         css_selector = settings.get('css_selector', ':root')
         css_preprocessor = settings.get('css_preprocessor')
+        color_name_prefix = settings.get('color_name_prefix')
 
         if Preprocessor.is_supported(css_preprocessor):
-            self.css = Preprocessor(css_preprocessor)
+            self.css = Preprocessor(css_preprocessor, color_name_prefix)
             return
 
-        self.css = Vanilla(css_selector)
+        self.css = Vanilla(css_selector, color_name_prefix)
 
     def run(self, edit):
 

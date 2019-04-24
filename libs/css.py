@@ -8,10 +8,11 @@ class Vanilla:
 
     varname_prefix = '--'
 
-    def __init__(self, selector: str = ':root'):
+    def __init__(self, selector: str = ':root', name_prefix: str = None):
 
         self.ruleset = RuleSet(selector)
         self.hexdeclaration = HexDeclaration()
+        self.name_prefix = '' if name_prefix is None else name_prefix
 
     def declare_hexcodes(self, css):
 
@@ -81,6 +82,9 @@ class Vanilla:
             name = hexname.get_unique(hex_code, dict_)
             dict_[name] = hex_code
 
+        dict_ = \
+            {'{}{}'.format(self.name_prefix, n): h for n, h in dict_.items()}
+
         return dict_
 
     @staticmethod
@@ -148,7 +152,7 @@ PREPROCESSOR_PREFIX_MAP = {
 
 class Preprocessor(Vanilla):
 
-    def __init__(self, language: str):
+    def __init__(self, language: str, name_prefix: str = None):
 
         assignment_operator = ' = ' if language == 'stylus' else ': '
         statement_separator = '' if language == 'sass' else ';'
@@ -160,6 +164,8 @@ class Preprocessor(Vanilla):
             HexDeclaration(self.varname_prefix,
                            assignment_operator,
                            statement_separator)
+
+        self.name_prefix = '' if name_prefix is None else name_prefix
 
     @staticmethod
     def is_supported(language: str):
