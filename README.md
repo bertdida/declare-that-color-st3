@@ -7,7 +7,7 @@ DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare
 ## Behaviors
 
 - This plugin will look for 3 and 6-digit hex codes (case insensitive) and will convert them to their 6-digit lowercase notation.
-- Multiple hex codes may have the same color name; for example #FFF, #FEFEFE and #FDFDFD yields the name white. If these hex codes are used within a document sequentially from top to bottom, variable names `white`, `white-2` and `white-3` will be used respectively.
+- Multiple hex codes may have the same color name; for example #FFF, #FEFEFE and #FDFDFD yields the name white. If these hex codes are used sequentially, variable names `white`, `white-2` and `white-3` will be applied respectively.
 - When using the stylus preprocessor, a declaration will be prepended with the dollar sign and will have the trailing semicolon.
 - Variable names will be ordered using the [natural sort](https://en.wikipedia.org/wiki/Natural_sort_order) algorithm.
 
@@ -15,7 +15,7 @@ DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare
 
 ### Package Control
 
-1. Open package search box by navigating to Preferences > Package Control > Package Control: Install Package.
+1. To search for a plugin, click on Preferences > Package Control > Package Control: Install Package.
 2. Type DeclareThatColor and press <kbd>Enter</kbd>.
 
 ### Manual installation
