@@ -242,7 +242,7 @@ class Preprocessor(Vanilla):
     def replace_varnames_with_hexcodes(css, varname_hex_map: dict):
 
         for name, hex_code in varname_hex_map.items():
-            name_re = r'{}{}'.format(re.escape(name), '(?![a-z0-9-:])')
+            name_re = r'{}{}'.format(re.escape(name), '(?![a-z0-9-_:])')
             css = re.sub(name_re, hex_code, css)
 
         return css
