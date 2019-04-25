@@ -2,5 +2,6 @@
     "css_selector": ":root",
     "css_preprocessor": null,
     "color_name_prefix": null,
-    "type_case": "dash"
+    "type_case": "dash",
+    "convert_type_case_first": false,
 }
