@@ -6,31 +6,46 @@ from .hexdeclaration import HexDeclaration
 
 case_conversion = sys.modules['Case Conversion.case_conversion']
 
+CASE_FUNC_MAP = {
+    'dash': case_conversion.to_dash_case,
+    'snake': case_conversion.to_snake_case,
+    'camel': case_conversion.to_camel_case,
+    'pascal': case_conversion.to_pascal_case,
+    'screaming_snake': case_conversion.to_screaming_snake_case
+}
+
+
+def key_exists(key: str, dict_):
+
+    try:
+        dict_[key.lower()]
+    except (KeyError, AttributeError):
+        return False
+
+    return True
+
+
+def is_supported_type_case(type_case):
+
+    return key_exists(type_case, CASE_FUNC_MAP)
+
 
 class Vanilla:
 
     varname_prefix = '--'
 
-    default_case_type = 'dash'
+    def __init__(self, settings):
 
-    def __init__(self,
-                 selector: str = ':root',
-                 case_type: str = None,
-                 name_prefix: str = None):
-
-        self.ruleset = RuleSet(selector)
+        self.ruleset = RuleSet(settings.get('css_selector'))
         self.hexdeclaration = HexDeclaration()
-        self.name_prefix = name_prefix
-        self.case_type = case_type
+
+        self.name_case_func = CASE_FUNC_MAP[settings.get('type_case')]
+        self.name_prefix = settings.get('color_name_prefix')
 
     @property
     def color_name_prefix(self):
 
-        if self.name_prefix is None or \
-                not re.match(r'^[a-zA-Z0-9-_]+?$', self.name_prefix):
-            return ''
-
-        return self.name_prefix
+        return '' if self.name_prefix is None else self.name_prefix
 
     def declare_hexcodes(self, css):
 
@@ -124,18 +139,8 @@ class Vanilla:
 
     def convert_case(self, color_name):
 
-        case_func_map = {
-            'dash': case_conversion.to_dash_case,
-            'snake': case_conversion.to_snake_case,
-            'camel': case_conversion.to_camel_case,
-            'pascal': case_conversion.to_pascal_case,
-            'screaming_snake': case_conversion.to_screaming_snake_case
-        }
-
-        func = case_func_map.get(
-            self.case_type, case_func_map[self.default_case_type])
-
-        return func(text=color_name, detectAcronyms=False, acronyms=[])
+        return self.name_case_func(
+            text=color_name, detectAcronyms=False, acronyms=[])
 
     def prepend_color_name_prefix(self, color_name):
 
@@ -193,32 +198,25 @@ PREPROCESSOR_PREFIX_MAP = {
 
 class Preprocessor(Vanilla):
 
-    def __init__(self,
-                 language: str,
-                 case_type: str = None,
-                 name_prefix: str = None):
+    def __init__(self, settings):
+
+        language = settings.get('css_preprocessor')
+        language = language.lower()
 
         assignment_operator = ' = ' if language == 'stylus' else ': '
         statement_separator = '' if language == 'sass' else ';'
 
-        self.varname_prefix = \
-            PREPROCESSOR_PREFIX_MAP.get(language.lower(), '$')
+        self.varname_prefix = PREPROCESSOR_PREFIX_MAP[language]
+        self.hexdeclaration = HexDeclaration(
+            self.varname_prefix, assignment_operator, statement_separator)
 
-        self.hexdeclaration = \
-            HexDeclaration(self.varname_prefix,
-                           assignment_operator,
-                           statement_separator)
-
-        self.name_prefix = name_prefix
-        self.case_type = case_type
+        self.name_case_func = CASE_FUNC_MAP[settings.get('type_case')]
+        self.name_prefix = settings.get('color_name_prefix')
 
     @staticmethod
-    def is_supported(language: str):
+    def is_supported(preprocessor):
 
-        try:
-            return language.lower() in PREPROCESSOR_PREFIX_MAP
-        except AttributeError:
-            return False
+        return key_exists(preprocessor, PREPROCESSOR_PREFIX_MAP)
 
     def get_varname_hex_map(self, css):
 
