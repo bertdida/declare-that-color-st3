@@ -22,7 +22,8 @@ def plugin_loaded():
     if not isinstance(css_selector, str):
         css_selector = DEFAULT_SELECTOR
 
-    if not isinstance(type_case, str) or css.is_supported_type_case(type_case):
+    if not all([isinstance(type_case, str),
+                css.is_supported_type_case(type_case)]):
         type_case = DEFAULT_CASE
 
     settings.set('css_preprocessor', css_preprocessor)
