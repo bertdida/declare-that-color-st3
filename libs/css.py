@@ -1,18 +1,27 @@
 import re
+import sys
 from .hexcode import hexutils, hexname
 from .ruleset import RuleSet
 from .hexdeclaration import HexDeclaration
+
+case_conversion = sys.modules['Case Conversion.case_conversion']
 
 
 class Vanilla:
 
     varname_prefix = '--'
 
-    def __init__(self, selector: str = ':root', name_prefix: str = None):
+    default_case_type = 'dash'
+
+    def __init__(self,
+                 selector: str = ':root',
+                 case_type: str = None,
+                 name_prefix: str = None):
 
         self.ruleset = RuleSet(selector)
         self.hexdeclaration = HexDeclaration()
         self.name_prefix = name_prefix
+        self.case_type = case_type
 
     @property
     def color_name_prefix(self):
@@ -91,7 +100,14 @@ class Vanilla:
             name = hexname.get_unique(hex_code, dict_)
             dict_[name] = hex_code
 
-        return {self.prepend_color_name_prefix(n): h for n, h in dict_.items()}
+        new_dict = {}
+
+        for name, hex_code in dict_.items():
+            name = self.prepend_color_name_prefix(name)
+            name = self.convert_case(name)
+            new_dict[name] = hex_code
+
+        return new_dict
 
     @staticmethod
     def get_unique_hexcodes(css):
@@ -105,6 +121,21 @@ class Vanilla:
                 hex_codes.append(hex_code)
 
         return tuple(hex_codes)
+
+    def convert_case(self, color_name):
+
+        case_func_map = {
+            'dash': case_conversion.to_dash_case,
+            'snake': case_conversion.to_snake_case,
+            'camel': case_conversion.to_camel_case,
+            'pascal': case_conversion.to_pascal_case,
+            'screaming_snake': case_conversion.to_screaming_snake_case
+        }
+
+        func = case_func_map.get(
+            self.case_type, case_func_map[self.default_case_type])
+
+        return func(text=color_name, detectAcronyms=False, acronyms=[])
 
     def prepend_color_name_prefix(self, color_name):
 
@@ -162,7 +193,10 @@ PREPROCESSOR_PREFIX_MAP = {
 
 class Preprocessor(Vanilla):
 
-    def __init__(self, language: str, name_prefix: str = None):
+    def __init__(self,
+                 language: str,
+                 case_type: str = None,
+                 name_prefix: str = None):
 
         assignment_operator = ' = ' if language == 'stylus' else ': '
         statement_separator = '' if language == 'sass' else ';'
@@ -176,6 +210,7 @@ class Preprocessor(Vanilla):
                            statement_separator)
 
         self.name_prefix = name_prefix
+        self.case_type = case_type
 
     @staticmethod
     def is_supported(language: str):

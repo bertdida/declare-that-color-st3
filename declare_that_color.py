@@ -15,12 +15,14 @@ class DeclareThatColor(sublime_plugin.TextCommand):
         css_selector = settings.get('css_selector', ':root')
         css_preprocessor = settings.get('css_preprocessor')
         color_name_prefix = settings.get('color_name_prefix')
+        type_case = settings.get('type_case')
 
         if Preprocessor.is_supported(css_preprocessor):
-            self.css = Preprocessor(css_preprocessor, color_name_prefix)
+            self.css = Preprocessor(
+                css_preprocessor, type_case, color_name_prefix)
             return
 
-        self.css = Vanilla(css_selector, color_name_prefix)
+        self.css = Vanilla(css_selector, type_case, color_name_prefix)
 
     def run(self, edit):
 
