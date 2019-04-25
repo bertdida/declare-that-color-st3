@@ -7,10 +7,23 @@ DEFAULT_PREPROCESSOR = None
 DEFAULT_SELECTOR = ':root'
 DEFAULT_CASE = 'dash'
 
+css_obj = None
+settings = None
+
 
 def plugin_loaded():
-    global css_obj
+
+    global settings
+
     settings = sublime.load_settings(SETTINGS_FILE)
+    instantiate_css_obj()
+
+    settings.add_on_change('css_selector', instantiate_css_obj)
+
+
+def instantiate_css_obj():
+
+    global css_obj
 
     css_preprocessor = settings.get('css_preprocessor')
     css_selector = settings.get('css_selector')
