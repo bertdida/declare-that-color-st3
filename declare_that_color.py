@@ -1,44 +1,53 @@
 import sublime
 import sublime_plugin
-from .libs import Vanilla, Preprocessor
+from .libs import css
 
 SETTINGS_FILE = 'declare_that_color.sublime-settings'
 
 
+def plugin_loaded():
+    global css_obj
+    settings = sublime.load_settings(SETTINGS_FILE)
+
+    css_preprocessor = settings.get('css_preprocessor')
+    css_selector = settings.get('css_selector')
+    type_case = settings.get('type_case')
+
+    if not css.Preprocessor.is_supported(css_preprocessor):
+        css_preprocessor = None
+
+    if not isinstance(css_selector, str):
+        css_selector = ':root'
+
+    if not isinstance(type_case, str) or css.is_supported_type_case(type_case):
+        type_case = 'dash'
+
+    settings.set('css_preprocessor', css_preprocessor)
+    settings.set('css_selector', css_selector)
+    settings.set('type_case', type_case)
+
+    if settings.get('css_preprocessor') is not None:
+        css_obj = css.Preprocessor(settings)
+        return
+
+    css_obj = css.Vanilla(settings)
+
+
 class DeclareThatColor(sublime_plugin.TextCommand):
 
-    def __init__(self, view):
+    def run(self, edit):
 
-        self.view = view
+        region = sublime.Region(0, self.view.size())
+        buffer_ = self.view.substr(region)
 
-        settings = sublime.load_settings(SETTINGS_FILE)
-        css_selector = settings.get('css_selector', ':root')
-        css_preprocessor = settings.get('css_preprocessor')
-        color_name_prefix = settings.get('color_name_prefix')
-        type_case = settings.get('type_case')
+        self.view.replace(edit, region, css_obj.declare_hexcodes(buffer_))
 
-        if Preprocessor.is_supported(css_preprocessor):
-            self.css = Preprocessor(
-                css_preprocessor, type_case, color_name_prefix)
-            return
 
-        self.css = Vanilla(css_selector, type_case, color_name_prefix)
+class UndeclareThatColor(sublime_plugin.TextCommand):
 
     def run(self, edit):
 
         region = sublime.Region(0, self.view.size())
         buffer_ = self.view.substr(region)
 
-        self.view.replace(
-            edit, region, self.css.declare_hexcodes(buffer_))
-
-
-class UndeclareThatColor(DeclareThatColor):
-
-    def run(self, edit):
-
-        region = sublime.Region(0, self.view.size())
-        buffer_ = self.view.substr(region)
-
-        self.view.replace(
-            edit, region, self.css.undeclare_hexcodes(buffer_))
+        self.view.replace(edit, region, css_obj.undeclare_hexcodes(buffer_))
