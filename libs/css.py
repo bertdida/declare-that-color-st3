@@ -36,11 +36,14 @@ class Vanilla:
 
     def __init__(self, settings):
 
+        type_case = settings.get('type_case')
+        type_case = type_case.lower()
+
+        self.name_case_func = CASE_FUNC_MAP[type_case]
+        self.name_prefix = settings.get('color_name_prefix')
+
         self.ruleset = RuleSet(settings.get('css_selector'))
         self.hexdeclaration = HexDeclaration()
-
-        self.name_case_func = CASE_FUNC_MAP[settings.get('type_case')]
-        self.name_prefix = settings.get('color_name_prefix')
 
     @property
     def color_name_prefix(self):
@@ -200,6 +203,12 @@ class Preprocessor(Vanilla):
 
     def __init__(self, settings):
 
+        type_case = settings.get('type_case')
+        type_case = type_case.lower()
+
+        self.name_case_func = CASE_FUNC_MAP[type_case]
+        self.name_prefix = settings.get('color_name_prefix')
+
         language = settings.get('css_preprocessor')
         language = language.lower()
 
@@ -209,9 +218,6 @@ class Preprocessor(Vanilla):
         self.varname_prefix = PREPROCESSOR_PREFIX_MAP[language]
         self.hexdeclaration = HexDeclaration(
             self.varname_prefix, assignment_operator, statement_separator)
-
-        self.name_case_func = CASE_FUNC_MAP[settings.get('type_case')]
-        self.name_prefix = settings.get('color_name_prefix')
 
     @staticmethod
     def is_supported(preprocessor):
