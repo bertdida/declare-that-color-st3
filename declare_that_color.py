@@ -3,6 +3,9 @@ import sublime_plugin
 from .libs import css
 
 SETTINGS_FILE = 'declare_that_color.sublime-settings'
+DEFAULT_PREPROCESSOR = None
+DEFAULT_SELECTOR = ':root'
+DEFAULT_CASE = 'dash'
 
 
 def plugin_loaded():
@@ -14,13 +17,13 @@ def plugin_loaded():
     type_case = settings.get('type_case')
 
     if not css.Preprocessor.is_supported(css_preprocessor):
-        css_preprocessor = None
+        css_preprocessor = DEFAULT_PREPROCESSOR
 
     if not isinstance(css_selector, str):
-        css_selector = ':root'
+        css_selector = DEFAULT_SELECTOR
 
     if not isinstance(type_case, str) or css.is_supported_type_case(type_case):
-        type_case = 'dash'
+        type_case = DEFAULT_CASE
 
     settings.set('css_preprocessor', css_preprocessor)
     settings.set('css_selector', css_selector)
