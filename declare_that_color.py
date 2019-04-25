@@ -16,12 +16,12 @@ def plugin_loaded():
     global settings
 
     settings = sublime.load_settings(SETTINGS_FILE)
-    instantiate_css_obj()
+    instantiate_libs_css()
 
-    settings.add_on_change('css_selector', instantiate_css_obj)
+    settings.add_on_change('css_selector', instantiate_libs_css)
 
 
-def instantiate_css_obj():
+def instantiate_libs_css():
 
     global libs_css
 
