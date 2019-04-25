@@ -6,6 +6,7 @@ SETTINGS_FILE = 'declare_that_color.sublime-settings'
 DEFAULT_PREPROCESSOR = None
 DEFAULT_SELECTOR = ':root'
 DEFAULT_CASE = 'dash'
+DEFAULT_PREFIX = ''
 
 libs_css = None
 settings = None
@@ -26,11 +27,15 @@ def instantiate_libs_css():
     global libs_css
 
     css_preprocessor = settings.get('css_preprocessor')
+    name_prefix = settings.get('color_name_prefix')
     css_selector = settings.get('css_selector')
     type_case = settings.get('type_case')
 
     if not css.Preprocessor.is_supported(css_preprocessor):
         css_preprocessor = DEFAULT_PREPROCESSOR
+
+    if not isinstance(name_prefix, str):
+        name_prefix = DEFAULT_PREFIX
 
     if not isinstance(css_selector, str):
         css_selector = DEFAULT_SELECTOR
@@ -40,6 +45,7 @@ def instantiate_libs_css():
         type_case = DEFAULT_CASE
 
     settings.set('css_preprocessor', css_preprocessor)
+    settings.set('color_name_prefix', name_prefix)
     settings.set('css_selector', css_selector)
     settings.set('type_case', type_case)
 
