@@ -7,7 +7,7 @@ DEFAULT_PREPROCESSOR = None
 DEFAULT_SELECTOR = ':root'
 DEFAULT_CASE = 'dash'
 
-css_obj = None
+libs_css = None
 settings = None
 
 
@@ -23,7 +23,7 @@ def plugin_loaded():
 
 def instantiate_css_obj():
 
-    global css_obj
+    global libs_css
 
     css_preprocessor = settings.get('css_preprocessor')
     css_selector = settings.get('css_selector')
@@ -44,10 +44,10 @@ def instantiate_css_obj():
     settings.set('type_case', type_case)
 
     if settings.get('css_preprocessor') is not None:
-        css_obj = css.Preprocessor(settings)
+        libs_css = css.Preprocessor(settings)
         return
 
-    css_obj = css.Vanilla(settings)
+    libs_css = css.Vanilla(settings)
 
 
 class DeclareThatColor(sublime_plugin.TextCommand):
@@ -57,7 +57,7 @@ class DeclareThatColor(sublime_plugin.TextCommand):
         region = sublime.Region(0, self.view.size())
         buffer_ = self.view.substr(region)
 
-        self.view.replace(edit, region, css_obj.declare_hexcodes(buffer_))
+        self.view.replace(edit, region, libs_css.declare_hexcodes(buffer_))
 
 
 class UndeclareThatColor(sublime_plugin.TextCommand):
@@ -67,4 +67,4 @@ class UndeclareThatColor(sublime_plugin.TextCommand):
         region = sublime.Region(0, self.view.size())
         buffer_ = self.view.substr(region)
 
-        self.view.replace(edit, region, css_obj.undeclare_hexcodes(buffer_))
+        self.view.replace(edit, region, libs_css.undeclare_hexcodes(buffer_))
