@@ -40,6 +40,7 @@ class Vanilla:
         type_case = type_case.lower()
 
         self.name_case_func = CASE_FUNC_MAP[type_case]
+        self.type_case_first = settings.get('convert_type_case_first')
         self.name_prefix = settings.get('color_name_prefix')
 
         self.ruleset = RuleSet(settings.get('css_selector'))
@@ -121,8 +122,14 @@ class Vanilla:
         new_dict = {}
 
         for name, hex_code in dict_.items():
-            name = self.prepend_color_name_prefix(name)
-            name = self.convert_case(name)
+
+            if bool(self.type_case_first):
+                name = self.convert_case(name)
+                name = self.prepend_color_name_prefix(name)
+            else:
+                name = self.prepend_color_name_prefix(name)
+                name = self.convert_case(name)
+
             new_dict[name] = hex_code
 
         return new_dict
@@ -207,6 +214,7 @@ class Preprocessor(Vanilla):
         type_case = type_case.lower()
 
         self.name_case_func = CASE_FUNC_MAP[type_case]
+        self.type_case_first = settings.get('convert_type_case_first')
         self.name_prefix = settings.get('color_name_prefix')
 
         language = settings.get('css_preprocessor')
