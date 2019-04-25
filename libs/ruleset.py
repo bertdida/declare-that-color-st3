@@ -7,7 +7,7 @@ class RuleSet:
 
     def __init__(self, selector: str):
 
-        self.selector = selector
+        self.selector = ':root' if selector is None else selector
         self.re = re.compile(
             RULESET_RE.format(self.selector),
             re.MULTILINE | re.IGNORECASE)
