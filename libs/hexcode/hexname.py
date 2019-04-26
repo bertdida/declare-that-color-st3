@@ -1642,7 +1642,7 @@ hex_names = [
     ['#ffffb4', 'portafino'],
     ['#fffff0', 'ivory'],
     ['#ffffff', 'white'],
-    ]
+]
 
 for hex_name in hex_names:
     hex_code = hex_name[0]
