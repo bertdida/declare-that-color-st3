@@ -48,9 +48,9 @@ def get_unique(hex_code, names: list):
         return current_name
 
     _is_match = is_match(current_name)
-    total_match = len([n for n in names if _is_match(n)]) + 1
+    total_match = len([n for n in names if _is_match(n)])
 
-    return '{}-{}'.format(current_name, total_match)
+    return '{}-{}'.format(current_name, total_match + 1)
 
 
 def is_match(base_name):
