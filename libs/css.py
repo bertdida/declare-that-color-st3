@@ -11,7 +11,8 @@ except KeyError:
 
     class CaseConversion:
 
-        def __getattr__(self, name):
+        @staticmethod
+        def __getattr__(name):
 
             return lambda text, **kwargs: text
 
