@@ -166,13 +166,11 @@ class Vanilla:
         def variable_name(match):
 
             match = match.group()
+            hex_code = hexutils.normalize(match)
 
-            if hexutils.is_valid(match):
-                hex_code = hexutils.normalize(match)
-
-                for name, _hex_code in colorname_hex_map.items():
-                    if _hex_code == hex_code:
-                        return self.format_variable_name(name)
+            for name, _hex_code in colorname_hex_map.items():
+                if _hex_code == hex_code:
+                    return self.format_variable_name(name)
 
             return match
 
