@@ -4,7 +4,18 @@ from .hexcode import hexutils, hexname
 from .ruleset import RuleSet
 from .hexdeclaration import HexDeclaration
 
-case_conversion = sys.modules['Case Conversion.case_conversion']
+try:
+    case_conversion = sys.modules['Case Conversion.case_conversion']
+
+except KeyError:
+
+    class CaseConversion:
+
+        def __getattr__(self, name):
+
+            return lambda text, **kwargs: text
+
+    case_conversion = CaseConversion()
 
 CASE_FUNC_MAP = {
     'dash': case_conversion.to_dash_case,
