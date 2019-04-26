@@ -56,13 +56,19 @@ def instantiate_libs_css():
     libs_css = css.Vanilla(settings)
 
 
+def get_region_buffer(view):
+
+    region = sublime.Region(0, view.size())
+    buffer_ = view.substr(region)
+
+    return region, buffer_
+
+
 class DeclareThatColor(sublime_plugin.TextCommand):
 
     def run(self, edit):
 
-        region = sublime.Region(0, self.view.size())
-        buffer_ = self.view.substr(region)
-
+        region, buffer_ = get_region_buffer(self.view)
         self.view.replace(edit, region, libs_css.declare_hexcodes(buffer_))
 
 
@@ -70,7 +76,5 @@ class UndeclareThatColor(sublime_plugin.TextCommand):
 
     def run(self, edit):
 
-        region = sublime.Region(0, self.view.size())
-        buffer_ = self.view.substr(region)
-
+        region, buffer_ = get_region_buffer(self.view)
         self.view.replace(edit, region, libs_css.undeclare_hexcodes(buffer_))
