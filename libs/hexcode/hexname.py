@@ -5,10 +5,10 @@ from . import hexutils
 
 MATCH_NAME_RE = r'^(?:{0}-[0-9]+|{0})$'
 
-dir_ = os.path.dirname(os.path.abspath(__file__))
-data_path = os.path.join(dir_, 'data.json')
+curr_path = os.path.dirname(os.path.abspath(__file__))
+json_path = os.path.join(curr_path, 'data.json')
 
-with open(data_path) as json_file:
+with open(json_path) as json_file:
     color_data = json.load(json_file)
 
 
