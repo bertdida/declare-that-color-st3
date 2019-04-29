@@ -10,11 +10,11 @@
     // - "stylus"
     "css_preprocessor": null,
 
-    // String to prepend on color names
+    // A String to prepend on each color names
     "color_name_prefix": null,
 
     // If you have Case Conversion plugin installed, use this setting
-    // to determine variable name's case type. Supported values are:
+    // to determine the variable name's case type. Supported values are:
     // - "dash"
     // - "snake"
     // - "camel"
