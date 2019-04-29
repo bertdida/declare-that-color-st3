@@ -8,7 +8,7 @@ DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare
 
 ## Installation
 
-Download [Package Control](https://packagecontrol.io/) and use the _Package Control: Install Package_ command from the command palette. In this way, DeclareThatColor will stay up to date automatically.
+Download [Package Control](https://packagecontrol.io/) and use the _Package Control: Install Package_ command from the command palette. Using Package Control ensures DeclareThatColor will stay up to date automatically.
 
 ## Usage
 
