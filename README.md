@@ -6,6 +6,8 @@ DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare
 
 ![usage](img/usage.gif)
 
+> PR with better screencast more than welcome!
+
 ## Installation
 
 Download [Package Control](https://packagecontrol.io/) and use the _Package Control: Install Package_ command from the command palette. In this way, DeclareThatColor will stay up to date automatically.
