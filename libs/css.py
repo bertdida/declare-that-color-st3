@@ -1,27 +1,66 @@
 import re
+import sys
 from .hexcode import hexutils, hexname
 from .ruleset import RuleSet
 from .hexdeclaration import HexDeclaration
+
+try:
+    case_conversion = sys.modules['Case Conversion.case_conversion']
+
+except KeyError:
+
+    class CaseConversion:
+
+        @staticmethod
+        def __getattr__(attr):
+
+            return lambda text, **kwargs: text
+
+    case_conversion = CaseConversion()
+
+CASE_FUNC_MAP = {
+    'dash': case_conversion.to_dash_case,
+    'snake': case_conversion.to_snake_case,
+    'camel': case_conversion.to_camel_case,
+    'pascal': case_conversion.to_pascal_case,
+    'screaming_snake': case_conversion.to_screaming_snake_case
+}
+
+
+def key_exists(key: str, dict_):
+
+    try:
+        dict_[key.lower()]
+    except (KeyError, AttributeError):
+        return False
+
+    return True
+
+
+def is_supported_type_case(type_case):
+
+    return key_exists(type_case, CASE_FUNC_MAP)
 
 
 class Vanilla:
 
     varname_prefix = '--'
 
-    def __init__(self, selector: str = ':root', name_prefix: str = None):
+    def __init__(self, settings):
 
-        self.ruleset = RuleSet(selector)
+        type_case = settings.get('type_case')
+        type_case = type_case.lower()
+
+        self.name_case_func = CASE_FUNC_MAP[type_case]
+        self.name_prefix = settings.get('color_name_prefix')
+
+        self.ruleset = RuleSet(settings.get('css_selector'))
         self.hexdeclaration = HexDeclaration()
-        self.name_prefix = name_prefix
 
     @property
     def color_name_prefix(self):
 
-        if self.name_prefix is None or \
-                not re.match(r'^[a-zA-Z0-9-_]+?$', self.name_prefix):
-            return ''
-
-        return self.name_prefix
+        return re.sub(r'[^a-zA-Z0-9-_]', '', self.name_prefix)
 
     def declare_hexcodes(self, css):
 
@@ -91,7 +130,14 @@ class Vanilla:
             name = hexname.get_unique(hex_code, dict_)
             dict_[name] = hex_code
 
-        return {self.prepend_color_name_prefix(n): h for n, h in dict_.items()}
+        new_dict = {}
+
+        for name, hex_code in dict_.items():
+            name = self.convert_case(name)
+            name = self.prepend_color_name_prefix(name)
+            new_dict[name] = hex_code
+
+        return new_dict
 
     @staticmethod
     def get_unique_hexcodes(css):
@@ -106,6 +152,11 @@ class Vanilla:
 
         return tuple(hex_codes)
 
+    def convert_case(self, color_name):
+
+        return self.name_case_func(
+            text=color_name, detectAcronyms=False, acronyms=[])
+
     def prepend_color_name_prefix(self, color_name):
 
         return '{}{}'.format(self.color_name_prefix, color_name)
@@ -115,13 +166,11 @@ class Vanilla:
         def variable_name(match):
 
             match = match.group()
+            hex_code = hexutils.normalize(match)
 
-            if hexutils.is_valid(match):
-                hex_code = hexutils.normalize(match)
-
-                for name, _hex_code in colorname_hex_map.items():
-                    if _hex_code == hex_code:
-                        return self.format_variable_name(name)
+            for name, _hex_code in colorname_hex_map.items():
+                if _hex_code == hex_code:
+                    return self.format_variable_name(name)
 
             return match
 
@@ -162,28 +211,28 @@ PREPROCESSOR_PREFIX_MAP = {
 
 class Preprocessor(Vanilla):
 
-    def __init__(self, language: str, name_prefix: str = None):
+    def __init__(self, settings):
+
+        type_case = settings.get('type_case')
+        type_case = type_case.lower()
+
+        self.name_case_func = CASE_FUNC_MAP[type_case]
+        self.name_prefix = settings.get('color_name_prefix')
+
+        language = settings.get('css_preprocessor')
+        language = language.lower()
 
         assignment_operator = ' = ' if language == 'stylus' else ': '
         statement_separator = '' if language == 'sass' else ';'
 
-        self.varname_prefix = \
-            PREPROCESSOR_PREFIX_MAP.get(language.lower(), '$')
-
-        self.hexdeclaration = \
-            HexDeclaration(self.varname_prefix,
-                           assignment_operator,
-                           statement_separator)
-
-        self.name_prefix = name_prefix
+        self.varname_prefix = PREPROCESSOR_PREFIX_MAP[language]
+        self.hexdeclaration = HexDeclaration(
+            self.varname_prefix, assignment_operator, statement_separator)
 
     @staticmethod
-    def is_supported(language: str):
+    def is_supported(preprocessor):
 
-        try:
-            return language.lower() in PREPROCESSOR_PREFIX_MAP
-        except AttributeError:
-            return False
+        return key_exists(preprocessor, PREPROCESSOR_PREFIX_MAP)
 
     def get_varname_hex_map(self, css):
 
@@ -199,7 +248,7 @@ class Preprocessor(Vanilla):
     def replace_varnames_with_hexcodes(css, varname_hex_map: dict):
 
         for name, hex_code in varname_hex_map.items():
-            name_re = r'{}{}'.format(re.escape(name), '(?![a-z0-9-:])')
+            name_re = r'{}{}'.format(re.escape(name), '(?![a-z0-9-_:])')
             css = re.sub(name_re, hex_code, css)
 
         return css

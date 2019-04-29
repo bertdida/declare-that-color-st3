@@ -1,5 +1,25 @@
 {
+    // Specifies the CSS selector to use on vanilla CSS declaration
     "css_selector": ":root",
+
+    // Defines the CSS preprocessor language or whether to use the
+    // vanilla CSS declaration. Supported values are:
+    // - null: no preprocessor
+    // - "scss"
+    // - "sass"
+    // - "less"
+    // - "stylus"
     "css_preprocessor": null,
+
+    // If you like to prefix your color variables, set it here 
     "color_name_prefix": null,
+
+    // Use this setting to modify the variable name's case type. Except
+    // for dash, the values below requires Case Conversion plugin preinstalled.
+    // - "dash"
+    // - "snake"
+    // - "camel"
+    // - "pascal"
+    // - "screaming_snake"
+    "type_case": "dash",
 }

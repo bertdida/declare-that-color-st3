@@ -5,9 +5,9 @@ RULESET_RE = r'{}\s*?{{(?P<declarations>[\S\s]*?)}}\n{{0,3}}'
 
 class RuleSet:
 
-    def __init__(self, selector: str):
+    def __init__(self, selector: str = None):
 
-        self.selector = selector
+        self.selector = ':root' if selector is None else selector
         self.re = re.compile(
             RULESET_RE.format(self.selector),
             re.MULTILINE | re.IGNORECASE)
