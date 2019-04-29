@@ -20,7 +20,7 @@ Download [Package Control](https://packagecontrol.io/) and use the _Package Cont
 
 ### Key bindings
 
-DeclareThatColor doesn't ship with default key bindings, but you can use the template below to set up your own.
+DeclareThatColor doesn't ship with default key bindings, use the template below to set up your own.
 
 ```json
 [
