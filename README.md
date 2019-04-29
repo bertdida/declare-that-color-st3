@@ -2,7 +2,10 @@
 
 DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare CSS hex codes to their human-readable color names (based on Chirag Mehta's [name that color](http://chir.ag/projects/name-that-color/) tool).
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/dd17b74cb4a19b100fdb/maintainability)](https://codeclimate.com/github/bertdida/DeclareThatColor/maintainability) ![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/bertdida/DeclareThatColor.svg) ![GitHub](https://img.shields.io/github/license/bertdida/DeclareThatColor.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/dd17b74cb4a19b100fdb/maintainability)](https://codeclimate.com/github/bertdida/DeclareThatColor/maintainability)
+[![codebeat badge](https://codebeat.co/badges/cf67c947-b827-4301-9605-7c3b275b090a)](https://codebeat.co/projects/github-com-bertdida-declarethatcolor-master)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/bertdida/DeclareThatColor.svg)
+![GitHub](https://img.shields.io/github/license/bertdida/DeclareThatColor.svg)
 
 ![usage](img/usage.gif)
 
