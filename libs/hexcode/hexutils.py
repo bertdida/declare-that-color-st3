@@ -74,11 +74,11 @@ def hsl(hex_code):
 
     delta = max_ - min_
 
-    l = (max_ + min_) / 2
+    L = (max_ + min_) / 2
 
     s = 0
-    if l > 0 and l < 1:
-        s = delta / (2 * l if l < 0.5 else 2 - 2 * l)
+    if L > 0 and L < 1:
+        s = delta / (2 * L if L < 0.5 else 2 - 2 * L)
 
     h = 0
     if delta > 0:
@@ -96,5 +96,5 @@ def hsl(hex_code):
     return (
         int(h * 255),
         int(s * 255),
-        int(l * 255)
+        int(L * 255)
     )
