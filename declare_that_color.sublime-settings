@@ -4,10 +4,10 @@
 
     // Defines the CSS preprocessor language. Supported values are:
     // - null: no preprocessor, use vanilla CSS declaration
-    // - scss
-    // - sass
-    // - less
-    // - stylus
+    // - "scss"
+    // - "sass"
+    // - "less"
+    // - "stylus"
     "css_preprocessor": null,
 
     // String to prepend on color names
@@ -15,10 +15,10 @@
 
     // If you have Case Conversion plugin installed, use this setting
     // to determine variable name's case type. Supported values are:
-    // - dash
-    // - snake
-    // - camel
-    // - pascal
-    // - screaming_snake
+    // - "dash"
+    // - "snake"
+    // - "camel"
+    // - "pascal"
+    // - "screaming_snake"
     "type_case": "dash",
 }
