@@ -15,8 +15,8 @@ Download [Package Control](https://packagecontrol.io/) and use the _Package Cont
 
 ## Usage
 
-- To declare hex codes, click on **Edit** → **Declare That Color**
-- To revert declarations, click on **Edit** → **Undeclare That Color**
+- To declare hex codes, click on **Edit** → **Declare That Color**.
+- To revert declarations, click on **Edit** → **Undeclare That Color**.
 
 ### Key bindings
 
