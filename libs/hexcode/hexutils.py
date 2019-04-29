@@ -40,6 +40,8 @@ def find_all(string):
 
 @check_if_valid
 def normalize(hex_code):
+    """Convert hex code to six digit lowercase notation.
+    """
 
     hex_digits = hex_code.lstrip('#')
 
@@ -62,6 +64,9 @@ def rgb(hex_code):
 
 
 def hsl(hex_code):
+    """This function does not return a correct HSL value. I intentionally
+    didn't fix this to provide a similar result from the name that color tool.
+    """
 
     r, g, b = rgb(hex_code)
 
