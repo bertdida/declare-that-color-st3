@@ -15,7 +15,7 @@
 
     // If you have Case Conversion plugin installed, use this setting
     // to determine the variable name's case type. Supported values are:
-    // - "dash"
+    // - "dash": default, whether you have or not the plugin installed
     // - "snake"
     // - "camel"
     // - "pascal"
