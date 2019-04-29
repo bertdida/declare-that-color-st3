@@ -65,7 +65,7 @@ def rgb(hex_code):
 
 def hsl(hex_code):
     """This function does not return a correct HSL value. I intentionally
-    didn't fix this to provide a similar result from the name that color tool.
+    didn't fix this to produce a similar result from the name that color tool.
     """
 
     r, g, b = rgb(hex_code)
