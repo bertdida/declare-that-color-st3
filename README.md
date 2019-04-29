@@ -15,7 +15,7 @@ Download [Package Control](https://packagecontrol.io/) and use the Package Contr
 
 ### Key bindings
 
-DeclareThatColor doesn't include default key bindings, but you can use the template below to set up your own.
+DeclareThatColor doesn't ship with default key bindings, but you can use the template below to set up your own.
 
 ```json
 [
