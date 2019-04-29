@@ -4,7 +4,7 @@ DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/dd17b74cb4a19b100fdb/maintainability)](https://codeclimate.com/github/bertdida/DeclareThatColor/maintainability) ![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/bertdida/DeclareThatColor.svg) ![GitHub](https://img.shields.io/github/license/bertdida/DeclareThatColor.svg)
 
-![preview](img/preview.gif)
+![usage](img/usage.gif)
 
 ## Installation
 
