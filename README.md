@@ -10,8 +10,8 @@ DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare
 Download [Package Control](https://packagecontrol.io/) and use the _Package Control: Install Package_ command from the command palette. In this way, DeclareThatColor will stay up to date automatically.
 
 ## Usage
-- To declare hex codes, click on **Edit** → **Declare That Color**.
-- To revert declarations, click on **Edit** → **Undeclare That Color**.
+- To declare hex codes, click on **Edit** → **Declare That Color**
+- To revert declarations, click on **Edit** → **Undeclare That Color**
 
 ### Key bindings
 
