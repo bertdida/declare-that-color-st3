@@ -30,7 +30,7 @@ DeclareThatColor doesn't ship with default key bindings, but you can use the tem
 
 For a comprehensive list of settings navigate to **Preferences** → **Package Settings** → **DeclareThatColor** → **Settings - Default** or visit [DeclareThatColor/declare_that_color.sublime-settings](https://github.com/bertdida/DeclareThatColor/blob/master/declare_that_color.sublime-settings).
 
-Make sure all your edits are saved to **Settings – User**, this will avoid your changes from being overwritten by updates.
+To avoid your changes from being overwritten by updates, make sure all edits are saved to **Settings – User**.
 
 ## Source
 
