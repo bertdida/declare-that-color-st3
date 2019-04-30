@@ -32,7 +32,7 @@ DeclareThatColor doesn't ship with default key bindings, use the template below 
 
 ## Settings
 
-For a comprehensive list of settings navigate to **Preferences** → **Package Settings** → **DeclareThatColor** → **Settings - Default** or view it on [GitHub](https://github.com/bertdida/DeclareThatColor/blob/master/declare_that_color.sublime-settings). To avoid your changes from being overwritten by updates, make sure all edits are saved to **Settings – User**.
+For a comprehensive list of settings navigate to **Preferences** → **Package Settings** → **DeclareThatColor** → **Settings - Default** or go to [DeclareThatColor/declare_that_color.sublime-settings](https://github.com/bertdida/DeclareThatColor/blob/master/declare_that_color.sublime-settings). To avoid your changes from being overwritten by updates, make sure all edits are saved to **Settings – User**.
 
 ## Contribute
 
