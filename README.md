@@ -15,8 +15,9 @@ Download [Package Control](https://packagecontrol.io/) and use the _Package Cont
 
 ## Usage
 
-- To declare hex codes, click on **Edit** → **Declare That Color**.
-- To revert declarations, click on **Edit** → **Undeclare That Color**.
+From the Sublime Text's main menu click on:
+- **Edit** → **Declare That Color** to declare hex codes
+- **Edit** → **Undeclare That Color** to revert declarations
 
 ### Key bindings
 
@@ -31,7 +32,7 @@ DeclareThatColor doesn't ship with default key bindings, use the template below 
 
 ## Settings
 
-For a comprehensive list of settings navigate to **Preferences** → **Package Settings** → **DeclareThatColor** → **Settings - Default** or visit [DeclareThatColor/declare_that_color.sublime-settings](https://github.com/bertdida/DeclareThatColor/blob/master/declare_that_color.sublime-settings).
+For a comprehensive list of settings navigate to **Preferences** → **Package Settings** → **DeclareThatColor** → **Settings - Default** or view it on [DeclareThatColor/declare_that_color.sublime-settings](https://github.com/bertdida/DeclareThatColor/blob/master/declare_that_color.sublime-settings).
 
 To avoid your changes from being overwritten by updates, make sure all edits are saved to **Settings – User**.
 
