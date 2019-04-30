@@ -36,10 +36,6 @@ For a comprehensive list of settings navigate to **Preferences** → **Package S
 
 To avoid your changes from being overwritten by updates, make sure all edits are saved to **Settings – User**.
 
-## Source
-
-[GitHub](https://github.com/bertdida/DeclareThatColor)
-
 ## Contribute
 
 If you have any problem, idea or suggestion, feel free to create issues and pull requests on [GitHub](https://github.com/bertdida/DeclareThatColor).
