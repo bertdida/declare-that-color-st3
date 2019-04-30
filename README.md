@@ -42,7 +42,7 @@ If you have any problem, idea or suggestion, feel free to create issues and pull
 
 ## License
 
-Distributed under the MIT license. See LICENSE for more information.
+Distributed under the MIT license. See [LICENSE](https://github.com/bertdida/DeclareThatColor/blob/master/LICENSE) for more information.
 
 ## Author
 
