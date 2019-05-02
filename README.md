@@ -1,3 +1,5 @@
+<p align="center"><img src="/logo/logotype-horizontal.png"></p>
+
 # DeclareThatColor
 
 DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare CSS hex codes to their human-readable color names. It does this by using the ported JavaScript library from Chirag Mehta's [name that color](http://chir.ag/projects/name-that-color/) tool.
