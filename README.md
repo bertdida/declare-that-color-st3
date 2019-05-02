@@ -1,13 +1,11 @@
-<p align="center"><img src="/logo/logotype-horizontal.png"></p>
-
-# DeclareThatColor
-
-DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare CSS hex codes to their human-readable color names. It does this by using the ported JavaScript library from Chirag Mehta's [name that color](http://chir.ag/projects/name-that-color/) tool.
+<h1 align="center"><img src="/logo/logotype-vertical.png" width="50%"></h1>
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/dd17b74cb4a19b100fdb/maintainability)](https://codeclimate.com/github/bertdida/DeclareThatColor/maintainability)
 [![codebeat badge](https://codebeat.co/badges/cf67c947-b827-4301-9605-7c3b275b090a)](https://codebeat.co/projects/github-com-bertdida-declarethatcolor-master)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/bertdida/DeclareThatColor.svg)](https://github.com/bertdida/DeclareThatColor/releases)
 [![MIT License](https://img.shields.io/github/license/bertdida/DeclareThatColor.svg)](https://github.com/bertdida/DeclareThatColor/blob/master/LICENSE)
+
+DeclareThatColor is a Sublime Text 3 plugin that aims to help developers declare CSS hex codes to their human-readable color names. It does this by using the ported JavaScript library from Chirag Mehta's [name that color](http://chir.ag/projects/name-that-color/) tool.
 
 ![usage](img/usage.gif)
 
@@ -50,4 +48,5 @@ Herbert Verdida / [@bertdida](https://twitter.com/bertdida)
 
 ## Credits
 
-This work was inspired by Chirag Mehta's [name that color](http://chir.ag/projects/name-that-color/) tool, much thanks to him for open sourcing his [JavaScript code](http://chir.ag/projects/ntc/ntc.js)!
+1. Chirag Mehta - for creating the [name that color](http://chir.ag/projects/name-that-color/) tool and for open sourcing its [JavaScript code](http://chir.ag/projects/ntc/ntc.js)
+2. [@Tobaloidee](https://github.com/Tobaloidee) - for contributing his logo design
