@@ -1,4 +1,4 @@
-<p align="center"><img src="/logo/logotype-horizontal.png"></p>
+<p align="center"><img src="/logo/logotype-vertical.png" style="width: 50%;"></p>
 
 # DeclareThatColor
 
