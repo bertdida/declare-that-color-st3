@@ -1,4 +1,5 @@
-<h1 align="center"><img alt="logo" src="logo/logotype-vertical-v2.png"></h1>
+<!-- <h1 align="center"><img alt="logo" src="logo/logotype-vertical-v2.png"></h1> -->
+# ![logo](logo/logotype-vertical-v2.png)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/dd17b74cb4a19b100fdb/maintainability)](https://codeclimate.com/github/bertdida/DeclareThatColor/maintainability)
 [![codebeat badge](https://codebeat.co/badges/cf67c947-b827-4301-9605-7c3b275b090a)](https://codebeat.co/projects/github-com-bertdida-declarethatcolor-master)
