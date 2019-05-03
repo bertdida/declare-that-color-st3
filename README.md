@@ -48,5 +48,6 @@ Herbert Verdida / [@bertdida](https://twitter.com/bertdida)
 
 ## Credits
 
-1. Chirag Mehta - for creating the [name that color](http://chir.ag/projects/name-that-color/) tool and for open sourcing its [JavaScript code](http://chir.ag/projects/ntc/ntc.js)
-2. [@Tobaloidee](https://github.com/Tobaloidee) - for contributing his awesome logo design
+This work was inspired by Chirag Mehta's [name that color](http://chir.ag/projects/name-that-color/) tool, much thanks to him for open sourcing his [JavaScript code](http://chir.ag/projects/ntc/ntc.js)!
+
+Also, thanks to [@Tobaloidee](https://github.com/Tobaloidee) for designing this project's logo.
