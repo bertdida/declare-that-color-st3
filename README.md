@@ -21,7 +21,7 @@ From the Sublime Text's main menu click on:
 
 ### Key bindings
 
-DeclareThatColor doesn't ship with default key bindings, use the template below to set up your own.
+DeclareThatColor doesn't ship with default key bindings, but you may use the template below to set up your own.
 
 ```json
 [
