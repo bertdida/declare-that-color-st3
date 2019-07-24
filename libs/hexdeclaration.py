@@ -12,7 +12,6 @@ class HexDeclaration:
                  varname_prefix: str = '--',
                  assignment_operator: str = ': ',
                  statement_separator: str = ';'):
-
         self.varname_prefix = varname_prefix
         self.assignment_operator = assignment_operator
         self.statement_separator = statement_separator
@@ -25,16 +24,13 @@ class HexDeclaration:
             re.MULTILINE | re.IGNORECASE)
 
     def find_all(self, css):
-
         return [(m.group('var_name'), m.group('hex_code'))
                 for m in self.re.finditer(css)]
 
     def remove(self, css):
-
         return self.re.sub('', css)
 
     def create(self, var_name, hex_code):
-
         return '{}{}{}{}{}'.format(
             self.varname_prefix,
             var_name,

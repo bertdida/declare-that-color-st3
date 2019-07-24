@@ -9,9 +9,7 @@ HEX_CODE_INVALID_MESG = \
 
 
 def check_if_valid(func):
-
     def decorator(hex_code):
-
         if not is_valid(hex_code):
             raise ValueError(HEX_CODE_INVALID_MESG.format(hex_code))
 
@@ -21,7 +19,6 @@ def check_if_valid(func):
 
 
 def is_valid(hex_code):
-
     try:
         hex_digits = hex_code.lstrip('#')
     except AttributeError:
@@ -34,7 +31,6 @@ def is_valid(hex_code):
 
 
 def find_all(string):
-
     return tuple(h for h in HEX_CODE_RE.findall(string) if is_valid(h))
 
 
@@ -42,7 +38,6 @@ def find_all(string):
 def normalize(hex_code):
     """Convert hex code to six digit lowercase notation.
     """
-
     hex_digits = hex_code.lstrip('#')
 
     if len(hex_digits) == 3:
@@ -52,7 +47,6 @@ def normalize(hex_code):
 
 
 def rgb(hex_code):
-
     hex_code = normalize(hex_code)
     hex_decimal = int(hex_code[1:], 16)
 
@@ -64,10 +58,10 @@ def rgb(hex_code):
 
 
 def hsl(hex_code):
-    """This function does not return a correct HSL value. I intentionally
-    didn't fix this to produce a similar result from the name that color tool.
+    """This function does not return a correct HSL value.
+    I intentionally didn't fix this to produce a similar
+    result from the name that color tool.
     """
-
     r, g, b = rgb(hex_code)
 
     r /= 255

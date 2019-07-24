@@ -13,9 +13,7 @@ with open(json_path) as json_file:
 
 
 def get(hex_code):
-
     hex_code = hexutils.normalize(hex_code)
-
     r, g, b = hexutils.rgb(hex_code)
     h, s, L = hexutils.hsl(hex_code)
 
@@ -23,7 +21,6 @@ def get(hex_code):
     min_diff = None
 
     for name, color in color_data.items():
-
         if hex_code == color['hex']:
             return name
 
@@ -52,7 +49,6 @@ def get(hex_code):
 
 
 def get_unique(hex_code, names: list):
-
     current_name = get(hex_code)
 
     if current_name not in names:
@@ -65,9 +61,7 @@ def get_unique(hex_code, names: list):
 
 
 def is_match(base_name):
-
     def result(name):
-
         name = strip_num_suffix(name)
         match = re.match(MATCH_NAME_RE.format(name), base_name, re.IGNORECASE)
 
@@ -77,7 +71,6 @@ def is_match(base_name):
 
 
 def strip_num_suffix(name):
-
     *rest, last = name.split('-')
 
     if not last.isdigit():

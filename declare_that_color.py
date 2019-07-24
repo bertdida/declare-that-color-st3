@@ -13,7 +13,6 @@ settings = None
 
 
 def plugin_loaded():
-
     global settings
 
     settings = sublime.load_settings(SETTINGS_FILE)
@@ -23,7 +22,6 @@ def plugin_loaded():
 
 
 def instantiate_libs_css():
-
     global libs_css
 
     css_preprocessor = settings.get('css_preprocessor')
@@ -57,7 +55,6 @@ def instantiate_libs_css():
 
 
 def run_command(edit, view, command_func):
-
     region = sublime.Region(0, view.size())
     buffer_ = view.substr(region)
 
@@ -67,12 +64,10 @@ def run_command(edit, view, command_func):
 class DeclareThatColor(sublime_plugin.TextCommand):
 
     def run(self, edit):
-
         run_command(edit, self.view, libs_css.declare_hexcodes)
 
 
 class UndeclareThatColor(sublime_plugin.TextCommand):
 
     def run(self, edit):
-
         run_command(edit, self.view, libs_css.undeclare_hexcodes)
