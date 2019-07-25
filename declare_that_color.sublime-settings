@@ -15,7 +15,7 @@
     "color_name_prefix": null,
 
     // Use this setting to modify the variable name's case type. Except
-    // for dash, the following values below requires Case Conversion
+    // for `dash`, the following values below requires Case Conversion
     // plugin preinstalled.
     // - "dash"
     // - "snake"
