@@ -1,15 +1,25 @@
 import os
 import re
-import json
+import sublime
 from . import hexutils
 
 MATCH_NAME_RE = r'^(?:{0}-[0-9]+|{0})$'
+LOAD_DATA_DELAY = 1000  # milliseconds
 
-curr_path = os.path.dirname(os.path.abspath(__file__))
-json_path = os.path.join(curr_path, 'data.json')
+package_path = os.path.join(*__package__.split('.'))
+color_data_path = os.path.join('Packages', package_path, 'data.json')
+color_data = None
 
-with open(json_path) as json_file:
-    color_data = json.load(json_file)
+
+def _load_color_data():
+    global color_data
+
+    color_data_file = sublime.load_resource(color_data_path)
+    color_data = sublime.decode_value(color_data_file)
+
+
+# Fix for IOError("resource not found")
+sublime.set_timeout(_load_color_data, LOAD_DATA_DELAY)
 
 
 def get(hex_code):
