@@ -18,7 +18,7 @@ def _load_color_data():
     color_data = sublime.decode_value(color_data_file)
 
 
-# Fix for IOError("resource not found")
+# Fix for IOError("resource not found") from sublime.load_resource
 sublime.set_timeout(_load_color_data, LOAD_DATA_DELAY)
 
 
